@@ -90,6 +90,12 @@ export default defineConfig({
     contentIntellisense: true
   },
   vite: {
-    plugins: []
+    plugins: [],
+    server: {
+      watch: {
+        usePolling: true,
+        ignored: ['!**/packages/pure/**']
+      }
+    }
   }
 })

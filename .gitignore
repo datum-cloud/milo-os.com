@@ -78,3 +78,9 @@ ignore.*
 bunfig.toml
 /src/content/blog/test.*
 /test/
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/tests-examples/

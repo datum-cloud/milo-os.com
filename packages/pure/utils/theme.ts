@@ -25,7 +25,8 @@ export function setTheme(theme?: string, save = false) {
   }
   let targetTheme = theme
   if (theme === 'system') {
-    targetTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    // Default to light theme instead of system preference
+    targetTheme = 'light' // Changed from: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
     // Listen theme change
     listenThemeChange(theme)
   }

@@ -9,7 +9,8 @@ import PageLayout from '@/layouts/BaseLayout.astro'
 import ProjectCard from '@/components/home/ProjectCard.astro'
 import Section from '@/components/home/Section.astro'
 import SkillLayout from '@/components/home/SkillLayout.astro'
-import avatar from '@/assets/avatar.png'
+// import avatar from '@/assets/avatar.png'
+import miloHi from '@/assets/milo-hello.png'
 import config from '@/site-config'
 
 const languages = ['Html', 'JavaScript', 'CSS', 'Shell']
@@ -23,45 +24,47 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 <PageLayout meta={{ title: 'Home' }} highlightColor='#659EB9'>
   <main class='flex w-full flex-col items-center'>
+    
+    <section class='flex md:items-end flex-col md:flex-row  md:gap-y-0 gap-x-8 bg-lemon w-full p-8 pb-0 mb-8 border-2 border-bone'>
+      <div class="flex items-center justify-center mb-8 md:mb-0">
+        <Image
+          src={miloHi}
+          alt='profile'
+          class='w-full self-center'
+          loading='eager'
+        />
+      </div>
+      <div class="text-left flex flex-col gap-y-2 mb-8 md:mb-0 pb-8">
+        <h2 class="text-3xl font-bold">Meet Milo. The brain behind your Alt Cloud.</h2>
+        <p class="text-xl">Think Milo as an open source business OS built to help you grow, scale, and focus on your product—not backend plumbing.</p>
+      </div>
+    </section>
+
     <section class='animate mb-10 flex flex-col items-center gap-y-7' id='content-header'>
+      <!--     
       <Image
         src={avatar}
         alt='profile'
         class='h-28 w-auto rounded-full border p-1'
         loading='eager'
-      />
+      /> -->
 
       <div class='flex flex-col items-center gap-y-4'>
         <h1 class='text-3xl font-bold'>{config.author}</h1>
         <div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
-          <Label title='China'>
+          <Label title='NY'>
             <Icon name='location' class='size-5' slot='icon' />
           </Label>
           <Label
             title='Source code'
             as='a'
-            href='https://github.com/cworld1/astro-theme-pure'
+            href='https://github.com/datum-cloud/milo'
             target='_blank'
           >
             <Icon name='github' class='size-5' slot='icon' />
           </Label>
         </div>
       </div>
-
-      {/* Get template */}
-      <a
-        href='https://github.com/cworld1/astro-theme-pure'
-        target='_blank'
-        class='flex flex-row items-center gap-x-3 rounded-full border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md'
-      >
-        <span class='relative flex items-center justify-center'>
-          <span
-            class='absolute size-2 animate-ping rounded-full border border-green-400 bg-green-400 opacity-75'
-          ></span>
-          <span class='size-2 rounded-full bg-green-400'></span>
-        </span>
-        <p class='font-medium text-muted-foreground'>Get Template</p>
-      </a>
     </section>
 
     <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>

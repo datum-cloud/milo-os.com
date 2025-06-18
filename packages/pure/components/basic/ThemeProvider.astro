@@ -8,7 +8,8 @@
     let theme = localStorage.getItem('theme')
     // If undefined or 'system', get from system
     if (!theme || theme === 'system') {
-      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      // theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      theme = 'light' // Default to light theme (matches theme utility behavior)
     }
     document.documentElement.classList.toggle('dark', theme === 'dark')
     document

@@ -123,7 +123,41 @@ jobs:
         with:
           path: dist
           key: build-${{ github.sha }}
+  e2e:
+    needs: build
+    name: End-to-End Tests
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Restore Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.BUN_CACHE }}
+            **/node_modules
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/bun.lock', '**/package.json') }}
+
+      - name: Install Playwright Browsers
+        run: npx playwright install chromium
+
+      - name: Run E2E Tests
+        run: bun run test:e2e
+      - name: Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+  
   # docker:
   #   needs: build
   #   name: Docker Build
