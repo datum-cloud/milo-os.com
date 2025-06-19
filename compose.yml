@@ -18,6 +18,9 @@ services:
         - path: ./src
           action: sync
           target: /app/src
+        - path: ./packages/pure
+          action: sync
+          target: /app/packages/pure
         - path: ./public
           action: sync
           target: /app/public

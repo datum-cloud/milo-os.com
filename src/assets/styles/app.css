@@ -1,23 +1,38 @@
 /* Font */
+
 @font-face {
-  font-family: 'Satoshi';
-  src: url('/fonts/Satoshi-Variable.ttf');
+  font-family: RegolaNeue;
   font-style: normal;
+  font-weight: 400;
   font-display: swap;
+  src: url('/fonts/FTRegolaNeue-Regular.woff2') format('woff2');
 }
+
 @font-face {
-  font-family: 'Satoshi';
-  src: url('/fonts/Satoshi-VariableItalic.ttf');
-  font-style: italic;
+  font-family: RegolaNeue;
+  font-style: normal;
+  font-weight: 500;
   font-display: swap;
+  src: url('/fonts/FTRegolaNeue-Medium.woff2') format('woff2');
 }
+
+@font-face {
+  font-family: RegolaNeue;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/FTRegolaNeue-Semibold.woff2') format('woff2');
+}
+
 html {
-  font-family: 'Satoshi', sans-serif;
+  font-family: 'RegolaNeue', sans-serif;
 }
 
 /* Theme */
 :root {
-  --background: 210 33% 99%;
+  --lemon:47 67% 84%;
+  --bone:48 35% 81%;
+  --background: 204 36% 95%;
   --foreground: 240 10% 3.9%;
   --card: 0 0% 100%;
   --card-foreground: 240 10% 3.9%;
@@ -39,6 +54,7 @@ html {
   --radius: 0.5rem;
 }
 .dark {
+  --lemon:47 67% 84%;
   --background: 240 20.54% 5.2%;
   --foreground: 0 0% 98%;
   --card: 240 10% 3.9%;
