@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 
 test.describe('Homepage Tests', () => {
   test.beforeEach(async ({ page }) => {
@@ -8,7 +8,7 @@ test.describe('Homepage Tests', () => {
   test('should have correct title and meta information', async ({ page }) => {
     // Check page title
     await expect(page).toHaveTitle(/Milo OS/)
-    
+
     // Check meta description
     const metaDescription = page.locator('meta[name="description"]')
     await expect(metaDescription).toHaveAttribute('content', /Stay hungry, stay foolish/)
@@ -18,7 +18,6 @@ test.describe('Homepage Tests', () => {
     // Check if header exists
     const header = page.locator('header-component')
     await expect(header).toBeVisible()
-
   })
 
   test('should display main content', async ({ page }) => {
@@ -32,4 +31,4 @@ test.describe('Homepage Tests', () => {
     const footer = page.locator('footer')
     await expect(footer).toBeVisible()
   })
-}) 
+})

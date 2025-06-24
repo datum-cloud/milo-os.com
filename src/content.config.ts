@@ -1,11 +1,11 @@
-import { defineCollection, z } from 'astro:content'
-import { glob } from 'astro/loaders'
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 function removeDupsAndLowerCase(array: string[]) {
-  if (!array.length) return array
-  const lowercaseItems = array.map((str) => str.toLowerCase())
-  const distinctItems = new Set(lowercaseItems)
-  return Array.from(distinctItems)
+  if (!array.length) return array;
+  const lowercaseItems = array.map((str) => str.toLowerCase());
+  const distinctItems = new Set(lowercaseItems);
+  return Array.from(distinctItems);
 }
 
 const blog = defineCollection({
@@ -28,16 +28,28 @@ const blog = defineCollection({
           width: z.number().optional(),
           height: z.number().optional(),
 
-          color: z.string().optional()
+          color: z.string().optional(),
         })
         .optional(),
       tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
       language: z.string().optional(),
       draft: z.boolean().default(false),
       // Special fields
-      comment: z.boolean().default(true)
-    })
-})
+      comment: z.boolean().default(true),
+    }),
+});
+
+const pages = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    order: z.number(),
+    publishDate: z.coerce.date().optional(),
+    updatedDate: z.coerce.date().optional(),
+    draft: z.boolean().optional(),
+    tags: z.array(z.string()).optional(),
+  }),
+});
 
 // Define docs collection
 const docs = defineCollection({
@@ -51,8 +63,12 @@ const docs = defineCollection({
       tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
       draft: z.boolean().default(false),
       // Special fields
-      order: z.number().default(999)
-    })
-})
+      order: z.number().default(999),
+    }),
+});
 
-export const collections = { blog, docs }
+export const collections = {
+  blog,
+  pages,
+  docs,
+};

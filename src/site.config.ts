@@ -1,4 +1,9 @@
-import type { CardListData, Config, IntegrationUserConfig, ThemeUserConfig } from 'astro-pure/types'
+import type {
+  CardListData,
+  Config,
+  IntegrationUserConfig,
+  ThemeUserConfig,
+} from 'astro-pure/types';
 
 export const theme: ThemeUserConfig = {
   // === Basic configuration ===
@@ -19,13 +24,13 @@ export const theme: ThemeUserConfig = {
     dateOptions: {
       day: 'numeric',
       month: 'short',
-      year: 'numeric'
-    }
+      year: 'numeric',
+    },
   },
   /** Set a logo image to show in the homepage. */
   logo: {
     src: 'src/assets/avatar.png',
-    alt: 'Avatar'
+    alt: 'Avatar',
   },
 
   // === Global configuration ===
@@ -51,8 +56,8 @@ export const theme: ThemeUserConfig = {
       { title: 'Docs', link: '/docs' },
       { title: 'Projects', link: '/projects' },
       { title: 'Links', link: '/links' },
-      { title: 'About', link: '/about' }
-    ]
+      { title: 'About', link: '/about' },
+    ],
   },
 
   /** Configure the footer of your site. */
@@ -60,26 +65,21 @@ export const theme: ThemeUserConfig = {
     links: [
       // Registration link
       {
-        title: 'Moe ICP APTX4869',
-        link: 'https://icp.gov.moe/?keyword=APTX4869',
-        style: 'text-sm' // Uno/TW CSS class
-      },
-      {
-        title: 'Travelling',
-        link: 'https://www.travellings.cn/go.html',
-        style: 'text-sm'
+        title: 'Datum',
+        link: 'https://www.datum.net/',
+        style: 'text-sm', // Uno/TW CSS class
       },
       // Privacy Policy link
       {
         title: 'Site Policy',
-        link: '/terms/list',
-        pos: 2 // position set to 2 will be appended to copyright line
-      }
+        link: 'https://www.datum.net/terms-of-service',
+        pos: 2, // position set to 2 will be appended to copyright line
+      },
     ],
     /** Enable displaying a “Astro & Pure theme powered” link in your site’s footer. */
     credits: true,
     /** Optional details about the social media accounts for this site. */
-    social: { github: 'https://github.com/datum-cloud/milo' }
+    social: { github: 'https://github.com/datum-cloud/milo' },
   },
 
   content: {
@@ -88,9 +88,9 @@ export const theme: ThemeUserConfig = {
     blogPageSize: 8,
     externalLinkArrow: true, // show external link arrow
     // Currently support weibo, x, bluesky
-    share: ['weibo', 'x', 'bluesky']
-  }
-}
+    share: ['weibo', 'x', 'bluesky'],
+  },
+};
 
 export const integ: IntegrationUserConfig = {
   // Links management
@@ -100,15 +100,15 @@ export const integ: IntegrationUserConfig = {
     logbook: [
       { date: '2024-07-01', content: 'Lorem ipsum dolor sit amet.' },
       { date: '2024-07-01', content: 'vidit suscipit at mei.' },
-      { date: '2024-07-01', content: 'Quem denique mea id.' }
+      { date: '2024-07-01', content: 'Quem denique mea id.' },
     ],
     // Yourself link info
     applyTip: [
       { name: 'Name', val: theme.title },
       { name: 'Desc', val: theme.description || 'Null' },
       { name: 'Link', val: 'https://astro-pure.js.org/' },
-      { name: 'Avatar', val: 'https://astro-pure.js.org/favicon/favicon.ico' }
-    ]
+      { name: 'Avatar', val: 'https://astro-pure.js.org/favicon/favicon.ico' },
+    ],
   },
   // Enable page search function
   pagefind: true,
@@ -120,12 +120,12 @@ export const integ: IntegrationUserConfig = {
     // target: (data) => (data as { hitokoto: string }).hitokoto || 'Error'
     // https://github.com/lukePeavey/quotable
     server: 'https://api.quotable.io/quotes/random?maxLength=60',
-    target: `(data) => data[0].content || 'Error'`
+    target: `(data) => data[0].content || 'Error'`,
   },
   // UnoCSS typography
   // See: https://unocss.dev/presets/typography
   typography: {
-    class: 'prose text-base text-muted-foreground'
+    class: 'prose text-base text-muted-foreground',
   },
   // A lightbox library that can add zoom effect
   // See: https://astro-pure.js.org/docs/integrations/others#medium-zoom
@@ -133,8 +133,8 @@ export const integ: IntegrationUserConfig = {
     enable: true, // disable it will not load the whole library
     selector: '.prose .zoomable',
     options: {
-      className: 'zoomable'
-    }
+      className: 'zoomable',
+    },
   },
   // Comment system
   waline: {
@@ -150,34 +150,34 @@ export const integ: IntegrationUserConfig = {
       comment: true,
       locale: {
         reaction0: 'Like',
-        placeholder: 'Welcome to comment. (Email to receive replies. Login is unnecessary)'
+        placeholder: 'Welcome to comment. (Email to receive replies. Login is unnecessary)',
       },
-      imageUploader: false
-    }
-  }
-}
+      imageUploader: false,
+    },
+  },
+};
 
 export const terms: CardListData = {
   title: 'Terms content',
   list: [
     {
       title: 'Privacy Policy',
-      link: '/terms/privacy-policy'
+      link: '/terms/privacy-policy',
     },
     {
       title: 'Terms and Conditions',
-      link: '/terms/terms-and-conditions'
+      link: '/terms/terms-and-conditions',
     },
     {
       title: 'Copyright',
-      link: '/terms/copyright'
+      link: '/terms/copyright',
     },
     {
       title: 'Disclaimer',
-      link: '/terms/disclaimer'
-    }
-  ]
-}
+      link: '/terms/disclaimer',
+    },
+  ],
+};
 
-const config = { ...theme, integ } as Config
-export default config
+const config = { ...theme, integ } as Config;
+export default config;

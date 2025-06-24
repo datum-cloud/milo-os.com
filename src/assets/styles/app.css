@@ -30,10 +30,11 @@ html {
 
 /* Theme */
 :root {
-  --lemon:47 67% 84%;
-  --bone:48 35% 81%;
+  --lemon: 47 67% 84%;
+  --bone: 48 35% 81%;
   --background: 204 36% 95%;
   --foreground: 240 10% 3.9%;
+  --blackberry: 257 28% 22%;
   --card: 0 0% 100%;
   --card-foreground: 240 10% 3.9%;
   --popover: 0 0% 100%;
@@ -54,7 +55,7 @@ html {
   --radius: 0.5rem;
 }
 .dark {
-  --lemon:47 67% 84%;
+  --lemon: 47 67% 84%;
   --background: 240 20.54% 5.2%;
   --foreground: 0 0% 98%;
   --card: 240 10% 3.9%;

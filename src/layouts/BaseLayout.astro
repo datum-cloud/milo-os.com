@@ -1,22 +1,23 @@
 ---
-import { Footer, Header, ThemeProvider } from '@packages/pure/components/basic'
-import type { SiteMeta } from 'astro-pure/types'
-import BaseHead from '@/components/BaseHead.astro'
-import config from '@/site-config'
+import { Footer, Header, ThemeProvider } from '@packages/pure/components/basic';
+
+import type { SiteMeta } from 'astro-pure/types';
+import BaseHead from '@/components/BaseHead.astro';
+import config from '@/site-config';
 
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseLayout /> component.
-import '@/assets/styles/app.css'
+import '@/assets/styles/app.css';
 
 interface Props {
-  meta: SiteMeta
-  highlightColor?: string
+  meta: SiteMeta;
+  highlightColor?: string;
 }
 
 const {
   meta: { articleDate, description = config.description, ogImage, title },
-  highlightColor
-} = Astro.props
+  highlightColor,
+} = Astro.props;
 ---
 
 <html lang={config.locale.lang}>
@@ -25,18 +26,10 @@ const {
     <ThemeProvider />
   </head>
 
-  <body class='flex justify-center bg-background text-foreground'>
-    {
-      highlightColor && (
-        <div
-          id='highlight-gradient'
-          class='pointer-events-none absolute start-0 top-0 z-0 h-screen w-full opacity-25'
-          style={`background-image:linear-gradient(${highlightColor},transparent)`}
-        />
-      )
-    }
-    <div class='w-full max-w-[70rem] px-4 sm:px-7 lg:px-10'>
-      <Header />
+  <body class="justify-center bg-background text-foreground">
+    <Header />
+
+    <div class="container mx-auto max-w-[70rem] px-4 sm:px-7 lg:px-10">
       <slot />
       <Footer />
     </div>
@@ -47,10 +40,7 @@ const {
         color: var(--highlightColor, hsl(var(--primary) / var(--un-text-opacity))) !important;
       }
       :global(.highlight-bg) {
-        background-color: var(
-          --highlightColor,
-          hsl(var(--primary) / var(--un-text-opacity))
-        ) !important;
+        background-color: var(--highlightColor, hsl(var(--primary) / var(--un-text-opacity))) !important;
       }
     </style>
   </body>
