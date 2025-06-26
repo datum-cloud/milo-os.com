@@ -125,6 +125,9 @@ const themeColors = {
   bone: 'hsl(var(--bone) / <alpha-value>)',
   foreground: 'hsl(var(--foreground) / <alpha-value>)',
   blackberry: 'hsl(var(--blackberry) / <alpha-value>)',
+  sunglow: 'hsl(var(--sunglow) / <alpha-value>)',
+  peat: 'hsl(var(--peat) / <alpha-value>)',
+  'winter-sky': 'hsl(var(--winter-sky) / <alpha-value>)',
   primary: {
     DEFAULT: 'hsl(var(--primary) / <alpha-value>)',
     foreground: 'hsl(var(--primary-foreground) / <alpha-value>)',

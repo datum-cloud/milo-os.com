@@ -125,7 +125,7 @@ export const integ: IntegrationUserConfig = {
   // UnoCSS typography
   // See: https://unocss.dev/presets/typography
   typography: {
-    class: 'prose text-base text-muted-foreground',
+    class: 'prose text-base', // text-muted-foreground
   },
   // A lightbox library that can add zoom effect
   // See: https://astro-pure.js.org/docs/integrations/others#medium-zoom
