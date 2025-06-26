@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { getEntry } from 'astro:content';
 
 // import { Quote } from 'astro-pure/advanced';
 import { PostPreview } from 'astro-pure/components/pages';
@@ -25,6 +26,66 @@ const allPostsByDate = allPosts
     return bDate - aDate;
   })
   .slice(0, MAX_POSTS);
+
+// Get changelog data
+const changelogEntry = await getEntry('pages', 'changelog');
+
+// Parse the latest 2 versions from changelog content
+interface VersionData {
+  version: string;
+  date: string;
+  features: string[];
+}
+let latestVersions: VersionData[] = [];
+if (changelogEntry && changelogEntry.body) {
+  const content = changelogEntry.body;
+  // console.log('Raw changelog content:', content.substring(0, 500) + '...');
+  // Split by version headers and filter out empty sections
+  const sections = content.split(/(?=## Version)/).filter((section) => section.trim());
+
+  latestVersions = sections
+    .slice(0, 3)
+    .map((section) => {
+      const lines = section.trim().split('\n');
+      const versionLine = lines[0];
+      // console.log(`Processing section ${index}, version line:`, versionLine);
+      const versionMatch = versionLine.match(/## Version ([\d.]+) - (.+)/);
+
+      if (versionMatch) {
+        // console.log(`Found version ${versionMatch[1]} - ${versionMatch[2]}`);
+        // Extract features from the content
+        const contentLines = lines.slice(1);
+        const featuresStart = contentLines.findIndex((line) =>
+          line.includes('### 🚀 New Features')
+        );
+        const featuresEnd = contentLines.findIndex(
+          (line, index) => index > featuresStart && line.startsWith('###')
+        );
+
+        let features: string[] = [];
+        if (featuresStart !== -1) {
+          const endIndex = featuresEnd === -1 ? contentLines.length : featuresEnd;
+          features = contentLines
+            .slice(featuresStart + 1, endIndex)
+            .filter((line: string) => line.startsWith('- **'))
+            .slice(0, 3); // Get first 3 features
+          // console.log( `Extracted ${features.length} features for version ${versionMatch[1]}:`, features );
+        } else {
+          // console.log(`No features section found for version ${versionMatch[1]}`);
+        }
+
+        return {
+          version: versionMatch[1],
+          date: versionMatch[2].trim(),
+          features: features,
+        };
+      }
+      return null;
+    })
+    .filter((item): item is VersionData => item !== null);
+
+  // console.log('Parsed versions:', JSON.stringify(latestVersions, null, 2));
+}
 ---
 
 <PageLayout meta={{ title: 'Home' }} highlightColor="#659EB9">
@@ -55,6 +116,35 @@ const allPostsByDate = allPosts
       </Section>
 
       {
+        latestVersions.length > 0 && (
+          <Section title="Changelog">
+            {latestVersions.map((version) => (
+              <Card heading={`Version ${version.version}`} date={version.date}>
+                <div class="text-muted-foreground prose prose-sm max-w-none">
+                  {version.features && version.features.length > 0 && (
+                    <div class="mb-3 pt-4 pb-2">
+                      <h4 class="font-semibold text-foreground mb-1">🚀 New Features</h4>
+                      <ul class="list-disc list-inside space-y-1">
+                        {version.features.map((feature: string) => (
+                          <li class="text-sm">{feature.replace(/^- \*\*([^*]+)\*\*: /, '$1: ')}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </Card>
+            ))}
+            <Button
+              title="View full changelog"
+              class="w-fit self-end"
+              href="/changelog"
+              style="ahead"
+            />
+          </Section>
+        )
+      }
+
+      {
         allPostsByDate.length > 0 && (
           <Section title="Posts">
             <ul class="flex flex-col gap-y-1.5 sm:gap-y-2">
@@ -65,39 +155,6 @@ const allPostsByDate = allPosts
               ))}
             </ul>
             <Button title="More posts" class="w-fit self-end" href="/blog" style="ahead" />
-          </Section>
-        )
-      }
-
-      {
-        (
-          <Section title="Changelog">
-            <Card
-              heading="Lorem Ipsum"
-              subheading="Sit amet consectetur"
-              date="Dec 2022 - Nov 2023"
-              imagePath="/src/assets/about-astro.png"
-              altText="Lorem, ipsum dolor sit"
-              imageClass="h-12 w-auto md:-start-16"
-            >
-              <ul class="ms-4 list-disc text-muted-foreground">
-                <li>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis
-                  recusandae, ut molestiae laboriosam pariatur!
-                  <li>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, pariatur!
-                  </li>
-                </li>
-              </ul>
-            </Card>
-            <Card
-              heading="Lorem Ipsum"
-              subheading="Sit amet consectetur"
-              date="Dec 2022 - Nov 2023"
-              imagePath="/src/assets/about-astro.png"
-              altText="Lorem, ipsum dolor sit"
-              imageClass="h-12 w-auto md:-start-16"
-            />
           </Section>
         )
       }
