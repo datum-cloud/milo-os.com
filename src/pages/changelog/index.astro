@@ -1,0 +1,16 @@
+---
+import { getEntry } from 'astro:content';
+import PageLayout from '@/layouts/CommonPage.astro';
+
+const changelogEntry = await getEntry('pages', 'changelog');
+const rendered = changelogEntry ? await changelogEntry.render() : null;
+---
+
+{
+  rendered && changelogEntry && (
+    <PageLayout title={changelogEntry.data.title} headings={rendered.headings} info="/changelog">
+      <rendered.Content />
+    </PageLayout>
+  )
+}
+
