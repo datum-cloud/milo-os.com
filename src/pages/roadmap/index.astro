@@ -1,0 +1,15 @@
+---
+import { getEntry } from 'astro:content';
+import PageLayout from '@/layouts/CommonPage.astro';
+
+const roadmapEntry = await getEntry('pages', 'roadmap');
+const rendered = roadmapEntry ? await roadmapEntry.render() : null;
+---
+
+{
+  rendered && roadmapEntry && (
+    <PageLayout title={roadmapEntry.data.title} headings={rendered.headings} info="/roadmap">
+      <rendered.Content />
+    </PageLayout>
+  )
+}
