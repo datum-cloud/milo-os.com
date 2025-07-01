@@ -40,9 +40,6 @@ package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
-# Generated content
-src/content/
-
 # Public assets
 public/
 
