@@ -1,11 +1,12 @@
 // Web content render
-export { default as Quote } from './Quote.astro'
-export { default as GithubCard } from './GithubCard.astro'
-export { default as LinkPreview } from './LinkPreview.astro'
+export { default as Quote } from './Quote.astro';
+export { default as GithubCard } from './GithubCard.astro';
+export { default as LinkPreview } from './LinkPreview.astro';
+export { default as Link } from './Link.astro';
 
 // Data transformer
-export { default as QRCode } from './QRCode.astro'
-export { default as MediumZoom } from './MediumZoom.astro'
+export { default as QRCode } from './QRCode.astro';
+export { default as MediumZoom } from './MediumZoom.astro';
 
 // Individual server integration
-export { default as Comment } from './Comment.astro'
+export { default as Comment } from './Comment.astro';
