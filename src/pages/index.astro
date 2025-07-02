@@ -3,8 +3,8 @@ import { Image } from 'astro:assets';
 import { getEntry } from 'astro:content';
 
 // import { Quote } from 'astro-pure/advanced';
-import { PostPreview } from 'astro-pure/components/pages';
-import { getBlogCollection } from 'astro-pure/server';
+// import { PostPreview } from 'astro-pure/components/pages';
+import { Link } from '@packages/pure/components/advanced';
 // import { Button, Card /*, Icon, Label */ } from 'astro-pure/user';
 import { Button, Card, Timeline /*, Icon, Label */ } from '@packages/pure/components/user';
 import PageLayout from '@/layouts/BaseLayout.astro';
@@ -19,6 +19,9 @@ import { roadmapEvents } from '../data/roadmap';
 // const frontend = ['TypeScript', 'Vite', 'Webpack', 'Astro'];
 // const backend = ['Vercel', 'Waline'];
 
+/*
+import { getBlogCollection } from 'astro-pure/server';
+
 const MAX_POSTS = 10;
 const allPosts = await getBlogCollection();
 const allPostsByDate = allPosts
@@ -28,6 +31,7 @@ const allPostsByDate = allPosts
     return bDate - aDate;
   })
   .slice(0, MAX_POSTS);
+*/
 
 // Get changelog data
 const changelogEntry = await getEntry('pages', 'changelog');
@@ -151,6 +155,49 @@ if (changelogEntry && changelogEntry.body) {
         )
       }
 
+      <Section title="Links">
+        <ul class="flex flex-col gap-y-1.5 sm:gap-y-2">
+          <Link
+            link={{
+              title: 'Docs',
+              url: 'https://docs.datum.net/docs/overview/',
+            }}
+          />
+          <Link
+            link={{
+              title: 'API',
+              url: 'https://docs.datum.net/docs/api/',
+              description:
+                'Datum Cloud provides a declarative API platform to create the infrastructure necessary to deploy and manage services with advanced networking capabilities.',
+            }}
+            detailed={true}
+          />
+          <Link
+            link={{
+              title: 'Slack',
+              url: 'https://slack.datum.net/datum',
+              description: 'Join the discussion on Slack.',
+            }}
+            detailed={true}
+          />
+
+          <!--  
+          <Link
+            link={{
+              title: 'Datum API',
+              url: 'https://docs.datum.net/docs/api/',
+              description:
+                'Datum Cloud provides a declarative API platform to create the infrastructure necessary to deploy and manage services with advanced networking capabilities.',
+              tags: ['api', 'kubernetes'],
+              addedDate: new Date('2025-06-12'),
+            }}
+            detailed={true}
+          />
+          -->
+        </ul>
+      </Section>
+
+      <!--  
       {
         allPostsByDate.length > 0 && (
           <Section title="Posts">
@@ -165,6 +212,7 @@ if (changelogEntry && changelogEntry.body) {
           </Section>
         )
       }
+      -->
     </div>
     <!-- <Quote class="mt-12" /> -->
   </main>
