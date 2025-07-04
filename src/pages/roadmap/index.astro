@@ -8,7 +8,7 @@ const rendered = roadmapEntry ? await roadmapEntry.render() : null;
 
 {
   rendered && roadmapEntry && (
-    <PageLayout title={roadmapEntry.data.title} headings={rendered.headings} info="/roadmap">
+    <PageLayout title={roadmapEntry.data.title} headings={rendered.headings}>
       <rendered.Content />
     </PageLayout>
   )

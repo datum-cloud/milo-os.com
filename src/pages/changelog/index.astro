@@ -8,9 +8,8 @@ const rendered = changelogEntry ? await changelogEntry.render() : null;
 
 {
   rendered && changelogEntry && (
-    <PageLayout title={changelogEntry.data.title} headings={rendered.headings} info="/changelog">
+    <PageLayout title={changelogEntry.data.title} headings={rendered.headings}>
       <rendered.Content />
     </PageLayout>
   )
 }
-
