@@ -8,7 +8,7 @@ const rendered = aboutEntry ? await aboutEntry.render() : null;
 
 {
   rendered && aboutEntry && (
-    <PageLayout title={aboutEntry.data.title} headings={rendered.headings} info="/about">
+    <PageLayout title={aboutEntry.data.title} headings={rendered.headings}>
       <rendered.Content />
     </PageLayout>
   )
