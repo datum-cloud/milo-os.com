@@ -6,7 +6,7 @@ const { as: Tag = 'a', class: className, title, href, style = 'button', ...props
 
 <Tag
   class={cn(
-    'group inline-flex items-center gap-x-1 rounded-lg bg-sunglow text-white border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-primary-foreground no-underline',
+    'group inline-flex items-center gap-x-1 rounded-lg bg-sunglow text-white border border-background px-2 py-1 text-sm text-muted-foreground transition-all hover:border-primary hover:bg-primary-foreground no-underline',
     !href && 'cursor-default',
     style === 'pill' && 'rounded-xl',
     className

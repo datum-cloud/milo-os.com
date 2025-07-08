@@ -1,5 +1,5 @@
 # Stage 1: Dependencies
-FROM oven/bun:1.2-slim as deps
+FROM oven/bun:1.2-slim AS deps
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
 # Stage 2: Builder (for production build)
-FROM deps as builder
+FROM deps AS builder
 
 # Copy the rest of the source files
 COPY . .
@@ -39,7 +39,7 @@ EXPOSE 4321
 CMD ["bun", "run", "dev"]
 
 # Stage 4: Production
-FROM oven/bun:1.2-slim as production
+FROM oven/bun:1.2-slim AS production
 
 WORKDIR /app
 
