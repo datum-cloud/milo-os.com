@@ -1,5 +1,5 @@
 ---
-import { Footer, Header, ThemeProvider } from '@packages/pure/components/basic';
+import { Footer, ThemeProvider } from '@packages/pure/components/basic';
 
 import type { SiteMeta } from 'astro-pure/types';
 import BaseHead from '@/components/BaseHead.astro';
@@ -27,9 +27,7 @@ const {
   </head>
 
   <body class="justify-center bg-background text-foreground">
-    <Header />
-
-    <div class="container mx-auto max-w-[70rem] px-4 sm:px-7 lg:px-10">
+    <div class="container mx-auto max-w-[70rem] px-4 sm:px-7 lg:px-10 pt-14">
       <slot />
       <Footer />
     </div>
@@ -40,7 +38,10 @@ const {
         color: var(--highlightColor, hsl(var(--primary) / var(--un-text-opacity))) !important;
       }
       :global(.highlight-bg) {
-        background-color: var(--highlightColor, hsl(var(--primary) / var(--un-text-opacity))) !important;
+        background-color: var(
+          --highlightColor,
+          hsl(var(--primary) / var(--un-text-opacity))
+        ) !important;
       }
     </style>
   </body>
