@@ -1,44 +1,44 @@
 // @ts-check
 
-import { rehypeHeadingIds } from '@astrojs/markdown-remark'
-import AstroPureIntegration from 'astro-pure'
-import { defineConfig } from 'astro/config'
-import rehypeKatex from 'rehype-katex'
-import remarkMath from 'remark-math'
-import node from '@astrojs/node'
+import { rehypeHeadingIds } from '@astrojs/markdown-remark';
+import AstroPureIntegration from 'astro-pure';
+import { defineConfig } from 'astro/config';
+import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
+import node from '@astrojs/node';
 
-
-import rehypeAutolinkHeadings from './src/plugins/rehype-auto-link-headings.js'
+import rehypeAutolinkHeadings from './src/plugins/rehype-auto-link-headings.js';
 import {
   addCopyButton,
   addLanguage,
   addTitle,
   transformerNotationDiff,
   transformerNotationHighlight,
-  updateStyle
-} from './src/plugins/shiki-transformers.js'
-import config from './src/site.config.js'
+  updateStyle,
+} from './src/plugins/shiki-transformers.js';
+import config from './src/site.config.js';
+import { remarkRemoveFirstH1 } from './src/plugins/remark-remove-first-h1.ts';
 
 export default defineConfig({
   site: 'https://milo-os.com',
   trailingSlash: 'never',
 
   adapter: node({
-    mode: 'standalone'
+    mode: 'standalone',
   }),
   output: 'server',
 
   image: {
     service: {
-      entrypoint: 'astro/assets/services/sharp'
-    }
+      entrypoint: 'astro/assets/services/sharp',
+    },
   },
 
   integrations: [
     // astro-pure will automatically add sitemap, mdx & unocss
     // sitemap(),
     // mdx(),
-    AstroPureIntegration(config)
+    AstroPureIntegration(config),
     // (await import('@playform/compress')).default({
     //   SVG: false,
     //   Exclude: ['index.*.js']
@@ -53,11 +53,11 @@ export default defineConfig({
   prefetch: true,
   // Server Options
   server: {
-    host: true
+    host: true,
   },
   // Markdown Options
   markdown: {
-    remarkPlugins: [remarkMath],
+    remarkPlugins: [remarkMath, remarkRemoveFirstH1],
     rehypePlugins: [
       [rehypeKatex, {}],
       rehypeHeadingIds,
@@ -66,15 +66,15 @@ export default defineConfig({
         {
           behavior: 'append',
           properties: { className: ['anchor'] },
-          content: { type: 'text', value: '#' }
-        }
-      ]
+          content: { type: 'text', value: '#' },
+        },
+      ],
     ],
     // https://docs.astro.build/en/guides/syntax-highlighting/
     shikiConfig: {
       themes: {
         light: 'github-light',
-        dark: 'github-dark'
+        dark: 'github-dark',
       },
       transformers: [
         transformerNotationDiff(),
@@ -82,20 +82,20 @@ export default defineConfig({
         updateStyle(),
         addTitle(),
         addLanguage(),
-        addCopyButton(2000)
-      ]
-    }
+        addCopyButton(2000),
+      ],
+    },
   },
   experimental: {
-    contentIntellisense: true
+    contentIntellisense: true,
   },
   vite: {
     plugins: [],
     server: {
       watch: {
         usePolling: true,
-        ignored: ['!**/packages/pure/**']
-      }
-    }
-  }
-})
+        ignored: ['!**/packages/pure/**'],
+      },
+    },
+  },
+});
