@@ -68,8 +68,6 @@ pnpm-debug.log*
 node_modules/
 
 # environment variables
-.env
-.env.production
 
 # others
 .DS_Store
@@ -84,3 +82,4 @@ bunfig.toml
 /playwright-report/
 /playwright/.cache/
 /tests-examples/
+config.bat
