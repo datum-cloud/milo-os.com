@@ -1,22 +1,12 @@
 export const roadmapEvents = [
   {
-    date: 'Q1 2024',
+    date: 'Today',
     content:
-      '<strong>v2.0 - Major UI Overhaul</strong><br/>New design system implementation<br/>Enhanced user experience<br/>Improved navigation',
+      '<strong>A Growing Foundation</strong><br/>While we\'re most excited about GTM and commercial aspects of our roadmap, the first step for any cloud provider is to build a strong "system of record" foundation around customers, products, quotas, etc.',
   },
   {
-    date: 'Q2 2024',
+    date: 'Tommorow',
     content:
-      '<strong>v2.1 - Performance & Features</strong><br/>Advanced filtering options<br/>Real-time updates<br/>API improvements',
-  },
-  {
-    date: 'Q3 2024',
-    content:
-      '<strong>v2.2 - Mobile First</strong><br/>Progressive Web App features<br/>Offline functionality<br/>Touch-optimized interface',
-  },
-  {
-    date: 'Q4 2024',
-    content:
-      '<strong>v3.0 - Next Generation</strong><br/>AI-powered features<br/>Advanced analytics<br/>Third-party integrations',
+      '<strong>12-18 Month Roadmap</strong><br/>As we launch our own cloud in 2025, Milo’s roadmap will move toward operational, security and commercial areas.',
   },
 ];
