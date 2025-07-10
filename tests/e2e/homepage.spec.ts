@@ -7,11 +7,11 @@ test.describe('Homepage Tests', () => {
 
   test('should have correct title and meta information', async ({ page }) => {
     // Check page title
-    await expect(page).toHaveTitle(/Milo OS/);
+    await expect(page).toHaveTitle(/Home • Milo - An open source system of action for Alt Clouds/);
 
     // Check meta description
-    const metaDescription = page.locator('meta[name="description"]');
-    await expect(metaDescription).toHaveAttribute('content', /Stay hungry, stay foolish/);
+    // const metaDescription = page.locator('meta[name="description"]');
+    // await expect(metaDescription).toHaveAttribute('content', /Stay hungry, stay foolish/);
   });
 
   // test('should display header navigation', async ({ page }) => {

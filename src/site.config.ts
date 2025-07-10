@@ -8,11 +8,11 @@ import type {
 export const theme: ThemeUserConfig = {
   // === Basic configuration ===
   /** Title for your website. Will be used in metadata and as browser tab title. */
-  title: 'Milo OS',
+  title: 'Milo - An open source system of action for Alt Clouds',
   /** Will be used in index page & copyright declaration */
   author: 'Milo',
   /** Description metadata for your website. Can be used in page metadata. */
-  description: 'Stay hungry, stay foolish',
+  description: 'Developed in the open, Milo is a comprehensive "business operating system" for product-led, B2B companies. Brought to you by the folks at Datum.',
   /** The default favicon for your site which should be a path to an image in the `public/` directory. */
   favicon: '/favicon/favicon.ico',
   /** Specify the default language for this site. */

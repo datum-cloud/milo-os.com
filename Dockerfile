@@ -19,7 +19,7 @@ COPY . .
 RUN bun run build
 
 # Stage 3: Development (for local development)
-FROM deps as development
+FROM deps AS development
 
 # Copy the rest of the source files
 COPY . .
