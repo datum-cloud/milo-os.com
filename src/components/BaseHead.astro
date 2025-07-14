@@ -78,26 +78,15 @@ const socialImageURL = new URL(ogImage ? ogImage : '/images/social-card.png', As
 {/* Styles */}
 <link rel="stylesheet" href="/styles/global.css" />
 
-{/* View transitions */}
-<!-- <ClientRouter /> -->
-<!-- <script is:inline>
-  const style = document.createElement('style')
-  style.textContent = `* { transition: none !important; }`
-  document.addEventListener('astro:after-swap', () => {
-    document.head.appendChild(style)
-    setTimeout(() => {
-      style.remove()
-    }, 100)
-  })
-</script> -->
-
 {
   /* User script*/
   prod && (
-    <script>
-      console.log( '%c Astro Theme Pure %c https://github.com/cworld1/astro-theme-pure/',
-      'color:#fff;background:linear-gradient(90deg,#448bff,#44e9ff);padding:5px 0;',
-      'color:#000;background:linear-gradient(90deg,#44e9ff,#ffffff);padding:5px 10px 5px 0px;' )
-    </script>
+    <script
+      is:inline
+      src="https://cdn.usefathom.com/script.js"
+      data-spa="auto"
+      data-site="JNZAGQUL"
+      defer
+    />
   )
 }
