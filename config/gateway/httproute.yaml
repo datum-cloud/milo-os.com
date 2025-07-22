@@ -7,6 +7,7 @@ spec:
   - group: gateway.networking.k8s.io
     kind: Gateway
     name: milo-os-com-gateway
+    sectionName: https-www-milo-os-com
   rules:
   - backendRefs:
     - group: discovery.k8s.io
@@ -17,7 +18,7 @@ spec:
     filters:
       - type: URLRewrite
         urlRewrite:
-          hostname: "milo-os.com"
+          hostname: "milo-os-com.staging.env.datum.net"
     matches:
     - path:
         type: PathPrefix

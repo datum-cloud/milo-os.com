@@ -10,6 +10,6 @@ ports:
     port: 443
 endpoints:
   - addresses:
-      - "milo-os.com"
+      - "milo-os-com.staging.env.datum.net"
     conditions:
       ready: true
