@@ -55,7 +55,7 @@ if (changelogEntry && changelogEntry.body) {
       const lines = section.trim().split('\n');
       const versionLine = lines[0];
       // console.log(`Processing section ${index}, version line:`, versionLine);
-      const versionMatch = versionLine.match(/## Version ([\d.]+) - (.+)/);
+      const versionMatch = versionLine.match(/## Version v([\d.]+) - (.+)/);
 
       if (versionMatch) {
         // console.log(`Found version ${versionMatch[1]} - ${versionMatch[2]}`);
@@ -81,7 +81,7 @@ if (changelogEntry && changelogEntry.body) {
         }
 
         return {
-          version: versionMatch[1],
+          version: 'v' + versionMatch[1],
           date: versionMatch[2].trim(),
           features: features,
         };
@@ -181,7 +181,7 @@ if (changelogEntry && changelogEntry.body) {
             detailed={true}
           />
 
-          <!--  
+          <!--
           <Link
             link={{
               title: 'Datum API',
@@ -197,7 +197,7 @@ if (changelogEntry && changelogEntry.body) {
         </ul>
       </Section>
 
-      <!--  
+      <!--
       {
         allPostsByDate.length > 0 && (
           <Section title="Posts">
