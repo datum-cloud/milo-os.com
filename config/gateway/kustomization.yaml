@@ -1,7 +1,0 @@
-namespace: milo-os-com
-resources:
-  - namespace.yaml
-  - gateway.yaml
-  - httproute.yaml
-  - endpoint.yaml
-  - httproute-redirect.yaml

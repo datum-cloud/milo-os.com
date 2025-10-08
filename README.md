@@ -1,158 +1,39 @@
-<p align="center">
-  <img width="240px" src="https://cdn.prod.website-files.com/66dab18c1311fe77f4eb9370/66efe106bc7a93e1409413c2_Logo.svg">
-  
-  <h1 align="center">Milo OS</h1>
-</p>
+# Astro Starter Kit: Minimal
 
-This repository contains Docker configurations for both development and production environments of the Astro Pure Theme.
-
-> This project uses [Astro Pure Theme](https://astro-pure.js.org), a minimal, elegant theme for Astro powered websites.
-
-## Prerequisites
-
-- [Docker](https://docs.docker.com/get-docker/)
-- [Docker Compose](https://docs.docker.com/compose/install/)
-
-## Quick Start
-
-Clone the repository and navigate to the project directory:
-
-```bash
-git clone https://github.com/datum-cloud/milo-os.com
-cd milo-os.com
+```sh
+npm create astro@latest -- --template minimal
 ```
 
-## Development Environment
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-The development environment includes:
+## 🚀 Project Structure
 
-- Hot-reloading
-- Source code watching
-- Automatic rebuilds on package changes
-- Full development tooling
+Inside of your Astro project, you'll see the following folders and files:
 
-### Start Development Server
-
-```bash
-# Start the development environment
-docker compose up dev
-
-# Or run in detached mode
-docker compose up dev -d
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
 ```
 
-### Watch for Changes
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-```bash
-# Enable file watching for automatic updates
-docker compose watch
-```
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-The development server will be available at `http://localhost:3000`
+Any static assets, like images, can be placed in the `public/` directory.
 
-### Development Features
+## 🧞 Commands
 
-- Source code is mounted as volumes for live updates
-- Changes to `src` and `public` directories are synced immediately
-- Changes to `package.json` or `bun.lock` trigger automatic rebuilds
-- Full access to development tools and dependencies
+All commands are run from the root of the project, from a terminal:
 
-## Production Environment
-
-The production environment is optimized for performance and security:
-
-- Minimized image size
-- Production-only dependencies
-- Automatic restart capability
-
-### Start Production Server
-
-```bash
-# Build and start the production environment
-docker compose up prod -d
-
-# View logs
-docker compose logs -f prod
-```
-
-The production server will be available at `http://localhost:3000`
-
-## Docker Configuration Details
-
-### Development Configuration
-
-- Uses the `builder` stage from Dockerfile
-- Mounts local source code into container
-- Provides hot-reloading and live updates
-- Includes all development dependencies
-
-### Production Configuration
-
-- Uses the `production` stage from Dockerfile
-- Optimized for size and security
-- Automatic crash recovery
-
-## Common Commands
-
-```bash
-# View running containers
-docker compose ps
-
-# View logs
-docker compose logs -f [service]
-
-# Stop services
-docker compose down
-
-# Rebuild images
-docker compose build
-
-# Remove all containers and volumes
-docker compose down -v
-```
-
-## Environment Variables
-
-Default environment variables are set in the `compose.yml` file:
-
-Development:
-
-```yaml
-NODE_ENV=development
-HOST=0.0.0.0
-PORT=3000
-```
-
-Production:
-
-```yaml
-NODE_ENV=production
-HOST=0.0.0.0
-PORT=3000
-```
-
-To override these variables, create a `.env` file in the project root.
-
-## Troubleshooting
-
-1. **Container won't start:**
-
-   - Check logs: `docker compose logs [service]`
-   - Verify port availability: `lsof -i :3000`
-
-2. **Changes not reflecting:**
-
-   - Ensure watch mode is active: `docker compose watch`
-   - Rebuild container: `docker compose up -d --build [service]`
-
-3. **Performance issues:**
-
-   - Check container resources: `docker stats`
-   - Monitor health status: `docker compose ps`
-
-## Contributing
-
-1. Create a feature branch
-2. Make your changes
-3. Test in development environment
-4. Submit a pull request
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |

@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+
+import Illustration from '@v1/assets/images/hero-home-illustration.webp';
+import Nav from '@components/Nav.astro';
+import Icon from '@components/Icon.astro';
+import type { HeroProps } from '@/src/types/common';
+
+const {
+  iconName = '',
+  title = '',
+  subtitle = '',
+  description = '',
+  class: className,
+  imagePath,
+  hideContent = false,
+} = Astro.props as HeroProps;
+---
+
+<section class="relative flex flex-col">
+  <div class="bg-pearl-gray z-0 aspect-auto h-dvh w-full md:aspect-16/11 md:h-auto">
+    <div class="absolute z-0 flex h-full w-full items-end">
+      <Image
+        src={Illustration}
+        layout="constrained"
+        loading="eager"
+        fetchpriority="high"
+        alt="Hero Illustration"
+        class="fade-in-pure h-auto w-full object-contain sm:object-cover"
+        data-reveal="fade-in-pure--visible"
+        data-reveal-delay="200"
+        data-reveal-immediate="true"
+      />
+    </div>
+
+    <div class="section--block z-10">
+      <Nav />
+      {/* Hero Main Content */}
+      <div
+        class="flex flex-1 flex-col items-center justify-center py-15 text-center md:py-25 lg:py-35"
+      >
+        {
+          (iconName && iconName !== '') || (subtitle && subtitle !== '') ? (
+            <div class="hero--main-content-icon">
+              {iconName && iconName !== '' && (
+                <div class="hero--main-content-icon-inner">
+                  <Icon name={iconName} size="md" />
+                </div>
+              )}
+              {subtitle && subtitle !== '' && <span>{subtitle}</span>}
+            </div>
+          ) : null
+        }
+        <h1 class="hero--main-content-title" set:html={title} />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,88 @@
+@layer components {
+  .hero--main {
+    @apply relative flex flex-col px-6 text-white md:px-16;
+    &.dark {
+      @apply bg-navy;
+    }
+    &.light {
+      @apply bg-cream text-navy;
+
+      .nav--main {
+        .nav-menu {
+          @apply text-navy;
+        }
+        .btn {
+          svg {
+            @apply text-tuscany;
+          }
+        }
+      }
+
+      .btn--primary {
+        @apply text-navy;
+        @apply border-navy/20 hover:border-navy/70;
+      }
+
+      .mobile-menu-actions .btn--primary {
+        @apply text-white;
+      }
+
+      .nav-logo {
+        --color-logo-object: var(--color-tuscany);
+        --color-logo-text: var(--color-navy);
+      }
+
+      .mobile-menu-button {
+        @apply text-navy;
+      }
+    }
+  }
+
+  .hero--small-pad {
+    .hero--main-content-inner {
+      @apply pb-22;
+    }
+  }
+
+  .hero--nav-pad {
+    .nav--main {
+      @apply pb-6 md:pb-9 lg:pb-12.5;
+    }
+  }
+
+  .hero--main-content {
+    @apply relative z-0 aspect-auto w-full md:h-auto;
+  }
+
+  .hero--main-content-image {
+    @apply 3xl:right-30 absolute right-0 bottom-0 z-0 2xl:right-10;
+
+    img {
+      @apply ml-auto size-auto max-w-1/2 lg:max-w-2/3;
+    }
+  }
+
+  .hero--main-content-inner {
+    @apply relative z-10 flex flex-1 flex-col items-center justify-center gap-5 px-6 py-21 text-center md:gap-8 lg:gap-10;
+  }
+
+  .hero--main-content-title {
+    @apply font-canela mb-0 max-w-xl text-3xl leading-tight -tracking-[2px] text-balance md:text-4xl lg:max-w-3xl lg:text-5xl;
+  }
+
+  .hero--main-content-icon {
+    @apply text-navy hover:text-navy/80 flex items-center gap-5 transition-colors duration-200;
+  }
+
+  .hero--main-content-icon-inner {
+    @apply bg-light-pink flex h-8.5 w-8.5 items-center justify-center rounded;
+  }
+
+  .hero--main-content-description {
+    @apply font-alliance text-navy md:text-22 m-auto mt-0 mb-0 max-w-3xl text-lg leading-[32px] font-normal text-balance;
+
+    a {
+      @apply hover:text-navy/70 hover:border-navy/70 border-navy border-b transition-colors hover:cursor-pointer;
+    }
+  }
+}

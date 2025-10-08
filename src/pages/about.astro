@@ -1,0 +1,30 @@
+---
+import { render } from 'astro:content';
+import { getCollectionEntry } from '@utils/collectionUtils';
+
+import Layout from '@layouts/Layout.astro';
+import Hero from '@components/Hero.astro';
+import Footer from '@components/Footer.astro';
+
+const page = await getCollectionEntry('pages', 'about');
+
+const { Content } = await render(page);
+
+// SEO
+const fm = page.data;
+const meta = fm.meta || {};
+const title = fm.title;
+const description = fm.description;
+---
+
+<Layout title={title} description={description} bodyClass="about-page" meta={meta}>
+  <section class="datum-container">
+    <Hero class="dark" title={title} description={description} subtitle={fm.subtitle} />
+
+    <div class="section--block section--block--pad bg-light-gray text-navy">
+      <Content />
+    </div>
+
+    <Footer />
+  </section>
+</Layout>

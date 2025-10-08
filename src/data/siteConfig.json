@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "title": "Milo Site",
+    "description": "Developed in the open, Milo is a comprehensive &#34;business operating system&#34; for product-led, B2B companies. Brought to you by the folks at Datum.",
+    "url": "https://www.milo-os.com",
+    "logo": "/images/logo.svg",
+    "favicon": "/favicon.png"
+  },
+  "socials": {
+    "github": {
+      "url": "https://github.com/datum-cloud/milo",
+      "icon": "github"
+    },
+    "linkedin": {
+      "url": "https://www.linkedin.com/company/datum-cloud/",
+      "icon": "linkedin"
+    }
+  },
+  "pageSize": 12
+}

@@ -1,0 +1,61 @@
+@layer components {
+  .roadmap-card {
+    @apply w-full border-b border-white/10 last:border-b-0 last:[&>.roadmap-card--content]:pb-0;
+  }
+
+  .roadmap-card--content {
+    @apply flex flex-col gap-10 pb-19 md:flex-row md:gap-22 lg:gap-33;
+  }
+
+  .roadmap-card--vote-section {
+    @apply flex-shrink-0;
+  }
+
+  .roadmap-card--vote-counter {
+    @apply flex w-full flex-col items-start gap-0 md:w-40 md:items-center;
+  }
+
+  .roadmap-card--vote-number {
+    @apply font-frontliner text-lime-green text-center text-6xl leading-tight font-light tracking-wider md:text-8xl;
+  }
+
+  .roadmap-card--vote-label {
+    @apply font-alliance text-center text-sm leading-tight font-medium tracking-wider text-white uppercase opacity-80;
+  }
+
+  .roadmap-card--info-section {
+    @apply flex flex-1 flex-col gap-8;
+  }
+
+  .roadmap-card--text-content {
+    @apply space-y-7 text-navy;
+  }
+
+  .roadmap-card--title {
+    @apply font-alliance mb-7 text-2xl leading-tight font-medium tracking-tight text-navy md:text-3xl;
+  }
+
+  .roadmap-card--description {
+    @apply font-alliance prose-code:text-navy prose-a:no-underline prose-a:border-b prose-a:hover:text-navy prose-a:text-navy/80 prose prose-lg prose-headings:font-alliance prose-headings:text-navy text-lg leading-relaxed font-normal text-navy opacity-80 md:text-xl [&>*]:text-navy/80;
+  }
+
+  .roadmap-card--actions {
+    @apply flex flex-row gap-4;
+  }
+
+  .roadmap-card--vote-button {
+    @apply font-alliance text-light-pink border-light-pink border-b-1 text-sm leading-normal font-normal transition-all duration-200 hover:cursor-pointer hover:border-white hover:text-white active:text-white;
+  }
+
+  .roadmap-card--vote-button[data-has-voted='true'] {
+    @apply border-white text-navy;
+  }
+
+  .roadmap-card--github-link {
+    @apply font-alliance text-shadow-navy border-light-pink border-b-1 text-sm leading-normal font-normal transition-all duration-200 hover:border-white hover:text-navy-muted active:text-navy;
+  }
+
+  .roadmap-container {
+    @apply mx-auto flex max-w-5xl flex-col gap-24 bg-white p-24 rounded-2xl justify-start items-start;
+  }
+}

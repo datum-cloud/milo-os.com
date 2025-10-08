@@ -1,0 +1,61 @@
+{
+  "main": [
+    {
+      "text": "About",
+      "href": "/about/"
+    },
+    {
+      "text": "Roadmap",
+      "href": "/roadmap/"
+    },
+    {
+      "text": "Changelog",
+      "href": "/changelog/"
+    },
+    {
+      "text": "Docs",
+      "href": "/docs/"
+    },
+    {
+      "text": "Public Slack",
+      "href": "/public-slack/"
+    }
+  ],
+  "footer": [
+    {
+      "title": "Documentation",
+      "description": "Check out the full Milo and Datum Cloud documentation (external link)",
+      "href": "/"
+    },
+    {
+      "title": "API Reference",
+      "description": "Datum provides an API platform with advanced networking capabilities",
+      "href": "/"
+    },
+    {
+      "title": "Slack",
+      "description": "Join in the Milo and Datum Cloud discussion on Slack",
+      "href": "/"
+    }
+  ],
+  "social": [
+    {
+      "href": "https://twitter.com/datumcloud",
+      "text": "Twitter",
+      "icon": "twitter",
+      "isExternal": true
+    },
+    {
+      "href": "https://github.com/datum-cloud",
+      "text": "GitHub",
+      "icon": "github",
+      "isExternal": true
+    },
+    {
+      "href": "https://www.linkedin.com/company/datum-cloud/",
+      "text": "LinkedIn",
+      "icon": "linkedin",
+      "isExternal": true
+    }
+  ]
+}

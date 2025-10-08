@@ -1,0 +1,35 @@
+services:
+  # Development service
+  dev:
+    build:
+      context: .
+      target: development # Use the development stage from Dockerfile
+    ports:
+      - "4321:4321"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - HOST=0.0.0.0
+      - PORT=4321
+    develop:
+      watch:
+        - path: ./public
+          action: sync
+          target: /app/public
+        - path: ./package.json
+          action: rebuild
+
+  # Production service
+  prod:
+    build:
+      context: .
+      target: production # Use the production stage from Dockerfile
+    ports:
+      - "4321:4321"
+    environment:
+      - NODE_ENV=production
+      - HOST=0.0.0.0
+      - PORT=4321
+    restart: unless-stopped

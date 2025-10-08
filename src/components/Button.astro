@@ -1,0 +1,57 @@
+---
+/*
+src/components/Button.astro
+Reusable Button component that always uses <a> tag with support for links, icons, and various styles
+
+Usage Examples:
+<Button text="Click me" class="btn btn--primary" href="#" />
+<Button text="External Link" href="https://example.com" target="_blank" />
+<Button text="With Icon" icon={{ name: "arrow-right", size: "md" }} href="#" />
+<Button text="Large Button" class="btn--lime btn--large" icon={{ name: "github", size: "lg" }} href="#" />
+<Button text="Icon Left" icon={{ name: "arrow-left", size: "md" }} iconPosition="left" href="#" />
+<Button text="Icon Right" icon={{ name: "arrow-right", size: "md" }} iconPosition="right" href="#" />
+<Button text="Custom Icon" icon={{ name: "star", size: "md" }} iconClass="text-yellow-500" href="#" />
+*/
+
+import Icon from '@components/Icon.astro';
+import type { ButtonProps } from '@/src/types/common';
+
+const {
+  class: className = '',
+  text,
+  title,
+  icon,
+  iconPosition = 'right',
+  iconClass = '',
+  href = '#',
+  target = '_self',
+  ...restProps
+} = Astro.props as ButtonProps;
+
+// Extract data attributes from rest props
+const dataAttributes = Object.fromEntries(
+  Object.entries(restProps).filter(([key]) => key.startsWith('data-'))
+);
+
+// Always use anchor tag, use '#' as default href for button-like behavior
+const attributes = {
+  href,
+  target,
+  ...(title && { title }),
+  ...dataAttributes,
+};
+---
+
+<a class:list={['btn', className]} {...attributes}>
+  {
+    icon && iconPosition === 'left' && (
+      <Icon name={icon.name} size={icon.size || 'md'} class={iconClass} />
+    )
+  }
+  {text || <slot />}
+  {
+    icon && iconPosition === 'right' && (
+      <Icon name={icon.name} size={icon.size || 'md'} class={iconClass} />
+    )
+  }
+</a>
