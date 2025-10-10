@@ -25,10 +25,23 @@ export default defineConfig({
   image: {
     layout: 'constrained',
   },
-  integrations: [starlight({
-    title: 'Milo',
-    disable404Route: true,
-  }), alpinejs(), mdx()],
+  integrations: [
+    starlight({
+      title: 'Milo',
+      disable404Route: true,
+      credits: false,
+      editLink: {
+        baseUrl: 'https://github.com/datum-cloud/datum.net/edit/main/',
+      },
+      logo: {
+        light: '/public/images/milo-hi.png',
+        dark: '/public/images/milo-hi.png',
+        replacesTitle: true,
+      },
+    }),
+    alpinejs(),
+    mdx(),
+  ],
 
   vite: {
     plugins: [tailwindcss()],

@@ -4,6 +4,12 @@ declare module 'virtual:starlight/user-config' {
   export default Config;
 }
 
+declare module 'virtual:starlight/project-context' {
+  export const project: {
+    trailingSlash: 'always' | 'never';
+  };
+}
+
 declare module 'virtual:starlight/components/MobileMenuToggle' {
   export default import('@astrojs/starlight/components/MobileMenuToggle').default;
 }

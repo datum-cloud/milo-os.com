@@ -8,7 +8,7 @@ import Footer from '@components/Footer.astro';
 import Card from '@components/roadmap/Card.astro';
 import Skeleton from '@components/Skeleton.astro';
 
-const page = await getCollectionEntry('pages', 'roadmap');
+const page = await getCollectionEntry('pages', 'changelog');
 
 // SEO
 const fm = page.data;
@@ -17,7 +17,7 @@ const title = fm.title;
 const description = fm.description;
 ---
 
-<Layout title={title} description={description} bodyClass="roadmap-page" meta={meta}>
+<Layout title={title} description={description} bodyClass="changelog-page" meta={meta}>
   <section class="datum-container">
     <Hero
       class="dark"
@@ -27,11 +27,7 @@ const description = fm.description;
       subtitle={fm.subtitle}
     />
 
-    <div class="section--block section--block--pad bg-navy dark">
-      <Card server:defer>
-        <Skeleton slot="fallback" />
-      </Card>
-    </div>
+    <div class="section--block section--block--pad bg-navy dark"></div>
 
     <Footer />
   </section>

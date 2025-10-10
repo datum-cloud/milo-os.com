@@ -89,8 +89,10 @@ async function getIssuesFromGithub(): Promise<IssuesProps[]> {
     return [];
   }
 
-  const filters = import.meta.env.ROADMAP_LABEL || process.env.ROADMAP_LABEL || 'Roadmap Vote';
-  const labelFilter = filters
+  const roadmap_user = import.meta.env.ROADMAP_USER || process.env.ROADMAP_USER || 'datum-cloud';
+  const roadmap_repo = import.meta.env.ROADMAP_REPO || process.env.ROADMAP_REPO || 'milo';
+  const labels = import.meta.env.ROADMAP_LABELS || process.env.ROADMAP_LABELS || '';
+  const roadmap_labels = labels
     .split(',')
     .map((label: string) => `"${label.trim()}"`)
     .join(',');
@@ -100,12 +102,20 @@ async function getIssuesFromGithub(): Promise<IssuesProps[]> {
     Number(installationId),
     privateKey
   );
+  console.log(
+    '------ Fetching issues from GitHub:',
+    `${roadmap_user}/${roadmap_repo} -- labels: ${roadmap_labels}`
+  );
+
+  if (!roadmap_user || !roadmap_repo) {
+    return [];
+  }
 
   const jsonData: GitHubGraphQLResponse = await graphqlWithAuth(
     `
       query {
-        repository(owner: "datum-cloud", name: "enhancements") {
-          issues(last: 50, filterBy: {states: OPEN, labels: [${labelFilter}]}) {
+        repository(owner: "${roadmap_user}", name: "${roadmap_repo}") {
+          issues(last: 50, filterBy: {states: OPEN, labels: [${roadmap_labels}]}) {
             nodes {
               id
               title

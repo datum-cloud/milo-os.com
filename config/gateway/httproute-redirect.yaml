@@ -1,0 +1,33 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: milo-os-com-redirect
+spec:
+  # Match the port 80 listeners for the milo-os.com and www.milo-os.com domains
+  # and the port 443 listener for the milo-os.com domain so we can redirect to
+  # https://www.milo-os.com.
+  parentRefs:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: milo-os-com-gateway
+    sectionName: https-milo-os-com-redirect
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: milo-os-com-gateway
+    sectionName: http-www-milo-os-com-redirect
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: milo-os-com-gateway
+    sectionName: http-milo-os-com-redirect
+  # Redirect to https://www.milo-os.com for all paths.
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    filters:
+    - type: RequestRedirect
+      requestRedirect:
+        hostname: www.milo-os.com
+        scheme: https
+        statusCode: 301
