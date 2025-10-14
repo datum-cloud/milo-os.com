@@ -190,10 +190,10 @@ select:where(.astro-4yphtoen) {
 /* Light theme styles */
 
 [data-theme='light'] header {
-  background-color: var(--color-pearl-gray);
+  background-color: var(--color-glacier-mist-800);
 }
 [data-theme='light'] body {
-  background-color: var(--color-pearl-gray);
+  background-color: var(--color-glacier-mist-800);
 }
 [data-theme='light'] .content-panel:where(.astro-7nkwcw3z) + .content-panel:where(.astro-7nkwcw3z) {
   border-top: 1px solid var(--color-borderpanellight);
@@ -206,7 +206,7 @@ select:where(.astro-4yphtoen) {
 }
 [data-theme='light'] .sidebar-pane {
   border-inline-end: 1px solid var(--color-borderpanellight);
-  background-color: var(--color-pearl-gray);
+  background-color: var(--color-glacier-mist-800);
 }
 [data-theme='light'] .login-button {
   background-color: transparent;
@@ -265,7 +265,7 @@ select:where(.astro-4yphtoen) {
   width: 20px;
   height: 20px;
   display: flex;
-  color: var(--color-tuscany);
+  color: var(--color-canyon-clay);
   align-items: center;
   justify-content: center;
 }

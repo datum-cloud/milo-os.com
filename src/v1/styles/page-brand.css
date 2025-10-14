@@ -9,7 +9,7 @@
   html {
     @apply antialiased;
     @apply font-primary;
-    @apply bg-light-gray;
+    @apply bg-glacier-mist-900;
   }
 
   html,
@@ -106,10 +106,10 @@
 
     .brand-nav-link {
       @apply inline-block py-2 transition-colors duration-300 ease-out;
-      @apply text-navy/50 hover:text-navy leading-[1.2];
+      @apply text-midnight-fjord/50 hover:text-midnight-fjord leading-[1.2];
 
       &.active {
-        @apply text-navy/70 hover:text-navy font-bold;
+        @apply text-midnight-fjord/70 hover:text-midnight-fjord font-bold;
       }
     }
   }
@@ -120,7 +120,7 @@
     }
 
     .brand-article--title {
-      @apply font-canela text-navy text-3xl leading-[1.2] font-normal -tracking-[0.5] md:text-4xl lg:text-5xl;
+      @apply font-canela text-midnight-fjord text-3xl leading-[1.2] font-normal -tracking-[0.5] md:text-4xl lg:text-5xl;
     }
 
     .brand-article--description {

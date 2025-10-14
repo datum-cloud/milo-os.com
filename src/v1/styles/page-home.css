@@ -1,0 +1,40 @@
+@import './base.css';
+
+@import './utilities.css';
+
+@import './components.css';
+
+@import './components-hero.css';
+
+@import './components-nav.css';
+
+@import './components-buttons.css';
+
+@layer components {
+  .display-card {
+    @apply flex md:flex-row flex-col items-stretch justify-between gap-7 md:gap-13 p-8 md:p-20 xl:p-24 rounded-[15px];
+  }
+  .display-card--header {
+    @apply w-full md:w-40 lg:w-64 xl:w-80;
+    h3 {
+      @apply milo-text-7xl text-center md:text-left;
+    }
+  }
+  .display-card--content {
+    @apply flex-1 space-y-7;
+
+    ul.display-card--list {
+      @apply flex flex-col gap-7;
+    }
+
+    li.display-card--item {
+      @apply flex flex-col gap-3 xl:gap-4 relative xl:pl-32 lg:pl-26 md:pl-20 pl-16;
+      h4 {
+        @apply milo-text-2xl font-bold;
+      }
+      p {
+        @apply milo-text-base;
+      }
+    }
+  }
+}

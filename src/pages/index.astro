@@ -1,13 +1,24 @@
 ---
+import '@v1/styles/page-home.css';
+
 import { marked } from 'marked';
+import { render } from 'astro:content';
 import Layout from '@layouts/Layout.astro';
-import Hero from '@components/home/Hero.astro';
+import Hero from '@components/Hero.astro';
 import Footer from '@components/Footer.astro';
+import Illustration from '@v1/assets/images/hero-home-illustration.webp';
+import { Image } from 'astro:assets';
 
 import { getCollectionEntry } from '@utils/collectionUtils';
+import featuresData from '@content/pages/home/features.json';
+import Icon from '@components/Icon.astro';
+import Button from '@components/Button.astro';
+import Bullet from '@v1/assets/icons/bullet.svg';
 
 const page = await getCollectionEntry('pages', '/');
 const fm = page.data;
+
+const { Content } = await render(page);
 
 interface Feature {
   group: string;
@@ -18,7 +29,7 @@ interface Feature {
   }>;
 }
 
-const features: Feature[] = fm.features;
+const features: Feature[] = featuresData;
 
 // SEO
 const meta = fm.meta || {};
@@ -30,35 +41,175 @@ const body = page.body;
 
 <Layout title={title} description={description} bodyClass="home-page" meta={meta}>
   <section class="datum-container">
-    <Hero iconName="datum" title={title} description={description} subtitle={subtitle} />
-    <div class="section--block section--block--pad bg-navy dark">
-      <p class="hero--main-content-description text-white" set:html={body} />
-
-      {
-        features && features.length > 0 && (
-          <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature) => (
-              <div class="feature--group">
-                <h3 class="feature--group-title">{feature.group}</h3>
-                <ul class="mt-4 space-y-4">
-                  {feature.items.map((item) => (
-                    <li class="feature--item flex">
-                      <div>
-                        <h4 class="feature--item-title">{item.title}</h4>
-                        <p
-                          class="feature--item-description mt-1 text-sm text-white"
-                          set:html={item.description}
-                        />
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        )
-      }
+    <Hero
+      iconName="datum"
+      title={title}
+      description={description}
+      subtitle={subtitle}
+      class="light"
+      classTitle="hero--main-content-title-alt"
+      classIcon="block"
+    >
+      <div slot="illustration" class="z-0 flex h-full w-full items-end left-0 -mt-10">
+        <Image
+          src={Illustration}
+          layout="constrained"
+          loading="eager"
+          fetchpriority="high"
+          alt="Hero Illustration"
+          class="fade-in-pure h-auto w-full object-contain sm:object-cover"
+          data-reveal="fade-in-pure--visible"
+          data-reveal-delay="200"
+          data-reveal-immediate="true"
+        />
+      </div>
+    </Hero>
+    <div id="intro" class="section--block lg:pt-20 lg:pb-24 pt-14 pb-20">
+      <div class="section--block-inner">
+        <div
+          class="milo-text-2xl text-white max-width max-w-180.5 text-center md:space-y-12 space-y-8"
+        >
+          <Content />
+        </div>
+      </div>
     </div>
+
+    {
+      features && features.length > 0 && (
+        <div id="features" class="section--block">
+          <div class="section--block-inner max-w-271">
+            <div class="grid grid-cols-1 xl:gap-20 lg:gap-6.25 md:gap-6 gap-9 md:grid-cols-3">
+              {features.map((feature) => (
+                <div class="col-span-1 md:space-y-11 space-y-7">
+                  <h4 class="milo-text-base font-bold text-glacier-mist-800 border-b border-glacier-mist-800 pb-3.5 opacity-60">
+                    {feature.group}
+                  </h4>
+                  <ul class="mt-4 space-y-4 md:space-y-6">
+                    {feature.items.map((item) => (
+                      <li class="flex items-start lg:gap-6 gap-4">
+                        <span class="p-3 inline-flex items-center justify-center bg-potted-olive/9 rounded-sm">
+                          <Icon name={item.icon} size="sm" class="text-potted-olive" />
+                        </span>
+                        <div class="flex flex-col gap-[2px] md:gap-1.5 lg:gap-2.5">
+                          <h5 class="milo-text-base">{item.title}</h5>
+                          <p class="opacity-60 milo-text-sm" set:html={item.description} />
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Roadmap Section -->
+    <div id="roadmap" class="section--block pt-16 xl:pt-28">
+      <div class="section--block-inner max-w-306">
+        <div class="display-card bg-glacier-mist-700 text-midnight-fjord">
+          <div class="display-card--header">
+            <h3>Roadmap</h3>
+          </div>
+          <div class="display-card--content">
+            <ul class="display-card--list">
+              <li class="display-card--item">
+                <a href="" class="absolute left-0 top-0 label">Today</a>
+                <h4>A Growing Foundation</h4>
+                <p>
+                  While we're most excited about GTM and commercial aspects of our roadmap, the
+                  first step for any cloud provider is to build a strong "system of record"
+                  foundation around customers, products, quotas, etc.
+                </p>
+              </li>
+              <li class="display-card--item">
+                <a href="" class="absolute left-0 top-0 label">Feature</a>
+                <h4>12-18 Month Roadmap</h4>
+                <p>
+                  As we launch our own cloud in 2025, Milo’s roadmap will move toward operational,
+                  security and commercial areas.
+                </p>
+              </li>
+              <li class="display-card--item">
+                <div>
+                  <Button
+                    text="View full Roadmap"
+                    class="btn btn--canyon-clay"
+                    icon={{ name: 'arrow-right', size: 'md' }}
+                    iconPosition="right"
+                    iconClass="stroke-1.75"
+                    target="_blank"
+                    href="/roadmap/"
+                  />
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Changelog Section -->
+    <div id="changelog" class="section--block pt-16 xl:pt-28">
+      <div class="section--block-inner max-w-306">
+        <div
+          class="display-card text-glacier-mist-700 bg-midnight-fjord border border-white rounded-[15px]"
+        >
+          <div class="display-card--header">
+            <h3>Changelog</h3>
+          </div>
+          <div class="display-card--content">
+            <ul class="display-card--list">
+              <li class="display-card--item">
+                <Bullet class="text-aurora-moss absolute md:left-8 left-4 top-0" />
+                <h4>Version v0.2.0 - User Deactivations and User Preferences</h4>
+                <div class="opacity-80 milo-text-base prose text-white">
+                  <ul>
+                    <li>
+                      This version introduces the ability for platform administrators to deactivate
+                      users and enable users to manage their profile preferences.
+                    </li>
+                    <li>
+                      User deactivation will result in users access to the system being removed
+                      immediately.
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="display-card--item">
+                <Bullet class="text-aurora-moss absolute md:left-8 left-4 top-0" />
+                <h4>Version v0.1.1 - Align Software Artifact Versioning</h4>
+                <div class="opacity-80 milo-text-base prose text-white">
+                  <ul>
+                    <li>
+                      This bug fix resolves an issue with software artifacts not using the same
+                      tagging conventions. All software artifacts are now tagged using Semantic
+                      Versioning in the format `v{'{major}'}.{'{minor}'}.{'{patch}'}` (e.g.
+                      `v0.1.0`).
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="display-card--item">
+                <div>
+                  <Button
+                    text="View full Changelog"
+                    class="btn btn--aurora-moss"
+                    icon={{ name: 'arrow-right', size: 'md' }}
+                    iconPosition="right"
+                    iconClass="stroke-1.75"
+                    target="_blank"
+                    href="/changelog/"
+                  />
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <Footer />
   </section>
 </Layout>

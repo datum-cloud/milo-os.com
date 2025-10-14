@@ -23,17 +23,20 @@
   ],
   "footer": [
     {
-      "title": "Documentation",
+      "text": "Documentation",
+      "icon": "power",
       "description": "Check out the full Milo and Datum Cloud documentation (external link)",
       "href": "/"
     },
     {
-      "title": "API Reference",
+      "text": "API Reference",
+      "icon": "twitter",
       "description": "Datum provides an API platform with advanced networking capabilities",
       "href": "/"
     },
     {
-      "title": "Slack",
+      "text": "Slack",
+      "icon": "slack",
       "description": "Join in the Milo and Datum Cloud discussion on Slack",
       "href": "/"
     }

@@ -1,7 +1,6 @@
 @layer utilities {
   .datum-container {
-    @apply container m-auto;
-    max-width: var(--datum-max-width);
+    @apply container m-auto max-w-449;
   }
 
   /* General fade-in reveal animations */
@@ -81,5 +80,43 @@
 
 @utility prose-dark {
   @apply text-white/80;
-  @apply prose-headings:text-white prose-h2:text-40 prose-headings:font-normal prose-headings:leading-[1.22] prose-h3:text-lime-green prose-h3:font-alliance prose-h3:text-xl prose-h3:font-medium prose-h4:font-alliance;
+  @apply prose-headings:text-white prose-h2:text-40 prose-headings:font-normal prose-headings:leading-[1.22] prose-h3:text-aurora-moss prose-h3:font-alliance prose-h3:text-xl prose-h3:font-medium prose-h4:font-alliance;
+}
+
+@utility max-width {
+  @apply max-w-7xl px-7 w-full mx-auto;
+}
+
+@utility text-size {
+  @apply font-alliance;
+  @apply text-sm xl:text-base;
+}
+
+@utility milo-text-sm {
+  @apply font-alliance;
+  @apply text-[10px]/3.5;
+  @apply lg:text-xs/4.5;
+  @apply xl:text-sm/5.25;
+}
+
+@utility milo-text-base {
+  @apply font-alliance;
+  @apply text-sm/5.25;
+  @apply xl:text-base/6;
+}
+
+@utility milo-text-2xl {
+  @apply font-alliance;
+  @apply text-base/5.25;
+  @apply md:text-lg/6.5;
+  @apply lg:text-xl/7;
+  @apply xl:text-2xl/7.5;
+}
+
+@utility milo-text-7xl {
+  @apply font-canela;
+  @apply text-2xl/7.5;
+  @apply md:text-2xl/7;
+  @apply lg:text-3xl/10.5 -tracking-[0.8px];
+  @apply xl:text-38/11 -tracking-[1.2px];
 }
