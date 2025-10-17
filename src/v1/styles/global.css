@@ -1,41 +1,4 @@
-@import './fonts.css';
-@import 'tailwindcss';
-@plugin "@tailwindcss/typography";
-@plugin "@tailwindcss/aspect-ratio";
-
-@import './theme.css';
-
-@layer base {
-  html {
-    @apply antialiased;
-    @apply font-primary;
-    @apply bg-light-gray;
-  }
-
-  html,
-  body {
-    @apply overflow-x-hidden;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4 {
-    @apply font-canela;
-  }
-
-  /* Prevent body scroll when mobile menu is active */
-  body {
-    &.mobile-menu-open {
-      @apply fixed w-full touch-none overflow-hidden;
-    }
-  }
-
-  /* Hide elements with x-cloak until Alpine.js initializes */
-  [x-cloak] {
-    @apply hidden;
-  }
-}
+@import './base.css';
 
 @import './utilities.css';
 
@@ -44,6 +7,8 @@
 @import './components-hero.css';
 
 @import './components-nav.css';
+
+@import './components-buttons.css';
 
 @import './components-features.css';
 

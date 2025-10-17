@@ -1,26 +1,26 @@
 @layer components {
   .hero--main {
-    @apply relative flex flex-col px-6 text-white md:px-16;
+    @apply relative flex flex-col justify-center;
     &.dark {
-      @apply bg-navy;
+      @apply bg-midnight-fjord text-white;
     }
     &.light {
-      @apply bg-cream text-navy;
+      @apply bg-glacier-mist-800 text-midnight-fjord;
 
       .nav--main {
         .nav-menu {
-          @apply text-navy;
+          @apply text-midnight-fjord;
         }
         .btn {
           svg {
-            @apply text-tuscany;
+            @apply text-canyon-clay;
           }
         }
       }
 
       .btn--primary {
-        @apply text-navy;
-        @apply border-navy/20 hover:border-navy/70;
+        @apply text-midnight-fjord;
+        @apply border-midnight-fjord/20 hover:border-midnight-fjord/70;
       }
 
       .mobile-menu-actions .btn--primary {
@@ -28,12 +28,12 @@
       }
 
       .nav-logo {
-        --color-logo-object: var(--color-tuscany);
+        --color-logo-object: var(--color-canyon-clay);
         --color-logo-text: var(--color-navy);
       }
 
       .mobile-menu-button {
-        @apply text-navy;
+        @apply text-midnight-fjord;
       }
     }
   }
@@ -51,7 +51,7 @@
   }
 
   .hero--main-content {
-    @apply relative z-0 aspect-auto w-full md:h-auto;
+    @apply relative z-0 aspect-auto w-full md:h-auto items-center flex flex-col;
   }
 
   .hero--main-content-image {
@@ -63,26 +63,30 @@
   }
 
   .hero--main-content-inner {
-    @apply relative z-10 flex flex-1 flex-col items-center justify-center gap-5 px-6 py-21 text-center md:gap-8 lg:gap-10;
+    @apply relative z-10 flex flex-col items-center justify-center gap-5 md:gap-6 xl:gap-9 xl:pt-16 pt-12 md:pt-9 text-center max-width;
   }
 
   .hero--main-content-title {
     @apply font-canela mb-0 max-w-xl text-3xl leading-tight -tracking-[2px] text-balance md:text-4xl lg:max-w-3xl lg:text-5xl;
   }
 
+  .hero--main-content-title-alt {
+    @apply font-canela mb-0 max-w-xl xl:text-6xl lg:text-54 md:text-5xl text-4xl text-balance -tracking-[1.5px] xl:leading-[1.17] lg:leading-[1.18] md:leading-[1.2] leading-[1.7];
+  }
+
   .hero--main-content-icon {
-    @apply text-navy hover:text-navy/80 flex items-center gap-5 transition-colors duration-200;
+    @apply text-midnight-fjord hover:text-midnight-fjord/80 flex items-center gap-5 transition-colors duration-200 text-size leading-[1.5];
   }
 
   .hero--main-content-icon-inner {
-    @apply bg-light-pink flex h-8.5 w-8.5 items-center justify-center rounded;
+    @apply bg-blush-quartz flex h-8.5 w-8.5 items-center justify-center rounded;
   }
 
   .hero--main-content-description {
-    @apply font-alliance text-navy md:text-22 m-auto mt-0 mb-0 max-w-3xl text-lg leading-[32px] font-normal text-balance;
+    @apply font-alliance text-midnight-fjord md:text-22 m-auto mt-0 mb-0 max-w-3xl text-lg leading-[32px] font-normal text-balance;
 
     a {
-      @apply hover:text-navy/70 hover:border-navy/70 border-navy border-b transition-colors hover:cursor-pointer;
+      @apply hover:text-midnight-fjord/70 hover:border-midnight-fjord/70 border-midnight-fjord border-b transition-colors hover:cursor-pointer;
     }
   }
 }

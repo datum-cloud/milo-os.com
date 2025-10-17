@@ -1,11 +1,11 @@
 ---
-import { Image } from 'astro:assets';
 import Logo from '@v1/assets/images/milo-logo.svg';
 import navigation from '@data/navigation.json';
 import type { NavData } from '@/src/types/navigation';
 import type { FooterProps } from '@/src/types/common';
 import GithubStargazerValue from '@components/GithubStargazerValue.astro';
 import Button from '@components/Button.astro';
+import Icon from '@components/Icon.astro';
 
 // Get props with default values
 const { showCTA = true } = Astro.props as FooterProps;
@@ -14,27 +14,32 @@ const { showCTA = true } = Astro.props as FooterProps;
 const navData = navigation as NavData;
 ---
 
-<footer class="footer">
+<footer class="section--block pt-16 xl:pt-28">
   <!-- Main Footer Content -->
-  <div class="footer-main">
-    <div
-      class="footer-grid fade-in--pure"
-      data-reveal="fade-in--pure--visible"
-      data-reveal-delay="100"
-    >
+  <div
+    class="fade-in--pure"
+    data-reveal="fade-in--pure--visible"
+    data-reveal-delay="100"
+    data-reveal-immediate="true"
+  >
+    <div class="section--block-inner max-w-258">
       <!-- Navigation Sections -->
-      <div class="footer-nav-container">
-        <div class="footer-nav-grid">
-          {
-            navData.footer.map((section) => (
-              <div>
-                <h4 class="footer-nav-section">{section.title}</h4>
-                <div>{section.description}</div>
-              </div>
-            ))
-          }
-        </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 xl:gap-14 md:gap-9 gap-8 items-start">
+        {
+          navData.footer.map((section) => (
+            <div class="text-center gap-y-2 md:gap-y-4 flex flex-col items-center">
+              <Icon name={section.icon} size="xl" class="text-potted-olive" />
+              <h5 class="milo-text-2xl">{section.text}</h5>
+              <p class="milo-text-base opacity-80 mb-0" set:html={section.description} />
+            </div>
+          ))
+        }
       </div>
+    </div>
+
+    <div class="section--block-inner text-center pt-16 xl:pt-28 pb-14">
+      <p class="milo-text-sm opacity-50">© 2025 Milo. Brought to you by Datum. Site Policy</p>
     </div>
   </div>
 </footer>

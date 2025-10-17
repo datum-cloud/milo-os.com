@@ -16,7 +16,7 @@
   }
 
   .roadmap-card--vote-number {
-    @apply font-frontliner text-lime-green text-center text-6xl leading-tight font-light tracking-wider md:text-8xl;
+    @apply font-frontliner text-aurora-moss text-center text-6xl leading-tight font-light tracking-wider md:text-8xl;
   }
 
   .roadmap-card--vote-label {
@@ -28,15 +28,15 @@
   }
 
   .roadmap-card--text-content {
-    @apply space-y-7 text-navy;
+    @apply space-y-7 text-midnight-fjord;
   }
 
   .roadmap-card--title {
-    @apply font-alliance mb-7 text-2xl leading-tight font-medium tracking-tight text-navy md:text-3xl;
+    @apply font-alliance mb-7 text-2xl leading-tight font-medium tracking-tight text-midnight-fjord md:text-3xl;
   }
 
   .roadmap-card--description {
-    @apply font-alliance prose-code:text-navy prose-a:no-underline prose-a:border-b prose-a:hover:text-navy prose-a:text-navy/80 prose prose-lg prose-headings:font-alliance prose-headings:text-navy text-lg leading-relaxed font-normal text-navy opacity-80 md:text-xl [&>*]:text-navy/80;
+    @apply font-alliance prose-code:text-midnight-fjord prose-a:no-underline prose-a:border-b prose-a:hover:text-midnight-fjord prose-a:text-midnight-fjord/80 prose prose-lg prose-headings:font-alliance prose-headings:text-midnight-fjord text-lg leading-relaxed font-normal text-midnight-fjord opacity-80 md:text-xl [&>*]:text-midnight-fjord/80;
   }
 
   .roadmap-card--actions {
@@ -44,15 +44,15 @@
   }
 
   .roadmap-card--vote-button {
-    @apply font-alliance text-light-pink border-light-pink border-b-1 text-sm leading-normal font-normal transition-all duration-200 hover:cursor-pointer hover:border-white hover:text-white active:text-white;
+    @apply font-alliance text-blush-quartz border-blush-quartz border-b-1 text-sm leading-normal font-normal transition-all duration-200 hover:cursor-pointer hover:border-white hover:text-white active:text-white;
   }
 
   .roadmap-card--vote-button[data-has-voted='true'] {
-    @apply border-white text-navy;
+    @apply border-white text-midnight-fjord;
   }
 
   .roadmap-card--github-link {
-    @apply font-alliance text-shadow-navy border-light-pink border-b-1 text-sm leading-normal font-normal transition-all duration-200 hover:border-white hover:text-navy-muted active:text-navy;
+    @apply font-alliance text-shadow-navy border-blush-quartz border-b-1 text-sm leading-normal font-normal transition-all duration-200 hover:border-white hover:text-midnight-fjord-muted active:text-midnight-fjord;
   }
 
   .roadmap-container {

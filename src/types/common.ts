@@ -31,6 +31,8 @@ export interface HeroProps {
   subtitle?: string;
   description?: string;
   class?: string;
+  classTitle?: string;
+  classIcon?: string;
   iconName?: string;
   imagePath?: ImageMetadata;
   hideContent?: boolean;

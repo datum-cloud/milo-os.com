@@ -23,15 +23,11 @@ export interface NavMainItem {
 }
 
 export interface NavFooterSection {
-  title: string;
+  text: string;
   description: string;
-  image?: {
-    src: string;
-    alt: string;
-    width?: number;
-    height?: number;
-  };
+  icon?: string;
   href?: string;
+  isExternal?: boolean;
 }
 
 export interface NavData {

@@ -12,6 +12,8 @@ const {
   subtitle = '',
   description = '',
   class: className,
+  classTitle: classTitle,
+  classIcon: classIcon,
   imagePath,
   hideContent = false,
 } = Astro.props as HeroProps;
@@ -32,7 +34,7 @@ const {
           {(iconName && iconName !== '') || (subtitle && subtitle !== '') ? (
             <div class="hero--main-content-icon">
               {iconName && iconName !== '' && (
-                <div class="hero--main-content-icon-inner">
+                <div class:list={['text-balance', classIcon || 'hero--main-content-icon-inner']}>
                   <Icon name={iconName} size="md" />
                 </div>
               )}
@@ -40,7 +42,7 @@ const {
             </div>
           ) : null}
 
-          <h1 class="hero--main-content-title">{title}</h1>
+          <h1 class:list={[classTitle || 'hero--main-content-title']} set:html={title} />
           {description && (
             <p class="hero--main-content-description" set:html={marked.parseInline(description)} />
           )}
@@ -58,6 +60,8 @@ const {
             />
           </div>
         )}
+
+        <slot name="illustration" />
       </div>
     )
   }
