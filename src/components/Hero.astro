@@ -14,7 +14,7 @@ const {
   class: className,
   classTitle: classTitle,
   classIcon: classIcon,
-  imagePath,
+  imageHero,
   hideContent = false,
 } = Astro.props as HeroProps;
 ---
@@ -24,8 +24,8 @@ const {
   {
     !hideContent && (
       <div
-        class="hero--main-content fade-in--small"
-        data-reveal="fade-in--small--visible"
+        class="hero--main-content fade-in--pure"
+        data-reveal="fade-in--pure--visible"
         data-reveal-immediate="true"
         data-reveal-delay="100"
       >
@@ -47,10 +47,10 @@ const {
             <p class="hero--main-content-description" set:html={marked.parseInline(description)} />
           )}
         </div>
-        {imagePath && (
+        {imageHero && (
           <div class="hero--main-content-image">
             <Image
-              src={imagePath}
+              src={imageHero}
               alt={title}
               data-scroll-effect="parallax"
               data-scroll-speed="0.1"

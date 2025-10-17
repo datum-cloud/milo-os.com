@@ -79,8 +79,8 @@
 }
 
 @utility prose-dark {
-  @apply text-white/80;
-  @apply prose-headings:text-white prose-h2:text-40 prose-headings:font-normal prose-headings:leading-[1.22] prose-h3:text-aurora-moss prose-h3:font-alliance prose-h3:text-xl prose-h3:font-medium prose-h4:font-alliance;
+  @apply text-white;
+  @apply prose-headings:text-white;
 }
 
 @utility max-width {
@@ -100,12 +100,31 @@
 }
 
 @utility milo-text-base {
+  @apply font-normal text-balance;
   @apply font-alliance;
   @apply text-sm/5.25;
   @apply xl:text-base/6;
 }
 
+@utility milo-text-lg {
+  @apply font-normal text-balance;
+  @apply font-alliance;
+  @apply text-sm/4.5;
+  @apply lg:text-base/6;
+  @apply xl:text-lg/6.5;
+}
+
+@utility milo-text-xl {
+  @apply font-normal text-balance;
+  @apply font-alliance;
+  @apply text-sm/4.5;
+  @apply md:text-base/6;
+  @apply lg:text-lg/6.5;
+  @apply xl:text-xl/7;
+}
+
 @utility milo-text-2xl {
+  @apply font-normal text-balance;
   @apply font-alliance;
   @apply text-base/5.25;
   @apply md:text-lg/6.5;
@@ -113,10 +132,47 @@
   @apply xl:text-2xl/7.5;
 }
 
+@utility milo-text-3xl {
+  @apply font-normal text-balance;
+  @apply font-alliance;
+  @apply text-lg/6.5;
+  @apply md:text-xl/7;
+  @apply lg:text-2xl/8.5;
+  @apply xl:text-3xl/10.5;
+}
+
 @utility milo-text-7xl {
+  @apply text-balance;
   @apply font-canela;
+  @apply -tracking-[0.8px] xl:-tracking-[1.2px];
   @apply text-2xl/7.5;
   @apply md:text-2xl/7;
-  @apply lg:text-3xl/10.5 -tracking-[0.8px];
-  @apply xl:text-38/11 -tracking-[1.2px];
+  @apply lg:text-3xl/10.5;
+  @apply xl:text-38/11;
+}
+
+@utility milo-text-8xl {
+  @apply text-balance;
+  @apply font-canela;
+  @apply -tracking-[0.8px] md:-tracking-[1.2px] xl:-tracking-[1.5px];
+  @apply text-3xl/8.5;
+  @apply md:text-4xl/11;
+  @apply lg:text-38/12;
+  @apply xl:text-5xl/14.5;
+}
+
+@utility milo-text-10xl {
+  @apply text-balance;
+  @apply font-canela;
+  @apply -tracking-[1.2px] md:-tracking-[1.5px];
+  @apply text-4xl/10.5;
+  @apply md:text-5xl/14.5;
+  @apply lg:text-54/16;
+  @apply xl:text-6xl/17.5;
+}
+
+@utility milo-prose-lg {
+  @apply milo-text-lg;
+  @apply prose max-w-none;
+  @apply prose-headings:mt-0  prose-headings:mb-3.5 lg:prose-headings:mb-5;
 }

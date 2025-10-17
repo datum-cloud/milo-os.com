@@ -7,12 +7,22 @@
       @apply text-white;
 
       .section--block-content-text {
-        @apply text-white/80;
+        @apply text-white;
+
+        /* @apply [&>*:not(:prose-headings)]:opacity-10; */
+      }
+
+      .section--block-prose {
+        @apply prose-dark;
       }
     }
 
     &.section--block--pad {
       @apply py-15 md:py-28 lg:py-42;
+    }
+
+    &.section--block--regular-pad {
+      @apply lg:pt-20 lg:pb-24 pt-14 pb-20;
     }
 
     &.section--block--small-pad {
@@ -40,12 +50,15 @@
     }
   }
 
+  .section--block-prose {
+    @apply milo-prose-lg prose-p:mt-0 prose-p:mb-2.5;
+
+    :not(h1, h2, h3, h4, h5, h6) {
+      @apply opacity-80;
+    }
+  }
   .section--block-content-text {
     @apply font-alliance prose prose-xl md:text-19 text-midnight-fjord/80 text-22 prose-a:hover:no-underline max-w-none leading-[1.45];
-  }
-
-  .h2-section {
-    @apply font-canela text-2xl leading-[1.1] font-normal -tracking-[1.5px] md:text-3xl lg:text-4xl;
   }
 
   .nav-logo {
@@ -57,226 +70,6 @@
     svg {
       @apply w-17 md:w-21.5;
     }
-  }
-
-  /* Footer Components */
-  .footer {
-    @apply bg-midnight-fjord relative text-white;
-  }
-
-  .footer-hero {
-    @apply bg-glacier-mist-700 text-midnight-fjord relative z-10 mx-auto px-6 pt-21 md:px-16 md:pt-35 lg:pt-53;
-  }
-
-  .footer-hero-content {
-    @apply text-center;
-  }
-
-  .footer-hero-actions {
-    @apply flex items-center justify-center gap-7;
-  }
-
-  .footer-illustration-container {
-    @apply relative;
-  }
-
-  .footer-illustration-image {
-    @apply h-auto w-full;
-  }
-
-  .footer-main {
-    @apply relative z-10 mx-auto px-6 py-16 md:px-30 md:py-25 lg:px-45 lg:py-34;
-  }
-
-  .footer-grid {
-    @apply grid grid-cols-1 gap-12 md:grid-cols-6 lg:grid-cols-12;
-  }
-
-  .footer-logo-section {
-    @apply col-span-6 lg:col-span-3;
-  }
-
-  .footer-logo-link {
-    @apply mb-8 flex items-center;
-  }
-
-  .footer-actions-section {
-    @apply col-span-6 mt-5 flex flex-col items-center gap-6 md:col-span-2 md:mt-0 md:items-end lg:col-span-2;
-  }
-
-  .footer-copyright {
-    @apply text-13 text-center text-white/40 md:text-right;
-
-    .footer-nav-link {
-      @apply text-white/40 transition-colors hover:text-white;
-    }
-  }
-
-  .footer-signup {
-    @apply bg-blush-quartz text-midnight-fjord px-6 py-16;
-  }
-
-  .footer-signup-container {
-    @apply mx-auto flex max-w-227 flex-col items-center gap-0 py-2 md:flex-row md:gap-20;
-  }
-
-  .footer-signup-form-container {
-    @apply w-full max-w-[317px] grow md:w-auto md:max-w-none;
-  }
-
-  .footer-signup-form {
-    @apply border-midnight-fjord flex items-center border-b pb-2;
-  }
-
-  .footer-signup-input {
-    @apply text-midnight-fjord placeholder-midnight-fjord/60 font-alliance flex-1 bg-transparent text-lg font-semibold outline-none;
-  }
-
-  .footer-signup-button {
-    @apply ml-4;
-  }
-
-  /* List Styles */
-  .ordered-list {
-    @apply font-canela flex list-none flex-col gap-5 text-[20px] leading-[1.1] -tracking-[0.5px] md:gap-8 md:text-3xl;
-    counter-reset: ordered-counter;
-  }
-
-  .ordered-list--sans {
-    @apply font-alliance lg:text-22 text-base md:text-lg;
-  }
-
-  .ordered-list li {
-    @apply text-midnight-fjord flex items-center gap-6 md:gap-10;
-    counter-increment: ordered-counter;
-  }
-
-  .ordered-list li::before {
-    @apply font-frontliner text-mauve text-13 lg:text-22 w-5.25 leading-relaxed font-light tracking-widest md:w-7.5 md:text-xl;
-    content: '0' counter(ordered-counter) '.';
-  }
-
-  .ordered-list span {
-    @apply font-frontliner text-mauve text-xl leading-relaxed font-light tracking-widest;
-  }
-
-  /* Font Styles */
-  .h1-leading {
-    @apply font-canela text-midnight-fjord tracking-1 mb-17.5 text-4xl leading-[1.1] text-balance md:text-5xl lg:text-6xl;
-  }
-
-  .h2-leading {
-    @apply font-canela text-midnight-fjord tracking-1 mb-8 text-3xl leading-[1.1] text-balance md:mb-10 md:text-5xl lg:text-6xl;
-  }
-
-  .h3-leading {
-    @apply font-canela text-midnight-fjord text-22 lg:text-46 tracking-1 mb-14 leading-[1.1] text-balance md:text-3xl;
-  }
-
-  .h4-leading {
-    @apply font-canela text-midnight-fjord text-28 lg:text-46 tracking-1 mb-8 leading-[1.1] text-balance md:text-4xl;
-  }
-
-  .text-desc {
-    @apply font-alliance text-midnight-fjord md:text-19 text-xl leading-[1.4];
-  }
-
-  /* Generic Logo/Brand Grid Components */
-  .logo-grid {
-    @apply border-midnight-fjord grid overflow-x-auto border border-t-0;
-  }
-
-  .logo-grid--3-6 {
-    @apply grid-cols-3 lg:grid-cols-6 [&>div:nth-child(2n)]:border-r-0 lg:[&>div:nth-child(3)]:border-r-1! [&>div:nth-child(3n)]:border-r-0;
-  }
-
-  .logo-grid--2-3 {
-    @apply grid-cols-2 md:grid-cols-3 lg:grid-cols-6;
-  }
-
-  .logo-grid--4 {
-    @apply grid-cols-2 md:grid-cols-4;
-  }
-
-  .logo-item {
-    @apply border-midnight-fjord flex items-center justify-center border-t border-r last:border-r-0;
-  }
-
-  .logo-item--landscape {
-    @apply aspect-26/19;
-  }
-
-  .logo-item--square {
-    @apply aspect-square;
-  }
-
-  .logo-item--tall {
-    @apply h-48;
-  }
-
-  .logo-item--padding-sm {
-    @apply p-4;
-  }
-
-  .logo-item--padding-md {
-    @apply p-6 md:p-8;
-  }
-
-  .logo-item--padding-lg {
-    @apply p-8 md:p-10;
-  }
-
-  /* Logo Image Variants */
-  .logo-img {
-    @apply object-contain;
-  }
-
-  .logo-img--standard {
-    @apply mx-10 w-3/5;
-  }
-
-  .logo-img--contained {
-    @apply max-h-16 max-w-full;
-  }
-
-  .logo-img--full {
-    @apply h-full w-full;
-  }
-
-  .logo-img--medium {
-    @apply w-2/3;
-  }
-
-  .article-navigation {
-    @apply m-auto mt-16 flex max-w-4xl flex-col gap-4 md:flex-row;
-  }
-
-  .article-navigation-item {
-    @apply border-pine-forge hover:bg-pine-forge/5 rounded-lg border p-8;
-  }
-
-  .article-navigation-prev {
-    @apply w-full justify-start;
-
-    .article-navigation-label {
-      @apply justify-start;
-    }
-  }
-
-  .article-navigation-next {
-    @apply w-full justify-end text-right;
-
-    .article-navigation-label {
-      @apply justify-end;
-    }
-  }
-
-  .article-navigation-label {
-    @apply font-alliance text-pine-forge mb-4 flex items-center gap-2 text-sm font-medium tracking-wide uppercase;
-  }
-
-  .article-navigation-title {
-    @apply font-alliance text-pine-forge hover:text-mauve text-lg font-medium transition-colors;
   }
 
   /* Label Styles */

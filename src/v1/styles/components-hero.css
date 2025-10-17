@@ -3,6 +3,18 @@
     @apply relative flex flex-col justify-center;
     &.dark {
       @apply bg-midnight-fjord text-white;
+
+      *:not(.nav-actions *) {
+        @apply text-white;
+      }
+
+      .nav--main {
+        .btn {
+          svg {
+            @apply text-potted-olive;
+          }
+        }
+      }
     }
     &.light {
       @apply bg-glacier-mist-800 text-midnight-fjord;
@@ -44,6 +56,12 @@
     }
   }
 
+  .hero--pad {
+    .hero--main-content-inner {
+      @apply lg:pb-40 md:pb-32 pb-36;
+    }
+  }
+
   .hero--nav-pad {
     .nav--main {
       @apply pb-6 md:pb-9 lg:pb-12.5;
@@ -58,7 +76,7 @@
     @apply 3xl:right-30 absolute right-0 bottom-0 z-0 2xl:right-10;
 
     img {
-      @apply ml-auto size-auto max-w-1/2 lg:max-w-2/3;
+      @apply ml-auto size-auto max-w-1/2;
     }
   }
 
@@ -67,11 +85,11 @@
   }
 
   .hero--main-content-title {
-    @apply font-canela mb-0 max-w-xl text-3xl leading-tight -tracking-[2px] text-balance md:text-4xl lg:max-w-3xl lg:text-5xl;
+    @apply mb-0 max-w-xl milo-text-8xl lg:max-w-3xl;
   }
 
   .hero--main-content-title-alt {
-    @apply font-canela mb-0 max-w-xl xl:text-6xl lg:text-54 md:text-5xl text-4xl text-balance -tracking-[1.5px] xl:leading-[1.17] lg:leading-[1.18] md:leading-[1.2] leading-[1.7];
+    @apply mb-0 max-w-xl milo-text-10xl;
   }
 
   .hero--main-content-icon {
@@ -83,7 +101,7 @@
   }
 
   .hero--main-content-description {
-    @apply font-alliance text-midnight-fjord md:text-22 m-auto mt-0 mb-0 max-w-3xl text-lg leading-[32px] font-normal text-balance;
+    @apply text-midnight-fjord m-auto mt-0 mb-0 max-w-3xl milo-text-xl text-cultured opacity-80;
 
     a {
       @apply hover:text-midnight-fjord/70 hover:border-midnight-fjord/70 border-midnight-fjord border-b transition-colors hover:cursor-pointer;

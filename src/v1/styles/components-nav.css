@@ -1,33 +1,41 @@
 /* Navigation Component */
 @layer components {
   .nav--main {
-    @apply m-auto flex w-full items-center justify-between py-6 max-width;
+    @apply m-auto flex w-full items-center justify-between py-6 max-width md:grid md:grid-cols-6;
 
     .btn {
       svg {
         @apply text-blush-quartz;
       }
     }
-  }
 
-  .nav--main .nav-menu {
-    @apply hidden items-center gap-10 justify-self-center-safe text-midnight-fjord md:flex;
-  }
+    .nav-actions {
+      @apply col-span-1 mr-5 ml-auto inline-block items-center space-x-3 justify-self-end md:mr-0;
 
-  .nav--main .nav-menu-item {
-    @apply flex items-center gap-2 py-3;
-  }
+      starlight-theme-select {
+        @apply mr-0;
+      }
+    }
 
-  .nav--main .nav-menu-link {
-    @apply text-size flex items-center gap-2 leading-[110%] font-normal tracking-normal hover:opacity-80;
-  }
+    .nav-menu-wrapper {
+      @apply col-span-4 hidden justify-center md:inline-block;
+    }
 
-  .nav--main .nav-menu-icon {
-    @apply text-white;
-  }
+    .nav-menu {
+      @apply items-center justify-center text-white md:flex md:gap-7 lg:gap-8 xl:gap-10 hidden text-midnight-fjord;
+    }
 
-  .nav--main .nav-actions {
-    @apply hidden items-center gap-6 justify-self-end-safe md:flex;
+    .link--active {
+      @apply [&>span]:border-b [&>span]:border-b-2;
+    }
+
+    .nav-menu-item {
+      @apply flex items-center gap-2 py-3;
+    }
+
+    .nav-menu-link {
+      @apply milo-text-base flex items-center gap-2 font-normal hover:opacity-80;
+    }
   }
 
   /* Dropdown Styles */

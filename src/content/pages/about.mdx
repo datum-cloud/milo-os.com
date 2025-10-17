@@ -1,21 +1,41 @@
 ---
 title: A system of action
 description: Milo is an open source ‘system of action’ for product-led, B2B companies. Think of it as a business control plane designed specifically for AI-native service providers, helping them innovate faster and scale better.
-subtitle: Roadmap
 slug: about
-iconName: calendar-range
 ---
+import Block from '@components/block/Block.astro';
 
-## Why we’re building Milo
+<Block id="building-milo" class="bg-glacier-mist-800">
+  <div slot="image">
+  ![Illustration 1](./images/about-1.png)
+  </div>
+  <div slot="content">
+    ## Why we’re building Milo
 
-Throughout two decades of scaling clouds (Voxel, Packet, SoftLayer, StackPath, etc), we spent a lot of time building software to run the business: contacts, users, accounts, usage, quotas, quotes, contracts, agreements, billing, etc.
-Alas, nobody paid us to send them an accurate bill or dig up the expiration date on a service order. It was critical, but largely undifferentiated, work.
-Since that time, a number of awesome tools have emerged to solve particular pain points (e.g. authorization, metering, or SOC2 audits), but you still have to stitch everything together and fill in the many gaps.
-We’re building Datum to help AI-Native and alt clouds scale, so it felt right to codify our experience in an open-source, enterprise ready solution. Enter Milo.
+    Throughout two decades of scaling clouds (Voxel, Packet, SoftLayer, StackPath, etc), we spent a lot of time building software to run the business: contacts, users, accounts, usage, quotas, quotes, contracts, agreements, billing, etc.
 
-## Get excited, get involved
+    Alas, nobody paid us to send them an accurate bill or dig up the expiration date on a service order. It was critical, but largely undifferentiated, work.
 
-Projects with a wide surface area can inspire a “build everything” mindset.
-While our vision calls for a comprehensive approach, there are plenty of capabilities that we don’t need to reinvent. For instance, email sending can be provided by Resend, general automation by Zapier, product analytics by PostHog, and payments by Stripe. We love them!
-However, we’re keeping the system of record data close so that Milo can be the foundation of innovation across the entire customer lifecycle. We think cohesion from deal rooms to order management will unlock agentic workflows powered by accurate, contextual data
-Interested in helping out? Great! We’re looking for design partners as well as active contributors. Reach out and we’ll get you started on the right foot.
+    Since that time, a number of awesome tools have emerged to solve particular pain points (e.g. authorization, metering, or SOC2 audits), but you still have to stitch everything together and fill in the many gaps.
+
+    We’re building Datum to help AI-Native and alt clouds scale, so it felt right to codify our experience in an open-source, enterprise ready solution. Enter Milo.
+  </div>
+</Block>
+
+<Block id="building-milo" class="bg-pine-forge dark" reverse={true}>
+  <div slot="image">
+  ![Illustration 2](./images/about-2.png)
+  </div>
+  <div slot="content">
+    ## Get excited, get involved
+
+    Projects with a wide surface area can inspire a “build everything” mindset.
+
+    While our vision calls for a comprehensive approach, there are plenty of capabilities that we don’t need to reinvent. For instance, email sending can be provided by Resend, general automation by Zapier, product analytics by PostHog, and payments by Stripe. We love them!
+
+    However, we’re keeping the system of record data close so that Milo can be the foundation of innovation across the entire customer lifecycle. We think cohesion from deal rooms to order management will unlock agentic workflows powered by accurate, contextual data.
+
+    Interested in helping out? Great! We’re looking for design partners as well as active contributors. Reach out and we’ll get you started on the right foot.
+  </div>
+</Block>
+

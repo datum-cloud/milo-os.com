@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import Arrow from '@v1/assets/icons/arrow.svg';
 import navigation from '@data/navigation.json';
 import Icon from '@components/Icon.astro';
+import NavMenu from '@components/NavMenu.astro';
 import MobileMenu from '@components/MobileMenu.astro';
 import GithubStargazerValue from '@components/GithubStargazerValue.astro';
 import Button from '@components/Button.astro';
@@ -35,51 +36,7 @@ const mainNav = navData.main;
   </div>
 
   {/* Desktop Menu */}
-  <ul class="nav-menu">
-    {
-      mainNav.map((item) => (
-        <li class={`nav-menu-item ${item.children ? 'nav-dropdown' : ''}`}>
-          <a href={item.href} class="nav-menu-link" data-astro-prefetch="hover">
-            <span>{item.text}</span>
-            {item.children && <Arrow class="nav-dropdown-arrow" />}
-          </a>
-          {item.children && (
-            <ul class={`nav-dropdown-menu ${item.children.length > 1 ? 'nav-dropdown-mega' : ''}`}>
-              {item.children.map((section) => (
-                <li
-                  class={`nav-dropdown-section ${item.children!.length > 1 ? 'nav-dropdown-mega-section' : ''}`}
-                >
-                  {'title' in section && section.title && (
-                    <h3 class="nav-dropdown-title">{section.title}</h3>
-                  )}
-                  <ul
-                    class={`nav-dropdown-items ${item.children!.length > 1 ? 'nav-dropdown-mega-items' : ''}`}
-                  >
-                    {section.items?.map((subItem) => (
-                      <li class="nav-dropdown-item">
-                        <a
-                          href={subItem.href}
-                          class="nav-dropdown-link"
-                          data-astro-prefetch="hover"
-                        >
-                          {'icon' in subItem && subItem.icon && (
-                            <div class="nav-dropdown-icon">
-                              <Icon name={subItem.icon} size="md" />
-                            </div>
-                          )}
-                          <span>{subItem.text}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          )}
-        </li>
-      ))
-    }
-  </ul>
+  <NavMenu />
 
   {/* Desktop Actions */}
   <div class="nav-actions">
