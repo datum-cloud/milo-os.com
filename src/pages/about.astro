@@ -1,10 +1,13 @@
 ---
+import '@v1/styles/page-about.css';
+
 import { render } from 'astro:content';
 import { getCollectionEntry } from '@utils/collectionUtils';
 
 import Layout from '@layouts/Layout.astro';
 import Hero from '@components/Hero.astro';
 import Footer from '@components/Footer.astro';
+import ImageHero from '@content/pages/images/milo-on-the-rock.png';
 
 const page = await getCollectionEntry('pages', 'about');
 
@@ -19,11 +22,15 @@ const description = fm.description;
 
 <Layout title={title} description={description} bodyClass="about-page" meta={meta}>
   <section class="datum-container">
-    <Hero class="dark" title={title} description={description} subtitle={fm.subtitle} />
+    <Hero
+      class="dark hero--pad"
+      title={title}
+      description={description}
+      subtitle={fm.subtitle}
+      imageHero={ImageHero}
+    />
 
-    <div class="section--block section--block--pad bg-glacier-mist-900 text-midnight-fjord">
-      <Content />
-    </div>
+    <Content />
 
     <Footer />
   </section>
