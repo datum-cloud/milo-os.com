@@ -1,0 +1,244 @@
+---
+// src/components/starlight/TwoColumnContent.astro
+
+import config from 'virtual:starlight/user-config';
+import PageSidebar from './PageSidebar.astro';
+import { Breadcrumbs } from 'astro-breadcrumbs';
+import SearchButton from './SearchButton.astro';
+import { getCollection } from 'astro:content';
+
+// Get Starlight route data
+const { hasSidebar } = Astro.locals.starlightRoute;
+const starlightRoute = Astro.locals.starlightRoute;
+
+// Create breadcrumbs manually based on URL path
+let breadcrumbData = [];
+
+// Add home/docs as first item
+breadcrumbData.push(
+  {
+    text: 'Home',
+    href: '/docs/',
+  },
+  {
+    text: 'Docs',
+    href: '/docs/',
+    class: 'docs-menu-toggle',
+  },
+  {
+    text: 'Docs',
+    href: '/docs/',
+    class: 'docs-md',
+  }
+);
+
+// Get the current URL path
+const fullPath = Astro.url.pathname;
+
+// Extract path segments (skip the /docs/ prefix)
+const pathSegments = fullPath
+  .replace(/^\/?docs\//, '')
+  .replace(/\/$/, '')
+  .split('/')
+  .filter(Boolean);
+
+// Get all docs entries to look up real titles
+const allDocs = await getCollection('docs');
+
+// Build breadcrumbs for each path segment
+if (pathSegments.length > 0) {
+  let currentPath = '';
+  let currentSlug = '';
+
+  for (const segment of pathSegments) {
+    currentPath += '/' + segment;
+    currentSlug = currentSlug ? `${currentSlug}/${segment}` : segment;
+
+    // Process each segment to build breadcrumbs
+
+    // Try to find index files for this segment first (more accurate titles)
+    // First try with the exact segment name
+    const segmentIndexPaths = [
+      `docs/${segment}/index`,
+      `${segment}/index`,
+      `docs/docs/${segment}/index`,
+    ];
+
+    const indexFile = allDocs.find(
+      (entry) =>
+        // Check against our list of possible paths
+        segmentIndexPaths.includes(entry.id) ||
+        // Also check with the current slug
+        entry.id === `docs/${currentSlug}/index` ||
+        entry.id === `${currentSlug}/index` ||
+        // Also check for exact segment match in the last part of the path
+        (entry.id.endsWith('/index') && entry.id.split('/').includes(segment))
+    );
+
+    if (indexFile) {
+      // Use the index file's title for this breadcrumb
+      breadcrumbData.push({
+        text: indexFile.data.title,
+        href: '/docs' + currentPath + '/',
+      });
+
+      // Continue to the next segment
+      continue;
+    }
+
+    // Try to find the actual document title from the collection
+    // First try to find the exact id match
+    let docEntry = allDocs.find((entry) => entry.id === currentSlug);
+
+    // If not found, try to find an index file in that directory
+    if (!docEntry) {
+      // Standard handling for segments
+      const indexEntries = allDocs.filter(
+        (entry) =>
+          // Match both "segment" and "segment/index" patterns that might exist in Starlight
+          entry.id === currentSlug ||
+          (entry.id.startsWith(`${currentSlug}/`) && entry.id.split('/').pop() === 'index') ||
+          // Also try with docs/ prefix
+          entry.id === `docs/${currentSlug}` ||
+          (entry.id.startsWith(`docs/${currentSlug}/`) && entry.id.split('/').pop() === 'index')
+      );
+
+      if (indexEntries.length > 0) {
+        // Prefer exact directory match if available
+        docEntry = indexEntries.find((entry) => entry.id === currentSlug) || indexEntries[0];
+      }
+    }
+
+    // Use the real title if found, otherwise format the segment
+    let segmentTitle;
+    if (docEntry && docEntry.data.title) {
+      segmentTitle = docEntry.data.title;
+    } else {
+      // Format the segment title (capitalize words, replace dashes with spaces)
+      segmentTitle = segment.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
+    }
+
+    breadcrumbData.push({
+      text: segmentTitle,
+      href: '/docs' + currentPath + '/',
+    });
+  }
+
+  if (starlightRoute.entry?.data?.title) {
+    // Replace the last item's text with the actual page title from the current route
+    breadcrumbData[breadcrumbData.length - 1].text = starlightRoute.entry.data.title;
+  }
+}
+
+const shouldRenderSearch =
+  config.pagefind || config.components.Search !== '@astrojs/starlight/components/Search.astro';
+---
+
+<div class="sl-content-panel">
+  <section class="sl-main-content">
+    <div class="searchbar-main-content print:hidden">
+      {shouldRenderSearch && <SearchButton class="search-button" />}
+    </div>
+    <Breadcrumbs
+      linkTextFormat="sentence"
+      crumbs={breadcrumbData.length > 0 ? breadcrumbData : undefined}
+    >
+      <svg
+        slot="index"
+        aria-label="Home Page"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"> </path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </Breadcrumbs>
+
+    <main data-glossary-body class="sl-content">
+      <slot />
+    </main>
+  </section>
+
+  {
+    hasSidebar && (
+      <aside class="right-sidebar-container astro-67yu43on print:hidden">
+        <div class="right-sidebar astro-67yu43on">
+          <PageSidebar />
+        </div>
+      </aside>
+    )
+  }
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const breadcrumbs = document.querySelectorAll('li.c-breadcrumbs__crumb');
+
+    if (breadcrumbs.length >= 5) {
+      breadcrumbs[breadcrumbs.length - 1].classList.add('hidden', 'md:inline-flex');
+    }
+
+    const docsMenuToggle = document.querySelector('.docs-menu-toggle');
+    const pathSegments = window.location.pathname
+      .replace(/^\/?docs\//, '')
+      .replace(/\/$/, '')
+      .split('/')
+      .filter(Boolean);
+
+    // Function to toggle sidebar
+    const toggleSidebar = () => {
+      if (window.innerWidth < 768) {
+        const expanded = document.body.hasAttribute('data-mobile-menu-expanded');
+
+        if (!expanded) {
+          document.body.setAttribute('data-mobile-menu-expanded', '');
+          document.body.setAttribute('data-disable-lenis', '');
+          document.body.classList.add('mobile-menu-open');
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.removeAttribute('data-mobile-menu-expanded');
+          document.body.removeAttribute('data-disable-lenis');
+          document.body.classList.remove('mobile-menu-open');
+          document.body.style.overflow = '';
+        }
+      }
+    };
+
+    // Auto-trigger toggle if we're at the root docs page
+    if (pathSegments.length === 0 && window.location.pathname.includes('/docs')) {
+      setTimeout(() => toggleSidebar(), 100); // Small delay to ensure DOM is fully loaded
+    }
+
+    if (docsMenuToggle) {
+      docsMenuToggle.addEventListener('click', (e) => {
+        // Only enable the toggle functionality on mobile screens
+        if (window.innerWidth < 768) {
+          // 768px is typically md breakpoint
+          e.preventDefault();
+
+          // Use the shared toggle function
+          toggleSidebar();
+        }
+      });
+
+      // Add resize listener to disable toggle functionality on larger screens
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) {
+          // 768px is typically md breakpoint
+          // Ensure mobile menu is closed when resizing to larger screens
+          document.body.removeAttribute('data-mobile-menu-expanded');
+          document.body.removeAttribute('data-disable-lenis');
+          document.body.classList.remove('mobile-menu-open');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  });
+</script>

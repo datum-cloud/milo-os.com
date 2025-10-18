@@ -15,6 +15,14 @@
           }
         }
       }
+
+      img.light-logo {
+        @apply hidden;
+      }
+
+      img.dark-logo {
+        @apply block!;
+      }
     }
     &.light {
       @apply bg-glacier-mist-800 text-midnight-fjord;
