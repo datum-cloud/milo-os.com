@@ -1,7 +1,5 @@
 @import './base.css';
 
-@import './utilities.css';
-
 @import './components.css';
 
 @import './components-hero.css';
@@ -9,17 +7,3 @@
 @import './components-nav.css';
 
 @import './components-buttons.css';
-
-@import './components-features.css';
-
-@import './components-roadmap.css';
-
-@import './components-changelog.css';
-
-@import './components-blog.css';
-
-@import './components-huddle.css';
-
-@import './components-handbook.css';
-
-@import './components-form.css';

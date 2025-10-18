@@ -37,3 +37,5 @@
     @apply hidden;
   }
 }
+
+@import './utilities.css';

@@ -1,5 +1,6 @@
 ---
 import Logo from '@v1/assets/images/milo-logo.png';
+import LogoDark from '@v1/assets/images/milo-logo-dark.png';
 import { Image } from 'astro:assets';
 import Arrow from '@v1/assets/icons/arrow.svg';
 import navigation from '@data/navigation.json';
@@ -26,11 +27,21 @@ const mainNav = navData.main;
   <div class="nav-logo-container">
     <a href="/" class="nav-logo" id="logo-link" aria-label="Milo Logo" title="Milo Logo">
       <Image
+        class="light-logo"
         src={Logo}
         layout="constrained"
         loading="eager"
         fetchpriority="high"
-        alt="Hero Illustration"
+        alt="Milo Logo"
+      />
+
+      <Image
+        class="hidden dark-logo"
+        src={LogoDark}
+        layout="constrained"
+        loading="eager"
+        fetchpriority="high"
+        alt="Milo Logo"
       />
     </a>
   </div>
