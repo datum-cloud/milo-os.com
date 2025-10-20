@@ -31,18 +31,24 @@ const {
       >
         {/* Hero Main Content */}
         <div class="hero--main-content-inner">
-          {(iconName && iconName !== '') || (subtitle && subtitle !== '') ? (
-            <div class="hero--main-content-icon">
-              {iconName && iconName !== '' && (
-                <div class:list={['text-balance', classIcon || 'hero--main-content-icon-inner']}>
-                  <Icon name={iconName} size="md" />
-                </div>
-              )}
-              {subtitle && subtitle !== '' && <span>{subtitle}</span>}
-            </div>
-          ) : null}
+          <div class="hero--main-content-title-container">
+            {(subtitle && subtitle !== '') || (iconName && iconName !== '') ? (
+              <div class="hero--main-content-icon-subtitle">
+                {iconName && iconName !== '' && (
+                  <div class:list={['text-balance', classIcon || 'hero--main-content-icon']}>
+                    <Icon name={iconName} size="md" />
+                  </div>
+                )}
 
-          <h1 class:list={[classTitle || 'hero--main-content-title']} set:html={title} />
+                {subtitle && subtitle !== '' && (
+                  <span class="hero--main-content-subtitle">{subtitle}</span>
+                )}
+              </div>
+            ) : null}
+
+            <h1 class:list={[classTitle || 'hero--main-content-title']} set:html={title} />
+          </div>
+
           {description && (
             <p class="hero--main-content-description" set:html={marked.parseInline(description)} />
           )}

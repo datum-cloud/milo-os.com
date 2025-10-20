@@ -14,6 +14,8 @@ import featuresData from '@content/pages/home/features.json';
 import Icon from '@components/Icon.astro';
 import Button from '@components/Button.astro';
 import Bullet from '@v1/assets/icons/bullet.svg';
+import Card from '@components/roadmap/Card.astro';
+import Skeleton from '@components/Skeleton.astro';
 
 const page = await getCollectionEntry('pages', '/');
 const fm = page.data;
@@ -46,7 +48,7 @@ const body = page.body;
       title={title}
       description={description}
       subtitle={subtitle}
-      class="light"
+      class="hero--home-pad light"
       classTitle="hero--main-content-title-alt"
       classIcon="block"
     >
@@ -114,23 +116,9 @@ const body = page.body;
           </div>
           <div class="display-card--content">
             <ul class="display-card--list">
-              <li class="display-card--item">
-                <a href="" class="absolute left-0 top-0 label">Today</a>
-                <h4>A Growing Foundation</h4>
-                <p>
-                  While we're most excited about GTM and commercial aspects of our roadmap, the
-                  first step for any cloud provider is to build a strong "system of record"
-                  foundation around customers, products, quotas, etc.
-                </p>
-              </li>
-              <li class="display-card--item">
-                <a href="" class="absolute left-0 top-0 label">Feature</a>
-                <h4>12-18 Month Roadmap</h4>
-                <p>
-                  As we launch our own cloud in 2025, Milo’s roadmap will move toward operational,
-                  security and commercial areas.
-                </p>
-              </li>
+              <Card limit={3} server:defer>
+                <Skeleton slot="fallback" />
+              </Card>
               <li class="display-card--item">
                 <div>
                   <Button
@@ -139,7 +127,6 @@ const body = page.body;
                     icon={{ name: 'arrow-right', size: 'md' }}
                     iconPosition="right"
                     iconClass="stroke-1.75"
-                    target="_blank"
                     href="/roadmap/"
                   />
                 </div>
@@ -162,9 +149,12 @@ const body = page.body;
           <div class="display-card--content">
             <ul class="display-card--list">
               <li class="display-card--item">
-                <Bullet class="text-aurora-moss absolute md:left-8 left-4 top-0" />
-                <h4>Version v0.2.0 - User Deactivations and User Preferences</h4>
-                <div class="opacity-80 milo-text-base prose text-white">
+                <div class="display-card--item-meta">
+                  <Bullet class="text-aurora-moss" />
+                </div>
+                <div class="display-card--item-content text-white">
+                  <h4>Version v0.2.0 - User Deactivations and User Preferences</h4>
+
                   <ul>
                     <li>
                       This version introduces the ability for platform administrators to deactivate
@@ -178,9 +168,12 @@ const body = page.body;
                 </div>
               </li>
               <li class="display-card--item">
-                <Bullet class="text-aurora-moss absolute md:left-8 left-4 top-0" />
-                <h4>Version v0.1.1 - Align Software Artifact Versioning</h4>
-                <div class="opacity-80 milo-text-base prose text-white">
+                <div class="display-card--item-meta">
+                  <Bullet class="text-aurora-moss" />
+                </div>
+                <div class="display-card--item-content text-white">
+                  <h4>Version v0.1.1 - Align Software Artifact Versioning</h4>
+
                   <ul>
                     <li>
                       This bug fix resolves an issue with software artifacts not using the same
@@ -191,20 +184,20 @@ const body = page.body;
                   </ul>
                 </div>
               </li>
-              <li class="display-card--item">
-                <div>
-                  <Button
-                    text="View full Changelog"
-                    class="btn btn--aurora-moss"
-                    icon={{ name: 'arrow-right', size: 'md' }}
-                    iconPosition="right"
-                    iconClass="stroke-1.75"
-                    target="_blank"
-                    href="/changelog/"
-                  />
-                </div>
-              </li>
             </ul>
+            <li class="display-card--item">
+              <div>
+                <Button
+                  text="View full Changelog"
+                  class="btn btn--aurora-moss"
+                  icon={{ name: 'arrow-right', size: 'md' }}
+                  iconPosition="right"
+                  iconClass="stroke-1.75"
+                  target="_blank"
+                  href="/changelog/"
+                />
+              </div>
+            </li>
           </div>
         </div>
       </div>

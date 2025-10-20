@@ -176,3 +176,9 @@
   @apply prose max-w-none;
   @apply prose-headings:mt-0  prose-headings:mb-3.5 lg:prose-headings:mb-5;
 }
+
+@utility milo-prose {
+  @apply milo-text-base;
+  @apply prose max-w-none;
+  @apply prose-headings:mt-0  prose-headings:mb-4;
+}

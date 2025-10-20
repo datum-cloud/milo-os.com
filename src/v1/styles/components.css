@@ -8,8 +8,6 @@
 
       .section--block-content-text {
         @apply text-white;
-
-        /* @apply [&>*:not(:prose-headings)]:opacity-10; */
       }
 
       .section--block-prose {
@@ -74,7 +72,7 @@
 
   /* Label Styles */
   .label {
-    @apply lg:px-3.5 lg:py-2 md:px-2.5 md:py-1.5 px-2 py-1;
+    @apply lg:px-3.5 lg:py-2 md:px-2.5 md:py-1.5 px-2 py-1 inline-block;
     @apply text-canyon-clay-links milo-text-sm rounded-[7px] border border-canyon-clay-links transition-all;
     @apply hover:border-canyon-clay-links/80 hover:text-canyon-clay-links/80;
   }
