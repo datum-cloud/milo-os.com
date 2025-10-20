@@ -24,21 +24,24 @@
   "footer": [
     {
       "text": "Documentation",
+      "href": "https://www.datum.net/docs/",
+      "target": "_blank",
       "icon": "power",
-      "description": "Check out the full Milo and Datum Cloud documentation (external link)",
-      "href": "/"
+      "description": "Check out the full Milo and Datum Cloud documentation (external link)"
     },
     {
       "text": "API Reference",
+      "href": "https://www.datum.net/docs/api/",
+      "target": "_blank",
       "icon": "twitter",
-      "description": "Datum provides an API platform with advanced networking capabilities",
-      "href": "/"
+      "description": "Datum provides an API platform with advanced networking capabilities"
     },
     {
-      "text": "Slack",
-      "icon": "slack",
-      "description": "Join in the Milo and Datum Cloud discussion on Slack",
-      "href": "/"
+      "text": "Community Chat",
+      "href": "https://link.datum.net/discord",
+      "target": "_blank",
+      "icon": "messages-square",
+      "description": "Join in the Milo and Datum Cloud discussion on Discord"
     }
   ],
   "social": [

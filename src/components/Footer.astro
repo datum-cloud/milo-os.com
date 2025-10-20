@@ -28,7 +28,14 @@ const navData = navigation as NavData;
       <div class="grid grid-cols-1 md:grid-cols-3 xl:gap-14 md:gap-9 gap-8 items-start">
         {
           navData.footer.map((section) => (
-            <div class="text-center gap-y-2 md:gap-y-4 flex flex-col items-center">
+            <div class="text-center gap-y-2 md:gap-y-4 flex flex-col items-center relative hover:cursor-pointer transition-all duration-200 hover:opacity-80">
+              <a
+                class="absolute w-full h-full left-0 top-0 overflow-hidden -indent-[999px]"
+                href={section.href}
+                target={section.target}
+              >
+                {section.text}
+              </a>
               <Icon name={section.icon} size="xl" class="text-potted-olive" />
               <h5 class="milo-text-2xl">{section.text}</h5>
               <p class="milo-text-base opacity-80 mb-0" set:html={section.description} />
