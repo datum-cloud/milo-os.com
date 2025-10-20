@@ -1,4 +1,6 @@
 ---
+import '@v1/styles/page-roadmap.css';
+
 import { Image } from 'astro:assets';
 import { getCollectionEntry } from '@utils/collectionUtils';
 
@@ -7,6 +9,7 @@ import Hero from '@components/Hero.astro';
 import Footer from '@components/Footer.astro';
 import Card from '@components/roadmap/Card.astro';
 import Skeleton from '@components/Skeleton.astro';
+import Button from '@components/Button.astro';
 
 const page = await getCollectionEntry('pages', 'roadmap');
 
@@ -27,10 +30,19 @@ const description = fm.description;
       subtitle={fm.subtitle}
     />
 
-    <div class="section--block section--block--pad bg-midnight-fjord dark">
-      <Card server:defer>
-        <Skeleton slot="fallback" />
-      </Card>
+    <!-- Roadmap Section -->
+    <div id="roadmap" class="section--block pt-12 lg:pt-16">
+      <div class="section--block-inner max-w-306">
+        <div class="display-card bg-glacier-mist-700 text-midnight-fjord">
+          <div class="display-card--content">
+            <ul class="display-card--list">
+              <Card server:defer>
+                <Skeleton slot="fallback" />
+              </Card>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
 
     <Footer />

@@ -12,16 +12,20 @@
     @apply flex-1 space-y-7;
 
     ul.display-card--list {
-      @apply flex flex-col gap-7;
+      @apply flex flex-col gap-10;
     }
 
     li.display-card--item {
-      @apply flex flex-col gap-3 xl:gap-4 relative xl:pl-32 lg:pl-26 md:pl-20 pl-16;
-      h4 {
-        @apply milo-text-2xl font-bold;
+      @apply flex flex-col md:flex-row justify-between;
+      @apply gap-6 md:gap-17;
+      .display-card--item-meta {
+        @apply relative;
       }
-      p {
-        @apply milo-text-base;
+      .display-card--item-content {
+        @apply w-full xl:max-w-180.5 lg:max-w-176 md:max-w-132 max-w-none space-y-4 milo-prose;
+        h4 {
+          @apply milo-text-2xl font-bold;
+        }
       }
     }
   }

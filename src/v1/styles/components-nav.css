@@ -1,7 +1,7 @@
 /* Navigation Component */
 @layer components {
   .nav--main {
-    @apply m-auto flex w-full items-center justify-between py-6 max-width md:grid md:grid-cols-6;
+    @apply m-auto flex w-full items-center justify-between py-2.5 md:py-4 lg:py-6 max-width md:grid md:grid-cols-6;
 
     .btn {
       svg {
