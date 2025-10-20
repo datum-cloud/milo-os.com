@@ -17,6 +17,7 @@ export interface NavSection {
 export interface NavMainItem {
   text: string;
   href: string;
+  target?: '_blank' | '_self' | '_parent' | '_top';
   isExternal?: boolean;
   isMegaDropdown?: boolean;
   children?: NavSection[];
@@ -27,6 +28,7 @@ export interface NavFooterSection {
   description: string;
   icon?: string;
   href?: string;
+  target?: '_blank' | '_self' | '_parent' | '_top';
   isExternal?: boolean;
 }
 
