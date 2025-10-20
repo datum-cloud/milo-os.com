@@ -1,4 +1,4 @@
-import { stargazerCount } from '@utils/github';
+import { stargazerCount } from '@libs/milo';
 
 interface Context {
   locals: {
@@ -9,7 +9,7 @@ interface Context {
 type NextFunction = () => Promise<void>;
 
 export async function onRequest(context: Context, next: NextFunction) {
-  const starCount = await stargazerCount('datum-cloud', 'datum');
+  const starCount = await stargazerCount();
   const formatter = new Intl.NumberFormat('en-US', { notation: 'compact' });
   const formattedStarCount = formatter.format(starCount);
 

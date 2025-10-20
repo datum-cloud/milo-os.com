@@ -12,9 +12,9 @@ import { getCollectionEntry } from '@utils/collectionUtils';
 import featuresData from '@content/pages/home/features.json';
 import Icon from '@components/Icon.astro';
 import Button from '@components/Button.astro';
-import Bullet from '@v1/assets/icons/bullet.svg';
-import Card from '@components/roadmap/Card.astro';
-import Skeleton from '@components/Skeleton.astro';
+import RoadmapCard from '@components/roadmap/Card.astro';
+import ChangelogCard from '@components/changelog/Card.astro';
+import Skeleton from '@components/roadmap/Skeleton.astro';
 
 const page = await getCollectionEntry('pages', '/');
 const fm = page.data;
@@ -114,9 +114,9 @@ const subtitle = fm.subtitle;
           </div>
           <div class="display-card--content">
             <ul class="display-card--list">
-              <Card limit={3} server:defer>
+              <RoadmapCard limit={3} server:defer>
                 <Skeleton slot="fallback" />
-              </Card>
+              </RoadmapCard>
               <li class="display-card--item">
                 <div>
                   <Button
@@ -146,42 +146,9 @@ const subtitle = fm.subtitle;
           </div>
           <div class="display-card--content">
             <ul class="display-card--list display-card--timeline timeline-alt">
-              <li class="display-card--item">
-                <div class="display-card--item-meta item-neta--timeline">
-                  <Bullet class="text-aurora-moss" />
-                </div>
-                <div class="display-card--item-content text-white">
-                  <h4>Version v0.2.0 - User Deactivations and User Preferences</h4>
-
-                  <ul>
-                    <li>
-                      This version introduces the ability for platform administrators to deactivate
-                      users and enable users to manage their profile preferences.
-                    </li>
-                    <li>
-                      User deactivation will result in users access to the system being removed
-                      immediately.
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="display-card--item">
-                <div class="display-card--item-meta item-neta--timeline">
-                  <Bullet class="text-aurora-moss" />
-                </div>
-                <div class="display-card--item-content text-white">
-                  <h4>Version v0.1.1 - Align Software Artifact Versioning</h4>
-
-                  <ul>
-                    <li>
-                      This bug fix resolves an issue with software artifacts not using the same
-                      tagging conventions. All software artifacts are now tagged using Semantic
-                      Versioning in the format `v{'{major}'}.{'{minor}'}.{'{patch}'}` (e.g.
-                      `v0.1.0`).
-                    </li>
-                  </ul>
-                </div>
-              </li>
+              <ChangelogCard limit={3} server:defer>
+                <Skeleton slot="fallback" />
+              </ChangelogCard>
             </ul>
             <li class="display-card--item">
               <div>

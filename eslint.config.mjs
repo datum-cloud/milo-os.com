@@ -55,13 +55,11 @@ export default defineConfig([
       'plugin:jsx-a11y/recommended',
       'prettier'
     ),
-
     languageOptions: {
       globals: {
         ...globals.browser,
         ...globals.node,
       },
-
       ecmaVersion: 'latest',
       sourceType: 'module',
     },
@@ -71,11 +69,9 @@ export default defineConfig([
         typescript: {},
       },
     },
-    e,
   },
   {
     files: ['**/*.astro'],
-
     languageOptions: {
       parser: parser,
       ecmaVersion: 'latest',
@@ -129,37 +125,30 @@ export default defineConfig([
   },
   {
     files: ['**/*.mdx', '**/*.md'],
-
     extends: compat.extends('plugin:mdx/recommended'),
-
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
     },
-
     settings: {
       'mdx/code-blocks': true,
       'mdx/language-mapper': {},
     },
-
     rules: {
       'mdx/remark': 'off',
     },
   },
   {
     files: ['**/*.ts', '**/*.tsx'],
-
     extends: compat.extends(
       'plugin:@typescript-eslint/recommended',
       'plugin:jsx-a11y/recommended',
       'prettier'
     ),
-
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
     },
-
     rules: {
       '@typescript-eslint/no-unused-vars': [
         'error',
@@ -167,7 +156,6 @@ export default defineConfig([
           argsIgnorePattern: '^_',
         },
       ],
-
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-this-alias': 'off',
       '@typescript-eslint/no-array-constructor': 'error',

@@ -1,62 +1,51 @@
 ---
 export const prerender = false;
-import { getRoadmap, isConnectedToDB } from '@utils/roadmap';
+
+import { marked } from 'marked';
+import { dbIsConntected } from '@/src/libs/postgres';
+import { roadmaps } from '@libs/milo';
+import type { RoadmapProps } from '@/src/libs/milo';
 import { truncate, removeHeaderTags, stripTags } from '@libs/string';
 
-interface Props {
-  limit?: number;
-}
-
 const { limit } = Astro.props;
-const userId = Astro.cookies.get('userId')?.value || '';
-const issues = await getRoadmap(userId);
+
+const issues = await roadmaps();
 const displayIssues = limit ? issues.slice(0, limit) : issues;
-const dbIsConnected = isConnectedToDB();
 ---
 
 {
-  Array.prototype.map.call(
-    displayIssues,
-    (issue: {
-      id: string;
-      title: string;
-      body: string;
-      url?: string;
-      vote: number;
-      hasVoted: boolean;
-    }) => (
-      <li class="display-card--item">
-        <div class="display-card--item-meta">
-          {!dbIsConnected && (
-            <div class="vote-counter">
-              <span id={`${issue.id}-value`} class="vote-number">
-                {issue.vote}
-              </span>
-              <span class="vote-label">votes</span>
-            </div>
+  Array.prototype.map.call(displayIssues, (issue: RoadmapProps) => (
+    <li class="display-card--item">
+      <div class="display-card--item-meta">
+        {!dbIsConntected && (
+          <div class="vote-counter">
+            <span id={`${issue.id}-value`} class="vote-number" />
+            <span class="vote-label">votes</span>
+          </div>
+        )}
+      </div>
+
+      <div class="display-card--item-content">
+        <h4>{issue.title}</h4>
+        <div
+          set:html={stripTags(removeHeaderTags(marked.parse(issue.body))).then((text) =>
+            truncate(text, 200)
+          )}
+        />
+
+        <div class="roadmap-actions">
+          {!dbIsConntected && (
+            <button class="vote-button" data-issueid={issue.id} data-has-voted={issue.hasVoted}>
+              {issue.hasVoted ? 'Remove your vote' : 'Add your vote'}
+            </button>
+          )}
+          {issue.url && (
+            <a href={issue.url} target="_blank" rel="noopener noreferrer" class="github-link">
+              Learn more on GitHub
+            </a>
           )}
         </div>
-
-        <div class="display-card--item-content">
-          <h4>{issue.title}</h4>
-          <div
-            set:html={stripTags(removeHeaderTags(issue.body)).then((text) => truncate(text, 200))}
-          />
-
-          <div class="roadmap-actions">
-            {!dbIsConnected && (
-              <button class="vote-button" data-issueid={issue.id} data-has-voted={issue.hasVoted}>
-                {issue.hasVoted ? 'Remove your vote' : 'Add your vote'}
-              </button>
-            )}
-            {issue.url && (
-              <a href={issue.url} target="_blank" rel="noopener noreferrer" class="github-link">
-                Learn more on GitHub
-              </a>
-            )}
-          </div>
-        </div>
-      </li>
-    )
-  )
+      </div>
+    </li>
+  ))
 }
