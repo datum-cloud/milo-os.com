@@ -6,6 +6,7 @@ export interface NavItem {
   text: string;
   href: string;
   icon?: string;
+  target?: '_blank' | '_self' | '_parent' | '_top';
   isExternal?: boolean;
 }
 
@@ -38,4 +39,5 @@ export interface NavData {
   footer: NavFooterSection[];
   social: NavItem[];
   brand?: NavFooterSection[];
+  footerDocs?: NavSection[];
 }

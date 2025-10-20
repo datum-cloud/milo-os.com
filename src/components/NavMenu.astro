@@ -74,6 +74,7 @@ function hasActiveChild(sections: NavData['main'][0]['children'], currentPath: s
           >
             <a
               href={item.href}
+              target={item.target ? '_blank' : '_self'}
               class={`nav-menu-link ${isActive ? 'link--active' : ''}`}
               data-astro-prefetch="hover"
             >
