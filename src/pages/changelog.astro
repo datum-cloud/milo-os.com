@@ -1,14 +1,13 @@
 ---
 import '@v1/styles/page-roadmap.css';
-import { Image } from 'astro:assets';
+
 import { getCollectionEntry } from '@utils/collectionUtils';
 
 import Layout from '@layouts/Layout.astro';
 import Hero from '@components/Hero.astro';
 import Footer from '@components/Footer.astro';
-import Card from '@components/roadmap/Card.astro';
-import Skeleton from '@components/Skeleton.astro';
-import Bullet from '@v1/assets/icons/bullet.svg';
+import Card from '@components/changelog/Card.astro';
+import Skeleton from '@components/changelog/Skeleton.astro';
 
 const page = await getCollectionEntry('pages', 'changelog');
 
@@ -28,91 +27,9 @@ const description = fm.description;
         <div class="display-card bg-glacier-mist-700 text-midnight-fjord">
           <div class="display-card--content">
             <ul class="display-card--list display-card--timeline">
-              <li class="display-card--item">
-                <div class="display-card--item-meta item-neta--timeline">
-                  <Bullet class="text-canyon-clay" />
-                </div>
-                <div class="display-card--item-content">
-                  <h4>Adjust org table content</h4>
-                  <div>
-                    I think important to include owner (with link to the user). Good to have status.
-                    Might be useful to indicate number of projects. I think we need a filter at top
-                    for personal vs standard, or...
-                  </div>
-                </div>
-              </li><li class="display-card--item">
-                <div class="display-card--item-meta item-neta--timeline">
-                  <Bullet class="text-canyon-clay" />
-                </div>
-                <div class="display-card--item-content">
-                  <h4>Time zone</h4>
-                  <div>
-                    We should have a timezone for proper context. Reported by: Jacob Smith
-                    (jsmith@datum.net) Source URL: https://staff.datum.net/users/328747448287632651
-                    Marker.io Issue type: Improvement Issue...
-                  </div>
-                </div>
-              </li><li class="display-card--item">
-                <div class="display-card--item-meta item-neta--timeline">
-                  <Bullet class="text-canyon-clay" />
-                </div>
-                <div class="display-card--item-content">
-                  <h4>Include filter and link from full name</h4>
-                  <div>
-                    We should have an easy filter to see personal vs standard orgs. I think it is
-                    more intuitive to link from "Datum Technology, Inc" vs the other name. I'm not
-                    sure I would even show...
-                  </div>
-                </div>
-              </li><li class="display-card--item">
-                <div class="display-card--item-meta item-neta--timeline">
-                  <Bullet class="text-canyon-clay" />
-                </div>
-                <div class="display-card--item-content">
-                  <h4>Projects should be associated with orgs</h4>
-                  <div>
-                    I think keep the subnav context so an admin user can easily toggle back from
-                    projects to org views. Maybe user horizontal tabs to drill deeper into the
-                    details of each project. Reported by: Jacob...
-                  </div>
-                </div>
-              </li><li class="display-card--item">
-                <div class="display-card--item-meta item-neta--timeline">
-                  <Bullet class="text-canyon-clay" />
-                </div>
-                <div class="display-card--item-content">
-                  <h4>Add context to creation</h4>
-                  <div>
-                    Maybe include the user who performed the action. Let's make sure we have
-                    appropriate timezone context. Reported by: Jacob Smith (jsmith@datum.net) Source
-                    URL:...
-                  </div>
-                </div>
-              </li><li class="display-card--item">
-                <div class="display-card--item-meta item-neta--timeline">
-                  <Bullet class="text-canyon-clay" />
-                </div>
-                <div class="display-card--item-content">
-                  <h4>Retool activity log to show the action or event</h4>
-                  <div>
-                    I don't think "message" is the right thing to show here. We should show the
-                    action that was taken such as "added a new domain resource "datum-cloud-dot-ai"
-                    or...
-                  </div>
-                </div>
-              </li><li class="display-card--item">
-                <div class="display-card--item-meta item-neta--timeline">
-                  <Bullet class="text-canyon-clay" />
-                </div>
-                <div class="display-card--item-content">
-                  <h4>Additional pieces of user info possible?</h4>
-                  <div>
-                    To help understand users, could we see: Which social provider they used to
-                    signup / are currently using? Last time they logged in Any chance we can pull in
-                    their photo from Google or GitHub,...
-                  </div>
-                </div>
-              </li>
+              <Card server:defer>
+                <Skeleton slot="fallback" />
+              </Card>
             </ul>
           </div>
         </div>

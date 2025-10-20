@@ -23,6 +23,15 @@ export interface UserVotes {
   issueId: number;
 }
 
+function dbIsConntected(): boolean {
+  try {
+    const sql = dbConnect();
+    return !!sql;
+  } catch {
+    return false;
+  }
+}
+
 async function dbConnect() {
   if (!sql) {
     const postgres = (await import('postgres')).default;
@@ -232,6 +241,7 @@ async function refreshIssues(issues: object): Promise<boolean> {
 }
 
 export {
+  dbIsConntected,
   dbConnect,
   getVotes,
   getUserVoted,

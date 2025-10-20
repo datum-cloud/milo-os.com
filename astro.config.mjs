@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import starlight from '@astrojs/starlight';
-import robotsTxt from 'astro-robots-txt';
+import mdx from '@astrojs/mdx';
 
 import { loadEnv } from 'vite';
 import node from '@astrojs/node';
@@ -25,18 +25,6 @@ export default defineConfig({
     layout: 'constrained',
   },
   integrations: [
-    robotsTxt({
-      sitemap: true,
-      sitemapBaseFileName: 'sitemap',
-      policy: [
-        {
-          userAgent: '*',
-          allow: '/',
-          disallow: ['/admin', '/api'],
-          crawlDelay: 10,
-        },
-      ],
-    }),
     alpinejs(),
     starlight({
       title: 'Datum',
@@ -139,9 +127,11 @@ export default defineConfig({
         },
       ],
     }),
+    mdx(),
   ],
 
   vite: {
+    // @ts-expect-error - Tailwind Vite plugin type mismatch with Vite's expected plugin types
     plugins: [tailwindcss()],
     css: {
       devSourcemap: true,

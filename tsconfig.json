@@ -10,6 +10,7 @@
     "playwright.config.ts"
   ],
   "compilerOptions": {
+    "module": "es2020",
     "strictNullChecks": true,
     "allowJs": true,
     "baseUrl": ".",
