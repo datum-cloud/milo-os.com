@@ -1,14 +1,11 @@
 ---
-import Logo from '@v1/assets/images/milo-logo.svg';
 import navigation from '@data/navigation.json';
 import type { NavData } from '@/src/types/navigation';
 import type { FooterProps } from '@/src/types/common';
-import GithubStargazerValue from '@components/GithubStargazerValue.astro';
-import Button from '@components/Button.astro';
 import Icon from '@components/Icon.astro';
 
 // Get props with default values
-const { showCTA = true } = Astro.props as FooterProps;
+const { showCTA = false } = Astro.props as FooterProps;
 
 // Type-safe navigation data
 const navData = navigation as NavData;

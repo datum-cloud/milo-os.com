@@ -1,7 +1,6 @@
 ---
 import '@v1/styles/page-home.css';
 
-import { marked } from 'marked';
 import { render } from 'astro:content';
 import Layout from '@layouts/Layout.astro';
 import Hero from '@components/Hero.astro';
@@ -38,7 +37,6 @@ const meta = fm.meta || {};
 const title = fm.title;
 const description = fm.description;
 const subtitle = fm.subtitle;
-const body = page.body;
 ---
 
 <Layout title={title} description={description} bodyClass="home-page" meta={meta}>
