@@ -7,10 +7,6 @@ import { roadmaps } from '@libs/milo';
 import type { RoadmapProps } from '@/src/libs/milo';
 import { truncate, removeHeaderTags, stripTags } from '@libs/string';
 
-interface Props {
-  limit?: number;
-}
-
 const { limit } = Astro.props;
 
 const issues = await roadmaps();

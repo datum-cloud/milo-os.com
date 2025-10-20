@@ -28,6 +28,8 @@ async function stargazerCount(isClientSide: boolean = false): Promise<number> {
     };
   };
 
+  const name = 'milo';
+
   if (isClientSide) {
     try {
       const API_URL = `https://api.github.com/repos/${owner}/${name}`;
@@ -43,7 +45,8 @@ async function stargazerCount(isClientSide: boolean = false): Promise<number> {
       return 0;
     }
   } else {
-    const query = `
+    try {
+      const query = `
       query ($owner: String!, $name: String!) {
         repository(owner: $owner, name: $name) {
           stargazerCount
@@ -51,13 +54,16 @@ async function stargazerCount(isClientSide: boolean = false): Promise<number> {
       }
     `;
 
-    const variables = {
-      owner,
-      name: 'milo',
-    };
+      const variables = {
+        owner,
+        name,
+      };
 
-    const response = (await graph(query, variables)) as ResponseProps;
-    return response.repository.stargazerCount || 0;
+      const response = (await graph(query, variables)) as ResponseProps;
+      return response.repository.stargazerCount || 0;
+    } catch {
+      return 0;
+    }
   }
 }
 
@@ -109,10 +115,6 @@ async function roadmaps(): Promise<RoadmapProps[]> {
       }
     `;
 
-  console.log('======= owner:', owner);
-  console.log('======= name:', name);
-  console.log('======= labels:', labels);
-
   const variables = {
     owner: owner,
     name: name,
@@ -120,7 +122,6 @@ async function roadmaps(): Promise<RoadmapProps[]> {
   };
 
   const response = (await graph(query, variables)) as ResponseProps;
-  console.log('======= roadmaps:', response);
   const roadmaps: RoadmapProps[] = Object(response.repository.issues.nodes).map(
     (issue: RoadmapProps) => ({
       ...issue,
@@ -208,8 +209,6 @@ async function changelogs(): Promise<ChangelogProps[]> {
       ...log,
     })
   );
-
-  console.log('======= changelogs:', changelogs);
 
   return changelogs;
 }

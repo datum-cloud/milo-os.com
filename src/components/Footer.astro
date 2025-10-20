@@ -1,11 +1,7 @@
 ---
 import navigation from '@data/navigation.json';
 import type { NavData } from '@/src/types/navigation';
-import type { FooterProps } from '@/src/types/common';
 import Icon from '@components/Icon.astro';
-
-// Get props with default values
-const { showCTA = false } = Astro.props as FooterProps;
 
 // Type-safe navigation data
 const navData = navigation as NavData;

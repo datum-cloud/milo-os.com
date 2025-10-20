@@ -7,10 +7,6 @@ import { truncate, removeHeaderTags, stripTags } from '@libs/string';
 import Bullet from '@v1/assets/icons/bullet.svg';
 import type { ChangelogProps } from '@/src/libs/milo';
 
-interface Props {
-  limit?: number;
-}
-
 const { limit } = Astro.props;
 
 const changelog = await changelogs();
