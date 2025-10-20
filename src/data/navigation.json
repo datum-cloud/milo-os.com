@@ -14,11 +14,13 @@
     },
     {
       "text": "Docs",
-      "href": "https://www.datum.net/docs/"
+      "href": "https://www.datum.net/docs/",
+      "target": "_blank"
     },
     {
-      "text": "Public Slack",
-      "href": "/public-slack/"
+      "text": "Community Chat",
+      "href": "https://www.datum.net/chat/",
+      "target": "_blank"
     }
   ],
   "footer": [
