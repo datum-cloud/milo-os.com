@@ -1,7 +1,5 @@
 import { z, reference, defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
-import { docsLoader } from '@astrojs/starlight/loaders';
-import { docsSchema } from '@astrojs/starlight/schema';
 
 const metaSchema = z
   .object({
@@ -76,13 +74,4 @@ const pages = defineCollection({
 
 export const collections = {
   pages,
-  docs: defineCollection({
-    loader: docsLoader(),
-    schema: docsSchema({
-      extend: z.object({
-        // override lastUpdated from original schema
-        updatedDate: z.string().optional(),
-      }),
-    }),
-  }),
 };

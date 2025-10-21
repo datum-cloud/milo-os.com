@@ -24,7 +24,6 @@
     "@astrojs/alpinejs": "^0.4.9",
     "@astrojs/mdx": "^4.3.6",
     "@astrojs/node": "^9.4.4",
-    "@astrojs/starlight": "^0.36.0",
     "@lucide/astro": "^0.544.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.19",
