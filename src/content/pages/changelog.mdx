@@ -6,22 +6,15 @@ iconName: list-restart
 order: 1
 ---
 
-# Changelog
-
-Stay up to date with the latest features, improvements, and bug fixes in Milo
-OS.
-
 ## Version v0.3.0 - Notification System, Email Templates, Sending Emails, Virtualized Project Control Planes
 
 This version introduces new notification system with initial support for creating Email Templates and sending Emails to Users.
-
 This release also includes virtualized project control planes so that all projects can be served by a single apiserver deployment instead of requiring multiple deployments.
 
 ## Version v0.2.0 - User Deactivations and User Preferences
 
 This version introduces the ability for platform administrators to deactivate
 users and enable users to manage their profile preferences.
-
 User deactivation will result in users access to the system being removed
 immediately.
 
@@ -36,35 +29,30 @@ Versioning in the format `v{major}.{minor}.{patch}` (e.g. `v0.1.0`).
 This release introduces a policy-driven control plane foundation for Milo that
 can be extended through Custom Resources, Controllers, Webhooks, and Admission
 Policies.
-
 This release also includes the core APIs for Resource Management and Identity
 and Access Management. These APIs can be used to manage users, organizations,
 and their resources.
 
-### Resource Management
+## Resource Management
 
 The resource management service provides the ability to create **Organizations**
 and **Projects**. The platform supports **Personal** or **Standard**
 organizations to help categorize how organizations are used.
-
 Users can create one or more projects within an organization to organize and
 manage their resources. Projects provide dedicated control planes for users to
 manage their resources on the platform.
-
 Service providers can extend the platform by introducing new resources to
 organizations or projects to customize Milo for their users.
 
-### Identity and Access Management
+## Identity and Access Management
 
 The Identity and Access Management (IAM) system provides a robust framework for
 managing access to all resources created in Milo. Users represent humans
 authenticating with Milo and can be granted access to organizations.
-
 The IAM system also supports inheriting access across the resource hierarchy so
 that roles attached at the organization level will be inherited on projects. The
 system also supports binding roles to the root of the platform to support
 granting service providers the necessary access to manage their consumers.
-
 Milo uses a flexible integration model for user authentication and authorization
 so that any provider can be integrated. Milo officially supports [Zitadel for
 authentication](https://github.com/datum-cloud/auth-provider-zitadel) and

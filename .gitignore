@@ -61,6 +61,7 @@ Sessionx.vim
 dist/
 .astro/
 .vercel/
+.cache/
 
 # Playwright
 /test-results/

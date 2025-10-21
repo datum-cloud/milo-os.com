@@ -18,7 +18,6 @@ import Skeleton from '@components/roadmap/Skeleton.astro';
 
 const page = await getCollectionEntry('pages', '/');
 const fm = page.data;
-
 const { Content } = await render(page);
 
 interface Feature {
