@@ -1,5 +1,6 @@
 import { graph } from '@/src/libs/github';
 import { Cache } from '@libs/cache';
+import fs from 'node:fs';
 
 const cache = new Cache('.cache');
 const owner = 'datum-cloud';
@@ -96,12 +97,36 @@ async function roadmaps(): Promise<RoadmapProps[]> {
       };
     };
   };
+
+  /**
+   * Load roadmap from local file if exists
+   */
+  const roadmapFile = './src/content/roadmap.json';
+
+  if (fs.existsSync(roadmapFile)) {
+    const data = fs.readFileSync(roadmapFile, 'utf-8');
+
+    const dataParsed = JSON.parse(data);
+    const escapeString = '---';
+
+    dataParsed.forEach((item: RoadmapProps, index: number) => {
+      const regex = new RegExp(`(.*?)(${escapeString})`, 's');
+      const match = item.body.match(regex);
+
+      if (match && match[1]) {
+        dataParsed[index].body = match[0];
+      }
+    });
+
+    return dataParsed;
+  }
+
+  console.log('Loading roadmap from GitHub...');
   let roadmaps: RoadmapProps[] = [];
 
   if (cache.has('roadmaps')) {
     return cache.get<RoadmapProps[]>('roadmaps') as RoadmapProps[];
   } else {
-    console.log('==Fetching roadmaps from GitHub API');
     const name = import.meta.env.ROADMAP_REPO || process.env.ROADMAP_REPO || 'milo';
     const arrLabel = import.meta.env.ROADMAP_LABELS || process.env.ROADMAP_LABELS || '';
     const labels = arrLabel

@@ -5,7 +5,7 @@ services:
       context: .
       target: development # Use the development stage from Dockerfile
     ports:
-      - "4321:4321"
+      - '4321:4321'
     volumes:
       - .:/app
       - /app/node_modules
@@ -13,6 +13,8 @@ services:
       - NODE_ENV=development
       - HOST=0.0.0.0
       - PORT=4321
+    env_file:
+      - .env
     develop:
       watch:
         - path: ./public
@@ -27,9 +29,11 @@ services:
       context: .
       target: production # Use the production stage from Dockerfile
     ports:
-      - "4321:4321"
+      - '4321:4321'
     environment:
       - NODE_ENV=production
       - HOST=0.0.0.0
       - PORT=4321
+    env_file:
+      - .env
     restart: unless-stopped
