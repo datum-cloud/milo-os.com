@@ -1,0 +1,69 @@
+---
+import Logo from '@v1/assets/images/milo-logo.png';
+import LogoDark from '@v1/assets/images/milo-logo-dark.png';
+import { Image } from 'astro:assets';
+import navigation from '@data/navigation.json';
+import NavMenu from '@components/NavMenu.astro';
+import MobileMenu from '@components/MobileMenu.astro';
+import GithubStargazerValue from '@components/GithubStargazerValue.astro';
+import Button from '@components/Button.astro';
+
+import type { NavData } from '@/src/types/navigation';
+
+// Type-safe navigation data
+const navData = navigation as NavData;
+const mainNav = navData.main;
+---
+
+<nav
+  class="nav--main fade-in--pure"
+  data-reveal="fade-in--pure--visible"
+  data-reveal-delay="100"
+  data-reveal-immediate="true"
+>
+  {/* Logo */}
+  <div class="nav-logo-container">
+    <a href="/" class="nav-logo" id="logo-link" aria-label="Milo Logo" title="Milo Logo">
+      <Image
+        class="light-logo"
+        src={Logo}
+        layout="constrained"
+        loading="eager"
+        fetchpriority="high"
+        alt="Milo Logo"
+      />
+
+      <Image
+        class="hidden dark-logo"
+        src={LogoDark}
+        layout="constrained"
+        loading="eager"
+        fetchpriority="high"
+        alt="Milo Logo"
+      />
+    </a>
+  </div>
+
+  {/* Desktop Menu */}
+  <NavMenu />
+
+  {/* Desktop Actions */}
+  <div class="nav-actions">
+    <Button
+      class="btn btn--primary gh-button fade-in--pure"
+      data-reveal="fade-in--pure--visible"
+      data-reveal-delay="100"
+      data-reveal-immediate="true"
+      icon={{ name: 'github', size: 'md' }}
+      iconPosition="left"
+      iconClass="stroke-1.5"
+      target="_blank"
+      href="https://github.com/datum-cloud/milo/"
+    >
+      <GithubStargazerValue server:defer />
+    </Button>
+  </div>
+
+  {/* Mobile Menu Component */}
+  <MobileMenu navigation={mainNav} />
+</nav>

@@ -1,7 +1,3 @@
-node_modules/**
-src/icons/**
-public/scripts/*
-
 # Build output
 dist/
 .astro/
@@ -39,6 +35,9 @@ yarn-error.log*
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+
+# Generated content
+src/content/
 
 # Public assets
 public/

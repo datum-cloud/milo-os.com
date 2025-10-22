@@ -1,74 +1,77 @@
-import { defineCollection, z } from 'astro:content';
+import { z, reference, defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-function removeDupsAndLowerCase(array: string[]) {
-  if (!array.length) return array;
-  const lowercaseItems = array.map((str) => str.toLowerCase());
-  const distinctItems = new Set(lowercaseItems);
-  return Array.from(distinctItems);
-}
+const metaSchema = z
+  .object({
+    title: z.string().optional(),
+    description: z.string().optional(),
+    image: z.string().optional(),
+    keywords: z.array(z.string()).optional(),
+    og: z
+      .object({
+        title: z.string().optional(),
+        description: z.string().optional(),
+        image: z.string().optional(),
+        url: z.string().optional(),
+        article: z.boolean().default(false).optional(),
+        published: z.date().optional(),
+        author: z.string().optional(),
+      })
+      .optional(),
+  })
+  .optional();
 
-const blog = defineCollection({
-  // Load Markdown and MDX files in the `src/content/blog/` directory.
-  loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
-  // Required
+const featuresSchema = z.array(
+  z
+    .object({
+      group: z.string().optional(),
+      items: z.array(
+        z.object({
+          title: z.string().optional(),
+          description: z.string().optional(),
+          icon: z.string().optional(),
+        })
+      ),
+    })
+    .optional()
+);
+
+// Define pages collections
+const pages = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/pages' }),
   schema: ({ image }) =>
     z.object({
-      // Required
-      title: z.string().max(60),
-      description: z.string().max(160),
-      publishDate: z.coerce.date(),
-      // Optional
-      updatedDate: z.coerce.date().optional(),
-      heroImage: z
-        .object({
-          src: image(),
-          alt: z.string().optional(),
-          inferSize: z.boolean().optional(),
-          width: z.number().optional(),
-          height: z.number().optional(),
-
-          color: z.string().optional(),
-        })
+      title: z.string().optional(),
+      subtitle: z.string().optional(),
+      description: z.string().optional(),
+      iconName: z.string().optional(),
+      featuredImage: image().optional(),
+      slug: z.string().optional(),
+      order: z.number().optional().default(0),
+      contents: z.array(reference('pages')).optional(),
+      items: z.array(z.string()).optional(),
+      updatedDate: z.string().optional(),
+      features: featuresSchema.optional(),
+      images: z
+        .array(
+          z.object({
+            img: image().optional(),
+            alt: z.string().optional(),
+          })
+        )
         .optional(),
-      tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
-      language: z.string().optional(),
-      draft: z.boolean().default(false),
-      // Special fields
-      comment: z.boolean().default(true),
-    }),
-});
-
-const pages = defineCollection({
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    order: z.number(),
-    publishDate: z.coerce.date().optional(),
-    updatedDate: z.coerce.date().optional(),
-    draft: z.boolean().optional(),
-    tags: z.array(z.string()).optional(),
-  }),
-});
-
-// Define docs collection
-const docs = defineCollection({
-  loader: glob({ base: './src/content/docs', pattern: '**/*.{md,mdx}' }),
-  schema: () =>
-    z.object({
-      title: z.string().max(60),
-      description: z.string().max(160),
-      publishDate: z.coerce.date().optional(),
-      updatedDate: z.coerce.date().optional(),
-      tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
-      draft: z.boolean().default(false),
-      // Special fields
-      order: z.number().default(999),
+      pageInfo: z
+        .array(
+          z.object({
+            icon: z.string(),
+            text: z.string(),
+          })
+        )
+        .optional(),
+      meta: metaSchema,
     }),
 });
 
 export const collections = {
-  blog,
   pages,
-  docs,
 };

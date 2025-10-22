@@ -1,30 +1,22 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["node_modules", "dist", "public/pagefind", "**/pagefind/**", "tests/**/*"],
   "compilerOptions": {
-    // Basic
-    "allowJs": true,
-    "moduleResolution": "bundler",
-    // Building for a library
-    "declaration": true,
-    // Code runs in the DOM
-    "lib": ["es2022", "dom", "dom.iterable"],
-    // Others
-    "baseUrl": ".",
     "strictNullChecks": true,
-    // Paths
+    "allowJs": true,
+    "baseUrl": ".",
     "paths": {
-      "@/assets/*": ["src/assets/*"],
-      "@/components/*": ["src/components/*"],
-      "@/layouts/*": ["src/layouts/*"],
-      "@/utils": ["src/utils/index.ts"],
-      "@/utils/*": ["src/utils/*"],
-      "@/plugins/*": ["src/plugins/*"],
-      "@/pages/*": ["src/pages/*"],
-      "@/types": ["src/types/index.ts"],
-      "@/site-config": ["src/site.config.ts"],
-      "@packages/*": ["packages/*"]
+      "@/*": ["./*"],
+      "@components/*": ["./src/components/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@libs/*": ["./src/libs/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@data/*": ["./src/data/*"],
+      "@content/*": ["./src/content/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@v1/*": ["./src/v1/*"]
     }
-  },
-  "exclude": ["node_modules", "**/node_modules/*", ".vscode", "dist", "public/scripts/*", "test/*"]
+  }
 }

@@ -1,0 +1,6 @@
+---
+export const prerender = false;
+const starCount = Astro.locals.starCount || 0;
+---
+
+{Number(starCount) > 0 && <span>{starCount}</span>}

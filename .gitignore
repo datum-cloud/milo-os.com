@@ -1,13 +1,20 @@
-# Created by https://www.toptal.com/developers/gitignore/api/astro,vim,visualstudiocode,vercel
-# Edit at https://www.toptal.com/developers/gitignore?templates=astro,vim,visualstudiocode,vercel
+# dependencies
+node_modules/
 
-### Astro ###
-# Gitignore template for Astro projects
-# Ignore content collection generated files
-.astro
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-### Vercel ###
-.vercel
+# environment variables
+.env
+.env.local
+.env.production
+.env.development
+
+# jetbrains setting folder
+.idea/
 
 ### Vim ###
 # Swap
@@ -47,10 +54,6 @@ Sessionx.vim
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/astro,vim,visualstudiocode,vercel
-
-### Custom ###
-
 # ides
 *.code-workspace
 
@@ -58,29 +61,15 @@ Sessionx.vim
 dist/
 .astro/
 .vercel/
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# dependencies
-node_modules/
-
-# environment variables
-.env
-.env.production
-
-# others
-.DS_Store
-old_blog
-ignore.*
-bunfig.toml
-/src/content/blog/test.*
-/test/
+.cache/
 
 # Playwright
 /test-results/
 /playwright-report/
 /playwright/.cache/
 /tests-examples/
+
+# others
+.DS_Store
+old_blog
+ignore.*

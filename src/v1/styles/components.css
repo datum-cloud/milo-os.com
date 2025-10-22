@@ -1,0 +1,79 @@
+@layer components {
+  /* Section Block */
+  .section--block {
+    @apply relative overflow-hidden bg-midnight-fjord flex flex-col items-center text-white;
+
+    &.dark {
+      @apply text-white;
+
+      .section--block-content-text {
+        @apply text-white;
+      }
+
+      .section--block-prose {
+        @apply prose-dark;
+      }
+    }
+
+    &.section--block--pad {
+      @apply py-15 md:py-28 lg:py-42;
+    }
+
+    &.section--block--regular-pad {
+      @apply lg:pt-20 lg:pb-24 pt-14 pb-20;
+    }
+
+    &.section--block--small-pad {
+      @apply py-15 md:py-20 lg:py-29;
+    }
+
+    &.section--block--big-pad {
+      @apply pt-15 pb-13 md:pt-28 md:pb-25 lg:pt-60 lg:pb-53;
+    }
+  }
+
+  .section--block-illustration {
+    @apply absolute bottom-0 left-0 z-0 flex h-full w-auto items-end;
+  }
+
+  .section--block-inner {
+    @apply m-auto max-width;
+  }
+
+  .section--block-content {
+    @apply relative z-10 flex justify-start;
+
+    .section--block-content-inner {
+      @apply flex flex-col gap-6 md:gap-10;
+    }
+  }
+
+  .section--block-prose {
+    @apply milo-prose-lg prose-p:mt-0 prose-p:mb-2.5;
+
+    :not(h1, h2, h3, h4, h5, h6) {
+      @apply opacity-80;
+    }
+  }
+  .section--block-content-text {
+    @apply font-alliance prose prose-xl md:text-19 text-midnight-fjord/80 text-22 prose-a:hover:no-underline max-w-none leading-[1.45];
+  }
+
+  .nav-logo {
+    @apply flex items-center gap-2;
+
+    --color-logo-object: var(--color-aurora-moss);
+    --color-logo-text: var(--color-white);
+
+    svg {
+      @apply w-17 md:w-21.5;
+    }
+  }
+
+  /* Label Styles */
+  .label {
+    @apply lg:px-3.5 lg:py-2 md:px-2.5 md:py-1.5 px-2 py-1 inline-block;
+    @apply text-canyon-clay-links milo-text-sm rounded-[7px] border border-canyon-clay-links transition-all;
+    @apply hover:border-canyon-clay-links/80 hover:text-canyon-clay-links/80;
+  }
+}

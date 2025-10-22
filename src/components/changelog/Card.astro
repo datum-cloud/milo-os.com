@@ -1,0 +1,29 @@
+---
+import { marked } from 'marked';
+import { getEntry } from 'astro:content';
+import Bullet from '@v1/assets/icons/bullet.svg';
+import { extractHeader } from '@/src/libs/markdown';
+
+const changelogEntry = await getEntry('pages', 'changelog');
+const changelogs = (await extractHeader(changelogEntry?.body)) as Record<
+  string,
+  { title: string; description: string }
+>;
+
+const { limit } = Astro.props;
+const displayChangelog = limit ? Object.values(changelogs).slice(0, limit) : changelogs;
+---
+
+{
+  Object.values(displayChangelog).map((log) => (
+    <li class="display-card--item">
+      <div class="display-card--item-meta item-neta--timeline">
+        <Bullet class={limit ? 'text-aurora-moss' : 'text-canyon-clay'} />
+      </div>
+      <div class={limit ? 'display-card--item-content text-white' : 'display-card--item-content '}>
+        <h4>{log.title}</h4>
+        <div set:html={marked(log.description)} />
+      </div>
+    </li>
+  ))
+}

@@ -1,219 +1,172 @@
 ---
+import '@v1/styles/page-home.css';
+
+import { render } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import Hero from '@components/Hero.astro';
+import Footer from '@components/Footer.astro';
+import Illustration from '@v1/assets/images/hero-home-illustration.webp';
 import { Image } from 'astro:assets';
-import { getEntry } from 'astro:content';
 
-// import { Quote } from 'astro-pure/advanced';
-// import { PostPreview } from 'astro-pure/components/pages';
-import { Link } from '@packages/pure/components/advanced';
-// import { Button, Card /*, Icon, Label */ } from 'astro-pure/user';
-import { Button, Card, Timeline /*, Icon, Label */ } from '@packages/pure/components/user';
-import PageLayout from '@/layouts/BaseLayout.astro';
-// import ProjectCard from '@/components/home/ProjectCard.astro';
-import Section from '@/components/home/Section.astro';
-// import SkillLayout from '@/components/home/SkillLayout.astro';
-import miloHi from '@/assets/milo-hello.png';
-import { roadmapEvents } from '../data/roadmap';
-// import config from '@/site-config';
+import { getCollectionEntry } from '@utils/collectionUtils';
+import featuresData from '@content/pages/home/features.json';
+import Icon from '@components/Icon.astro';
+import Button from '@components/Button.astro';
+import RoadmapCard from '@components/roadmap/Card.astro';
+import ChangelogCard from '@components/changelog/Card.astro';
+import Skeleton from '@components/roadmap/Skeleton.astro';
 
-// const languages = ['Html', 'JavaScript', 'CSS', 'Shell'];
-// const frontend = ['TypeScript', 'Vite', 'Webpack', 'Astro'];
-// const backend = ['Vercel', 'Waline'];
+const page = await getCollectionEntry('pages', '/');
+const fm = page.data;
+const { Content } = await render(page);
 
-/*
-import { getBlogCollection } from 'astro-pure/server';
-
-const MAX_POSTS = 10;
-const allPosts = await getBlogCollection();
-const allPostsByDate = allPosts
-  .sort((a, b) => {
-    const aDate = a.data.publishDate ? a.data.publishDate.valueOf() : 0;
-    const bDate = b.data.publishDate ? b.data.publishDate.valueOf() : 0;
-    return bDate - aDate;
-  })
-  .slice(0, MAX_POSTS);
-*/
-
-// Get changelog data
-const changelogEntry = await getEntry('pages', 'changelog');
-
-// Parse the latest 2 versions from changelog content
-interface VersionData {
-  version: string;
-  date: string;
-  features: string[];
+interface Feature {
+  group: string;
+  items: Array<{
+    title: string;
+    description: string;
+    icon?: string;
+  }>;
 }
-let latestVersions: VersionData[] = [];
-if (changelogEntry && changelogEntry.body) {
-  const content = changelogEntry.body;
-  // console.log('Raw changelog content:', content.substring(0, 500) + '...');
-  // Split by version headers and filter out empty sections
-  const sections = content.split(/(?=## Version)/).filter((section) => section.trim());
 
-  latestVersions = sections
-    .slice(0, 3)
-    .map((section) => {
-      const lines = section.trim().split('\n');
-      const versionLine = lines[0];
-      // console.log(`Processing section ${index}, version line:`, versionLine);
-      const versionMatch = versionLine.match(/## Version v([\d.]+) - (.+)/);
+const features: Feature[] = featuresData;
 
-      if (versionMatch) {
-        // console.log(`Found version ${versionMatch[1]} - ${versionMatch[2]}`);
-        // Extract features from the content
-        const contentLines = lines.slice(1);
-        const featuresStart = contentLines.findIndex((line) =>
-          line.includes('### 🚀 New Features')
-        );
-        const featuresEnd = contentLines.findIndex(
-          (line, index) => index > featuresStart && line.startsWith('###')
-        );
-
-        let features: string[] = [];
-        if (featuresStart !== -1) {
-          const endIndex = featuresEnd === -1 ? contentLines.length : featuresEnd;
-          features = contentLines
-            .slice(featuresStart + 1, endIndex)
-            .filter((line: string) => line.startsWith('- **'))
-            .slice(0, 3); // Get first 3 features
-          // console.log( `Extracted ${features.length} features for version ${versionMatch[1]}:`, features );
-        } else {
-          // console.log(`No features section found for version ${versionMatch[1]}`);
-        }
-
-        return {
-          version: 'v' + versionMatch[1],
-          date: versionMatch[2].trim(),
-          features: features,
-        };
-      }
-      return null;
-    })
-    .filter((item): item is VersionData => item !== null);
-
-  // console.log('Parsed versions:', JSON.stringify(latestVersions, null, 2));
-}
+// SEO
+const meta = fm.meta || {};
+const title = fm.title;
+const description = fm.description;
+const subtitle = fm.subtitle;
 ---
 
-<PageLayout meta={{ title: 'Home' }} highlightColor="#659EB9">
-  <main class="flex w-full flex-col items-center">
-    <section
-      class="flex md:items-end flex-col md:flex-row md:gap-y-0 gap-x-8 bg-winter-sky rounded-lg w-full p-8 pb-0 mb-8"
+<Layout title={title} description={description} bodyClass="home-page" meta={meta}>
+  <section class="datum-container">
+    <Hero
+      iconName="datum"
+      title={title}
+      description={description}
+      subtitle={subtitle}
+      class="hero--home-pad light"
+      classTitle="hero--main-content-title-alt"
+      classIcon="block"
     >
-      <div class="flex items-center justify-center mb-8 md:mb-0">
-        <Image src={miloHi} alt="profile" class="w-full max-w-84 self-center" loading="eager" />
+      <div slot="illustration" class="z-0 flex h-full w-full items-end left-0 -mt-10">
+        <Image
+          src={Illustration}
+          layout="constrained"
+          loading="eager"
+          fetchpriority="high"
+          alt="Hero Illustration"
+          class="fade-in-pure h-auto w-full object-contain sm:object-cover"
+          data-reveal="fade-in-pure--visible"
+          data-reveal-delay="200"
+          data-reveal-immediate="true"
+        />
       </div>
-      <div class="text-left flex flex-col gap-y-2 mb-8 md:mb-0 pb-8">
-        <h2 class="text-3xl font-bold">Meet Milo. The brain behind your Alt Cloud.</h2>
-        <p class="text-xl">
-          Think Milo as an open source business OS built to help you grow, scale, and focus on your
-          product—not backend plumbing.
-        </p>
+    </Hero>
+    <div id="intro" class="section--block lg:pt-20 lg:pb-24 pt-14 pb-20">
+      <div class="section--block-inner">
+        <div
+          class="milo-text-2xl text-white max-width max-w-180.5 text-center md:space-y-12 space-y-8"
+        >
+          <Content />
+        </div>
       </div>
-    </section>
-
-    <div id="content" class="animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6 pt-6">
-      <Section title="About">
-        <p class="text-muted-foreground">
-          Milo is a "business operating system" for product-led, B2B companies. Think of it like a
-          control plane for modern service providers, built on top of a comprehensive system of
-          record that ties together key parts of your business.
-        </p>
-        <Button title="Why we're building Milo" class="w-fit self-end" href="/about" style="ahead" />
-      </Section>
-
-      <Section title="Roadmap">
-        <Timeline events={roadmapEvents} />
-        <Button title="View full roadmap" class="w-fit self-end" href="/roadmap" style="ahead" />
-      </Section>
-
-      {
-        latestVersions.length > 0 && (
-          <Section title="Changelog">
-            {latestVersions.map((version) => (
-              <Card heading={`Version ${version.version}`} date={version.date}>
-                <div class="text-muted-foreground prose prose-sm max-w-none">
-                  {version.features && version.features.length > 0 && (
-                    <div class="mb-3 pt-4 pb-2">
-                      <h4 class="font-semibold text-foreground mb-1">🚀 New Features</h4>
-                      <ul class="list-disc list-inside space-y-1">
-                        {version.features.map((feature: string) => (
-                          <li class="text-sm">{feature.replace(/^- \*\*([^*]+)\*\*: /, '$1: ')}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              </Card>
-            ))}
-            <Button
-              title="View full changelog"
-              class="w-fit self-end"
-              href="/changelog"
-              style="ahead"
-            />
-          </Section>
-        )
-      }
-
-      <Section title="Links">
-        <ul class="flex flex-col gap-y-1.5 sm:gap-y-2">
-          <Link
-            link={{
-              title: 'Docs',
-              url: 'https://www.datum.net/docs/',
-            }}
-          />
-          <Link
-            link={{
-              title: 'API',
-              url: 'https://www.datum.net/docs/api/reference/',
-              description:
-                'Datum Cloud provides a declarative API platform to create the infrastructure necessary to deploy and manage services with advanced networking capabilities.',
-            }}
-            detailed={true}
-          />
-          <Link
-            link={{
-              title: 'Slack',
-              url: 'https://www.datum.net/public-slack/',
-              description: 'Join the discussion on Slack.',
-            }}
-            detailed={true}
-          />
-
-          <!--
-          <Link
-            link={{
-              title: 'Datum API',
-              url: 'https://docs.datum.net/docs/api/',
-              description:
-                'Datum Cloud provides a declarative API platform to create the infrastructure necessary to deploy and manage services with advanced networking capabilities.',
-              tags: ['api', 'kubernetes'],
-              addedDate: new Date('2025-06-12'),
-            }}
-            detailed={true}
-          />
-          -->
-        </ul>
-      </Section>
-
-      <!--
-      {
-        allPostsByDate.length > 0 && (
-          <Section title="Posts">
-            <ul class="flex flex-col gap-y-1.5 sm:gap-y-2">
-              {allPostsByDate.map((p) => (
-                <li class="flex flex-col gap-x-2 sm:flex-row">
-                  <PostPreview post={p} />
-                </li>
-              ))}
-            </ul>
-            <Button title="More posts" class="w-fit self-end" href="/blog" style="ahead" />
-          </Section>
-        )
-      }
-      -->
     </div>
-    <!-- <Quote class="mt-12" /> -->
-  </main>
-</PageLayout>
+
+    {
+      features && features.length > 0 && (
+        <div id="features" class="section--block">
+          <div class="section--block-inner max-w-271">
+            <div class="grid grid-cols-1 xl:gap-20 lg:gap-6.25 md:gap-6 gap-9 md:grid-cols-3">
+              {features.map((feature) => (
+                <div class="col-span-1 md:space-y-11 space-y-7">
+                  <h4 class="milo-text-base font-bold text-glacier-mist-800 border-b border-glacier-mist-800 pb-3.5 opacity-60">
+                    {feature.group}
+                  </h4>
+                  <ul class="mt-4 space-y-4 md:space-y-6">
+                    {feature.items.map((item) => (
+                      <li class="flex items-start lg:gap-6 gap-4">
+                        <span class="p-3 inline-flex items-center justify-center bg-potted-olive/9 rounded-sm">
+                          <Icon name={item.icon} size="sm" class="text-potted-olive" />
+                        </span>
+                        <div class="flex flex-col gap-[2px] md:gap-1.5 lg:gap-2.5">
+                          <h5 class="milo-text-base">{item.title}</h5>
+                          <p class="opacity-60 milo-text-sm" set:html={item.description} />
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Roadmap Section -->
+    <div id="roadmap" class="section--block pt-16 xl:pt-28">
+      <div class="section--block-inner max-w-306">
+        <div class="display-card bg-glacier-mist-700 text-midnight-fjord">
+          <div class="display-card--header">
+            <h3>Roadmap</h3>
+          </div>
+          <div class="display-card--content">
+            <ul class="display-card--list">
+              <RoadmapCard limit={3} server:defer>
+                <Skeleton slot="fallback" />
+              </RoadmapCard>
+              <li class="display-card--item">
+                <div>
+                  <Button
+                    text="View full Roadmap"
+                    class="btn btn--canyon-clay"
+                    icon={{ name: 'arrow-right', size: 'md' }}
+                    iconPosition="right"
+                    iconClass="stroke-1.75"
+                    href="/roadmap/"
+                  />
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Changelog Section -->
+    <div id="changelog" class="section--block pt-16 xl:pt-28">
+      <div class="section--block-inner max-w-306">
+        <div
+          class="display-card text-glacier-mist-700 bg-midnight-fjord border border-white rounded-[15px]"
+        >
+          <div class="display-card--header">
+            <h3>Changelog</h3>
+          </div>
+          <div class="display-card--content">
+            <ul class="display-card--list display-card--timeline timeline-alt">
+              <ChangelogCard limit={3} server:defer>
+                <Skeleton slot="fallback" />
+              </ChangelogCard>
+            </ul>
+            <li class="display-card--item">
+              <div>
+                <Button
+                  text="View full Changelog"
+                  class="btn btn--aurora-moss"
+                  icon={{ name: 'arrow-right', size: 'md' }}
+                  iconPosition="right"
+                  iconClass="stroke-1.75"
+                  target="_blank"
+                  href="/changelog/"
+                />
+              </div>
+            </li>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <Footer />
+  </section>
+</Layout>

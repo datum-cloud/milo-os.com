@@ -1,0 +1,29 @@
+---
+// src/components/block/Block.astro
+import type { Block } from '@/src/types/block';
+
+const { reverse = false, id, class: className }: Block = Astro.props;
+
+// Get the slot content to filter out non-img tags
+const slotImageContent = await Astro.slots.render('image');
+const imgRegex = /<img[^>]*>/g;
+const imgTags = slotImageContent.match(imgRegex) || [];
+const filteredImageContent = imgTags.join('');
+---
+
+<div id={`${id}`} class:list={['section--block', 'section--block--regular-pad', className]}>
+  <div class="section--block-inner">
+    <div
+      class={`${reverse ? 'md:flex-row-reverse' : ''} flex flex-col md:flex-row gap-9 md:gap-14 xl:gap-20`}
+    >
+      <div
+        class="w-full h-auto lg:max-w-[383px] xl:max-w-[491px] md:max-w-[253px] shrink-0 [&_img]:w-full [&_img]:max-w-90 [&_img]:md:max-w-98 [&_img]:m-auto"
+      >
+        <Fragment set:html={filteredImageContent} />
+      </div>
+      <div class="flex-1 section--block-prose">
+        <slot name="content" />
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,83 +1,48 @@
-# Node.js dependencies
-node_modules/
-
-# Build outputs
-dist/
-build/
-out/
-
-# Test and debug artifacts
-test/
-tests/
-debug/
-*.log
-
-# IDE/editor files
-.idea/
-.vscode/
-*.swp
-*.swo
-
 # Version control
-.git/
+.git
 .gitignore
-.svn/
-.hg/
+.gitattributes
 
-# Environment and secrets
-.env*
-*.env
-*.pem
-*.key
-*.crt
-config.local.*
-*.local.yml
+# Dependencies
+node_modules
+.pnpm-store
 
-# Temporary and local files
-tmp/
-temp/
-*.tmp
-.local/
-local/
+# Build output
+dist
+.astro
 
-# macOS system files
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Editor directories and files
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Testing
+coverage
+
+# System Files
 .DS_Store
-
-# Project-specific patterns
-README*
-*.md
-*.mdx
-docs/
-
-# Docker files
-Dockerfile*
-docker-compose*
-
-# Ignore bun lock files (bun.lock)
-# (Explicitly not included as per instructions)
-
-# Ignore other system files
-*.cjs
-
-# Ignore public assets that are not needed for build (if any)
-# public/fonts/
-# public/images/
-# public/icons/
-# (Uncomment above if these are not needed in the image)
-
-# Ignore scripts and config not needed in production
-scripts/
-
-# Ignore virtual and type definition files
-*.d.ts
-virtual.d.ts
-
-# Ignore package manager debug files
-npm-debug.log
-yarn-debug.log
-
-# Ignore OS-specific files
 Thumbs.db
 
-# Ignore any other lock files (not bun.lock)
-# (Explicitly not included as per instructions)
+# Docker
+Dockerfile
+.dockerignore
+
+# Vercel
+.vercel 

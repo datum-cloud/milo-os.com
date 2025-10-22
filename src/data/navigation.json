@@ -1,0 +1,69 @@
+{
+  "main": [
+    {
+      "text": "About",
+      "href": "/about/"
+    },
+    {
+      "text": "Roadmap",
+      "href": "/roadmap/"
+    },
+    {
+      "text": "Changelog",
+      "href": "/changelog/"
+    },
+    {
+      "text": "Docs",
+      "href": "https://www.datum.net/docs/",
+      "target": "_blank"
+    },
+    {
+      "text": "Community Chat",
+      "href": "https://www.datum.net/chat/",
+      "target": "_blank"
+    }
+  ],
+  "footer": [
+    {
+      "text": "Documentation",
+      "href": "https://www.datum.net/docs/",
+      "target": "_blank",
+      "icon": "power",
+      "description": "Check out the full Milo and Datum Cloud documentation (external link)"
+    },
+    {
+      "text": "API Reference",
+      "href": "https://www.datum.net/docs/api/",
+      "target": "_blank",
+      "icon": "twitter",
+      "description": "Datum provides an API platform with advanced networking capabilities"
+    },
+    {
+      "text": "Community Chat",
+      "href": "https://link.datum.net/discord",
+      "target": "_blank",
+      "icon": "messages-square",
+      "description": "Join in the Milo and Datum Cloud discussion on Discord"
+    }
+  ],
+  "social": [
+    {
+      "href": "https://twitter.com/datumcloud",
+      "text": "Twitter",
+      "icon": "twitter",
+      "isExternal": true
+    },
+    {
+      "href": "https://github.com/datum-cloud",
+      "text": "GitHub",
+      "icon": "github",
+      "isExternal": true
+    },
+    {
+      "href": "https://www.linkedin.com/company/datum-cloud/",
+      "text": "LinkedIn",
+      "icon": "linkedin",
+      "isExternal": true
+    }
+  ]
+}
