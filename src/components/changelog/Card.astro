@@ -20,7 +20,13 @@ const displayChangelog = limit ? Object.values(changelogs).slice(0, limit) : cha
       <div class="display-card--item-meta item-neta--timeline">
         <Bullet class={limit ? 'text-aurora-moss' : 'text-canyon-clay'} />
       </div>
-      <div class={limit ? 'display-card--item-content text-white' : 'display-card--item-content '}>
+      <div
+        class={
+          limit
+            ? 'display-card--item-content text-white [&_*]:text-white'
+            : 'display-card--item-content '
+        }
+      >
         <h4>{log.title}</h4>
         <div set:html={marked(log.description)} />
       </div>
