@@ -1,6 +1,6 @@
 import { graph } from '@/src/libs/github';
 import { Cache } from '@libs/cache';
-import fs from 'node:fs';
+import roadmapsData from '@content/roadmap.json';
 
 const cache = new Cache('.cache');
 const owner = 'datum-cloud';
@@ -101,12 +101,8 @@ async function roadmaps(): Promise<RoadmapProps[]> {
   /**
    * Load roadmap from local file if exists
    */
-  const roadmapFile = './src/content/roadmap.json';
-
-  if (fs.existsSync(roadmapFile)) {
-    const data = fs.readFileSync(roadmapFile, 'utf-8');
-
-    const dataParsed = JSON.parse(data);
+  if (roadmapsData && roadmapsData.length > 0) {
+    const dataParsed = roadmapsData as RoadmapProps[];
     const escapeString = '---';
 
     dataParsed.forEach((item: RoadmapProps, index: number) => {
