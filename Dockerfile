@@ -19,9 +19,9 @@ CMD ["npm", "run", "dev", "--", "--host", "--allowed-hosts=website.staging.env.d
 
 FROM node:lts-alpine3.22 AS production
 WORKDIR /app
-RUN --mount=type=cache,target=/root/.npm npm install --omit=dev --ignore-scripts
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/package*.json ./
+COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/src/pages ./src/pages
 RUN chmod -R 755 src/pages
 ENV NODE_ENV=production

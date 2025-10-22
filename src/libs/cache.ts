@@ -11,6 +11,7 @@ export class Cache {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   set(key: string, data: any, expiresIn?: number): void {
     const filePath = path.join(this.cacheDir, `${key}.json`);
     fs.writeFileSync(filePath, JSON.stringify(data), 'utf-8');

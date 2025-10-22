@@ -1,16 +1,8 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "public/pagefind",
-    "**/pagefind/**",
-    "tests/**/*",
-    "playwright.config.ts"
-  ],
+  "exclude": ["node_modules", "dist", "public/pagefind", "**/pagefind/**", "tests/**/*"],
   "compilerOptions": {
-    "module": "es2020",
     "strictNullChecks": true,
     "allowJs": true,
     "baseUrl": ".",
