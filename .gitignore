@@ -8,10 +8,6 @@ yarn-error.log*
 pnpm-debug.log*
 
 # environment variables
-.env
-.env.local
-.env.production
-.env.development
 
 # jetbrains setting folder
 .idea/
@@ -73,3 +69,4 @@ dist/
 .DS_Store
 old_blog
 ignore.*
+config.bat
