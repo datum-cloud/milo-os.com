@@ -11,7 +11,7 @@ const installationId = parseInt(
   10
 );
 
-async function graph(query: string, variables: RequestParameters = {}) {
+async function graph(query: string, variables?: RequestParameters) {
   if (appId && installationId && privateKey) {
     const auth = createAppAuth({
       appId,

@@ -72,6 +72,21 @@ const pages = defineCollection({
     }),
 });
 
+// Define legal collections
+const legal = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/legal' }),
+  schema: () =>
+    z.object({
+      title: z.string(),
+      slug: z.string().optional(),
+      subtitle: z.string().optional(),
+      description: z.string().optional(),
+      iconName: z.string().optional(),
+      meta: metaSchema,
+    }),
+});
+
 export const collections = {
   pages,
+  legal,
 };
