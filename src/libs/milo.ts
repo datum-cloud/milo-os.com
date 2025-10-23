@@ -6,13 +6,14 @@ const cache = new Cache('.cache');
 const owner = 'datum-cloud';
 
 type RoadmapProps = {
+  number: number;
   id: string;
   title: string;
   body: string;
   url: string;
   labels?: { nodes: Array<{ name: string }> };
   hasVoted?: boolean;
-  updated_at: Date;
+  updatedAt: string;
 };
 
 type ChangelogProps = {
@@ -79,22 +80,23 @@ async function stargazerCount(isClientSide: boolean = false): Promise<number> {
 
 async function roadmaps(): Promise<RoadmapProps[]> {
   type ResponseProps = {
-    repository: {
-      issues: {
-        nodes: [
-          {
-            id: string;
-            title: string;
-            body: string;
-            url: string;
-            labels: {
-              nodes: Array<{
-                name: string;
-              }>;
-            };
-          },
-        ];
-      };
+    search: {
+      issueCount: number;
+      nodes: [
+        {
+          number: number;
+          id: string;
+          title: string;
+          body: string;
+          url: string;
+          labels: {
+            nodes: Array<{
+              name: string;
+            }>;
+          };
+          updatedAt: string;
+        },
+      ];
     };
   };
 
@@ -117,51 +119,41 @@ async function roadmaps(): Promise<RoadmapProps[]> {
     return dataParsed;
   }
 
-  console.log('Loading roadmap from GitHub...');
   let roadmaps: RoadmapProps[] = [];
 
   if (cache.has('roadmaps')) {
     return cache.get<RoadmapProps[]>('roadmaps') as RoadmapProps[];
   } else {
-    const name = import.meta.env.ROADMAP_REPO || process.env.ROADMAP_REPO || 'milo';
-    const arrLabel = import.meta.env.ROADMAP_LABELS || process.env.ROADMAP_LABELS || '';
-    const labels = arrLabel
-      .split(',')
-      .map((label: string) => `"${label.trim()}"`)
-      .join(',');
-
     const query = `
-        query ($owner: String!, $name: String!) {
-          repository(owner: $owner, name: $name) {
-            issues(first: 20, filterBy: { states: OPEN, labels: ["enhancement"] }) {
-              nodes {
+        query {
+          search(query: "repo:datum-cloud/enhancements is:issue label:\\"Roadmap Vote\\" label:Milo", type: ISSUE, first: 30) {
+            issueCount
+            nodes {
+              ... on Issue {
+                number
                 id
                 title
                 body
                 url
-                labels(first: 10) {
+                labels(first: 5) {
                   nodes {
                     name
                   }
                 }
+                updatedAt
               }
             }
           }
-        }
-      `;
+        }`;
 
-    const variables = {
-      owner: owner,
-      name: name,
-      labels: labels,
-    };
-
-    const response = (await graph(query, variables)) as ResponseProps;
-    roadmaps = Object(response.repository.issues.nodes).map((issue: RoadmapProps) => ({
+    const response = (await graph(query)) as ResponseProps;
+    console.log(response.search);
+    roadmaps = Object(response.search.nodes).map((issue: RoadmapProps) => ({
       ...issue,
     }));
 
     cache.set('roadmaps', roadmaps, 1000 * 60 * 10); // cache for 30 minutes
+
     return roadmaps;
   }
 }

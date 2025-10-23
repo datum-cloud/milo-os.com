@@ -61,7 +61,7 @@
 
   .hero--small-pad {
     .hero--main-content-inner {
-      @apply pb-22;
+      @apply lg:pb-9 md:pb-6 pb-6;
     }
   }
 

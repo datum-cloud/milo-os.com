@@ -12,10 +12,6 @@
     .nav-actions {
       @apply col-span-1 mr-5 ml-auto inline-block items-center space-x-3 justify-self-end md:mr-0;
 
-      starlight-theme-select {
-        @apply mr-0;
-      }
-
       .btn.gh-button {
         @apply border-0 md:border-1;
       }
