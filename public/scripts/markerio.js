@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 /* eslint-disable */
-window.markerConfig = { project: '68c1c9a105a0955e0d43bd15', source: 'snippet' };
+window.markerConfig = { project: '68fa2151e32b2e14f48b269d', source: 'snippet' };
 !(function (e, r, a) {
   if (!e.__Marker) {
     e.__Marker = {};

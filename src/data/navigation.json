@@ -14,7 +14,7 @@
     },
     {
       "text": "Docs",
-      "href": "https://www.datum.net/docs/",
+      "href": "https://github.com/datum-cloud/milo/tree/main/docs",
       "target": "_blank"
     },
     {
@@ -26,7 +26,7 @@
   "footer": [
     {
       "text": "Documentation",
-      "href": "https://www.datum.net/docs/",
+      "href": "https://github.com/datum-cloud/milo/tree/main/docs",
       "target": "_blank",
       "icon": "power",
       "description": "Check out the full Milo and Datum Cloud documentation (external link)"
