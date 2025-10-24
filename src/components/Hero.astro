@@ -41,7 +41,7 @@ const {
                 )}
 
                 {subtitle && subtitle !== '' && (
-                  <span class="hero--main-content-subtitle">{subtitle}</span>
+                  <span class="hero--main-content-subtitle" set:html={subtitle} />
                 )}
               </div>
             ) : null}
