@@ -41,7 +41,7 @@
     "openid-client": "^6.8.1",
     "postgres": "^3.4.7",
     "tailwindcss": "^4.1.14",
-    "zod": "^3.25.76"
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
