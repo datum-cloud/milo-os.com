@@ -1,35 +1,42 @@
 ---
 import { marked } from 'marked';
-import { getEntry } from 'astro:content';
 import Bullet from '@v1/assets/icons/bullet.svg';
-import { extractHeader } from '@/src/libs/markdown';
+// import { extractHeader } from '@/src/libs/markdown';
+// import { getEntry } from 'astro:content';
 
-const changelogEntry = await getEntry('pages', 'changelog');
-const changelogs = (await extractHeader(changelogEntry?.body)) as Record<
-  string,
-  { title: string; description: string }
->;
+// const changelogEntry = await getEntry('pages', 'changelog');
+// const changelogs = (await extractHeader(changelogEntry?.body)) as Record<
+//   string,
+//   { title: string; description: string }
+// >;
 
+import { changelogs, type ChangelogProps } from '@/src/libs/milo';
+
+const changelogsEntries = await changelogs();
 const { limit } = Astro.props;
-const displayChangelog = limit ? Object.values(changelogs).slice(0, limit) : changelogs;
+const entries = limit ? changelogsEntries.slice(0, limit) : changelogsEntries;
 ---
 
 {
-  Object.values(displayChangelog).map((log) => (
-    <li class="display-card--item">
-      <div class="display-card--item-meta item-neta--timeline">
-        <Bullet class={limit ? 'text-aurora-moss' : 'text-canyon-clay'} />
-      </div>
-      <div
-        class={
-          limit
-            ? 'display-card--item-content text-white [&_*]:text-white'
-            : 'display-card--item-content '
-        }
-      >
-        <h4>{log.title}</h4>
-        <div set:html={marked(log.description)} />
-      </div>
-    </li>
-  ))
+  entries.length > 0 ? (
+    entries.map((entry: ChangelogProps) => () => (
+      <li class="display-card--item">
+        <div class="display-card--item-meta item-neta--timeline">
+          <Bullet class={limit ? 'text-aurora-moss' : 'text-canyon-clay'} />
+        </div>
+        <div
+          class={
+            limit
+              ? 'display-card--item-content text-white [&_*]:text-white'
+              : 'display-card--item-content'
+          }
+        >
+          <h4>{entry.title}</h4>
+          <div set:html={marked(entry.body)} />
+        </div>
+      </li>
+    ))
+  ) : (
+    <li class="text-center text-muted-foreground">No changelog entries found.</li>
+  )
 }

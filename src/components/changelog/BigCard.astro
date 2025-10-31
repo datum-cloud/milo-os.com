@@ -1,0 +1,56 @@
+---
+import { marked } from 'marked';
+import Button from '@components/Button.astro';
+import Bullet from '@v1/assets/icons/bullet.svg';
+import { changelogs, type ChangelogProps } from '@/src/libs/milo';
+
+const changelogsEntries = await changelogs();
+const limit = 3;
+const entries = limit ? changelogsEntries.slice(0, limit) : changelogsEntries;
+---
+
+{
+  entries.length > 0 && (
+    <div id="changelog" class="section--block pt-16 xl:pt-28">
+      <div class="section--block-inner max-w-306">
+        <div class="display-card text-glacier-mist-700 bg-midnight-fjord border border-white rounded-[15px]">
+          <div class="display-card--header">
+            <h3>Changelog</h3>
+          </div>
+          <div class="display-card--content">
+            <ul class="display-card--list display-card--timeline timeline-alt">
+              {entries.map((entry: ChangelogProps) => () => (
+                <li class="display-card--item">
+                  <div class="display-card--item-meta item-neta--timeline">
+                    <Bullet class={limit ? 'text-aurora-moss' : 'text-canyon-clay'} />
+                  </div>
+                  <div
+                    class={
+                      limit
+                        ? 'display-card--item-content text-white [&_*]:text-white'
+                        : 'display-card--item-content'
+                    }
+                  >
+                    <h4>{entry.title}</h4>
+                    <div set:html={marked(entry.body)} />
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            <div>
+              <Button
+                text="View full Changelog"
+                class="btn btn--aurora-moss"
+                icon={{ name: 'arrow-right', size: 'md' }}
+                iconPosition="right"
+                iconClass="stroke-1.75"
+                href="/changelog/"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
