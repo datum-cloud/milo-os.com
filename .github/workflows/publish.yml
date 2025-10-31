@@ -26,7 +26,7 @@ jobs:
       id-token: write
       contents: read
       packages: write
-    uses: datum-cloud/actions/.github/workflows/publish-kustomize-bundle.yaml@v1.7.3
+    uses: datum-cloud/actions/.github/workflows/publish-kustomize-bundle.yaml@add-specifyflux-version
     with:
       bundle-name: ghcr.io/datum-cloud/milo-os-com-kustomize
       bundle-path: config
