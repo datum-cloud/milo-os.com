@@ -113,15 +113,15 @@
   }
 
   .hero--main-content-subtitle {
-    @apply milo-text-base;
+    @apply datum-text-base;
   }
 
   .hero--main-content-title {
-    @apply mb-0 max-w-xl milo-text-8xl lg:max-w-3xl;
+    @apply mb-0 max-w-xl datum-text-8xl lg:max-w-3xl;
   }
 
   .hero--main-content-title-alt {
-    @apply mb-0 max-w-xl milo-text-10xl;
+    @apply mb-0 max-w-md md:max-w-xl datum-text-10xl;
   }
 
   .hero--main-content-icon {
@@ -129,7 +129,7 @@
   }
 
   .hero--main-content-description {
-    @apply m-auto mt-0 mb-0 max-w-3xl milo-text-xl text-cultured opacity-80;
+    @apply m-auto mt-0 mb-0 max-w-3xl datum-text-xl text-cultured opacity-80;
 
     a {
       @apply hover:text-midnight-fjord/70 hover:border-midnight-fjord/70 border-midnight-fjord border-b transition-colors hover:cursor-pointer;

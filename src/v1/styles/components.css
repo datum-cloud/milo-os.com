@@ -11,7 +11,8 @@
       }
 
       .section--block-prose {
-        @apply prose-dark;
+        @apply text-white;
+        @apply prose-headings:text-white;
       }
     }
 
@@ -49,10 +50,12 @@
   }
 
   .section--block-prose {
-    @apply milo-prose-lg prose-p:mt-0 prose-p:mb-2.5;
+    @apply datum-prose-lg prose-p:mt-0 prose-p:mb-2.5;
 
-    :not(h1, h2, h3, h4, h5, h6) {
-      @apply opacity-80;
+    div {
+      :not(h1, h2, h3, h4, h5, h6) {
+        @apply opacity-80;
+      }
     }
   }
   .section--block-content-text {
@@ -73,7 +76,7 @@
   /* Label Styles */
   .label {
     @apply lg:px-3.5 lg:py-2 md:px-2.5 md:py-1.5 px-2 py-1 inline-block;
-    @apply text-canyon-clay-links milo-text-sm rounded-[7px] border border-canyon-clay-links transition-all;
-    @apply hover:border-canyon-clay-links/80 hover:text-canyon-clay-links/80;
+    @apply text-canyon-clay---links datum-text-sm rounded-[7px] border border-canyon-clay---links transition-all;
+    @apply hover:border-canyon-clay---links/80 hover:text-canyon-clay---links/80;
   }
 }

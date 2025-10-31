@@ -5,7 +5,7 @@
   .display-card--header {
     @apply w-full md:w-40 lg:w-64 xl:w-80;
     h3 {
-      @apply milo-text-7xl text-center md:text-left;
+      @apply datum-text-7xl text-center md:text-left;
     }
   }
   .display-card--content {
@@ -53,9 +53,9 @@
       }
 
       .display-card--item-content {
-        @apply w-full xl:max-w-180.5 lg:max-w-176 md:max-w-132 max-w-none space-y-4 milo-prose;
+        @apply w-full max-w-none space-y-4 datum-prose;
         h4 {
-          @apply milo-text-2xl font-bold;
+          @apply datum-text-2xl font-bold;
         }
 
         &.text-white code {
