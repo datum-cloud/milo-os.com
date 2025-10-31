@@ -16,14 +16,14 @@ const displayIssues = limit ? issues.slice(0, limit) : issues;
 {
   Array.prototype.map.call(displayIssues, (issue: RoadmapProps) => (
     <li class="display-card--item">
-      <div class="display-card--item-meta">
-        {!dbIsConntected && (
+      {!dbIsConntected && (
+        <div class="display-card--item-meta">
           <div class="vote-counter">
             <span id={`${issue.id}-value`} class="vote-number" />
             <span class="vote-label">votes</span>
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       <div class="display-card--item-content">
         <h4>{issue.title}</h4>

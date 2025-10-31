@@ -34,7 +34,7 @@
     }
 
     .nav-menu-link {
-      @apply milo-text-base flex items-center gap-2 font-normal hover:opacity-80;
+      @apply datum-text-base flex items-center gap-2 font-normal hover:opacity-80;
     }
   }
 
@@ -195,10 +195,6 @@
 
   .mobile-menu-actions .btn {
     @apply w-full justify-center;
-  }
-
-  .max-w-datum {
-    @apply max-w-(--datum-max-width);
   }
 
   /* Logo Dropdown Styles */

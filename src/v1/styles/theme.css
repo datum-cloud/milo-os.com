@@ -1,35 +1,29 @@
 @theme {
-  /* Custom Breakpoints */
-  --breakpoint-2-5xl: 110rem;
-  --breakpoint-3xl: 120rem;
-
   /* Custom width */
-  --datum-max-width: 1796px; /* 449rem */
-  --datum-section-width: 1565px;
-
-  --color-logo-object: #e8e7e4;
-  --color-logo-text: #ffffff;
+  --color-logo-object: var(--glacier-mist-900);
+  --color-logo-text: var(--white);
 
   /* COLOR PALETTE */
-  --color-midnight-fjord: #0c1d31;
   --color-mauve: #91757b;
-  --color-aurora-moss: #e6f59f;
-  --color-blush-quartz: #ecd0d0;
-  --color-white: #ffffff;
-  --color-black: #000000;
-  --color-canyon-clay: #bf9595;
-  --color-pine-forge: #4d6356;
   --color-cultured: #f5f5f3;
-  --color-glacier-mist-700: #f6f6f5;
-  --color-glacier-mist-800: #efefed;
-  --color-glacier-mist-900: #e8e7e4;
-  --color-potted-olive: #adbab0;
-  --color-canyon-clay-links: #9c7979;
-  --color-app-dark-utility-1: #223143;
-  --color-app-dark-utility-2: #384555;
-  --color-app-dark-utility-3: #67717c;
-  --color-app-dark-utility-4: #90969c;
-  --color-app-dark-utility-5: #e3e2df;
+
+  --color-white: var(--white);
+  --color-black: var(--black);
+  --color-midnight-fjord: var(--midnight-fjord);
+  --color-aurora-moss: var(--aurora-moss);
+  --color-blush-quartz: var(--blush-quartz);
+  --color-canyon-clay: var(--canyon-clay);
+  --color-canyon-clay---links: var(--canyon-clay---links);
+  --color-pine-forge: var(--pine-forge);
+  --color-glacier-mist-700: var(--glacier-mist-700);
+  --color-glacier-mist-800: var(--glacier-mist-800);
+  --color-glacier-mist-900: var(--glacier-mist-900);
+  --color-potted-olive: var(--potted-olive);
+  --color-app-dark-utility-1: var(--app---dark---utility-1);
+  --color-app-dark-utility-2: var(--app---dark---utility-2);
+  --color-app-dark-utility-3: var(--app---dark---utility-3);
+  --color-app-dark-utility-4: var(--app---dark---utility-4);
+  --color-app-dark-utility-5: var(--app---dark---utility-5);
 
   /* Font Sizes */
   --text-42: 42px;

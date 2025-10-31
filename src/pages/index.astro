@@ -49,7 +49,10 @@ const subtitle = fm.subtitle;
       classTitle="hero--main-content-title-alt"
       classIcon="block"
     >
-      <div slot="illustration" class="z-0 flex h-full w-full items-end left-0 -mt-10">
+      <div
+        slot="illustration"
+        class="z-0 flex h-full w-full items-end left-0 mt-0 md:-mt-10 lg:-mt-20 xl:-mt-25"
+      >
         <Image
           src={Illustration}
           layout="constrained"
@@ -66,7 +69,7 @@ const subtitle = fm.subtitle;
     <div id="intro" class="section--block lg:pt-20 lg:pb-24 pt-14 pb-20">
       <div class="section--block-inner">
         <div
-          class="milo-text-2xl text-white max-width max-w-180.5 text-center md:space-y-12 space-y-8"
+          class="datum-text-2xl text-white max-width max-w-180.5 text-center md:space-y-12 space-y-8"
         >
           <Content />
         </div>
@@ -80,7 +83,7 @@ const subtitle = fm.subtitle;
             <div class="grid grid-cols-1 xl:gap-20 lg:gap-6.25 md:gap-6 gap-9 md:grid-cols-3">
               {features.map((feature) => (
                 <div class="col-span-1 md:space-y-11 space-y-7">
-                  <h4 class="milo-text-base font-bold text-glacier-mist-800 border-b border-glacier-mist-800 pb-3.5 opacity-60">
+                  <h4 class="datum-text-base font-bold text-glacier-mist-800 border-b border-glacier-mist-800 pb-3.5 opacity-60">
                     {feature.group}
                   </h4>
                   <ul class="mt-4 space-y-4 md:space-y-6">
@@ -90,8 +93,8 @@ const subtitle = fm.subtitle;
                           <Icon name={item.icon} size="sm" class="text-potted-olive" />
                         </span>
                         <div class="flex flex-col gap-[2px] md:gap-1.5 lg:gap-2.5">
-                          <h5 class="milo-text-base">{item.title}</h5>
-                          <p class="opacity-60 milo-text-sm" set:html={item.description} />
+                          <h5 class="datum-text-base">{item.title}</h5>
+                          <p class="opacity-60 datum-text-sm" set:html={item.description} />
                         </div>
                       </li>
                     ))}

@@ -78,13 +78,17 @@
   }
 }
 
+@utility datum-container {
+  @apply container m-auto max-w-[var(--datum-max-width)];
+}
+
 @utility prose-dark {
   @apply text-white;
   @apply prose-headings:text-white;
 }
 
 @utility max-width {
-  @apply max-w-7xl px-7 w-full mx-auto;
+  @apply mx-auto w-full max-w-7xl px-7;
 }
 
 @utility text-size {
@@ -92,93 +96,175 @@
   @apply text-sm xl:text-base;
 }
 
-@utility milo-text-sm {
-  @apply font-alliance;
-  @apply text-[10px]/3.5;
-  @apply lg:text-xs/4.5;
-  @apply xl:text-sm/5.25;
+@utility datum-docs-sidebar-headings {
+  @apply font-alliance font-medium uppercase;
+  @apply tracking-[var(--docs-sidebar-headings-letter-spacing)];
+  @apply leading-[var(--docs-sidebar-headings-line-height)];
+  @apply text-[length:var(--docs-sidebar-headings-font-size)];
 }
 
-@utility milo-text-base {
+@utility datum-docs-sidebar-links {
+  @apply font-alliance;
+
+  @apply tracking-[var(--docs-sidebar-links-letter-spacing)];
+  @apply leading-[var(--docs-sidebar-links-line-height)];
+  @apply text-[length:var(--docs-sidebar-links-font-size)];
+}
+
+@utility datum-docs-article-body {
+  @apply font-alliance;
+
+  @apply tracking-[var(--docs-article-body-letter-spacing)];
+  @apply leading-[var(--docs-article-body-line-height)];
+  @apply text-[length:var(--docs-article-body-font-size)];
+}
+
+@utility datum-list-headings {
+  @apply font-canela font-normal;
+  @apply -tracking-[0.4px] md:-tracking-[0.6px];
+  @apply text-lg/5;
+  @apply md:text-xl/5.5;
+  @apply lg:text-2xl/6.5;
+  @apply xl:text-28/7.5;
+}
+
+@utility datum-text-article-body {
+  @apply font-alliance;
+
+  @apply tracking-[var(--text-article-body-letter-spacing)];
+  @apply leading-[var(--text-article-body-line-height)];
+  @apply text-[length:var(--text-article-body-font-size)];
+}
+
+@utility datum-text-xs {
+  @apply font-alliance;
+
+  @apply tracking-[var(--text-xs-letter-spacing)];
+  @apply leading-[var(--text-xs-line-height)];
+  @apply text-[length:var(--text-xs-font-size)];
+}
+
+@utility datum-text-sm {
+  @apply font-alliance;
+
+  @apply tracking-[var(--text-sm-letter-spacing)];
+  @apply leading-[var(--text-sm-line-height)];
+  @apply text-[length:var(--text-sm-font-size)];
+}
+
+@utility datum-text-base {
   @apply font-normal text-balance;
   @apply font-alliance;
-  @apply text-sm/5.25;
-  @apply xl:text-base/6;
+
+  @apply tracking-[var(--text-base-letter-spacing)];
+  @apply leading-[var(--text-base-line-height)];
+  @apply text-[length:var(--text-base-font-size)];
 }
 
-@utility milo-text-lg {
+@utility datum-text-lg {
   @apply font-normal text-balance;
   @apply font-alliance;
-  @apply text-sm/4.5;
-  @apply lg:text-base/6;
-  @apply xl:text-lg/6.5;
+
+  @apply tracking-[var(--text-lg-letter-spacing)];
+  @apply leading-[var(--text-lg-line-height)];
+  @apply text-[length:var(--text-lg-font-size)];
 }
 
-@utility milo-text-xl {
+@utility datum-text-xl {
   @apply font-normal text-balance;
   @apply font-alliance;
-  @apply text-sm/4.5;
-  @apply md:text-base/6;
-  @apply lg:text-lg/6.5;
-  @apply xl:text-xl/7;
+
+  @apply tracking-[var(--text-xl-letter-spacing)];
+  @apply leading-[var(--text-xl-line-height)];
+  @apply text-[length:var(--text-xl-font-size)];
 }
 
-@utility milo-text-2xl {
+@utility datum-text-2xl {
   @apply font-normal text-balance;
   @apply font-alliance;
-  @apply text-base/5.25;
-  @apply md:text-lg/6.5;
-  @apply lg:text-xl/7;
-  @apply xl:text-2xl/7.5;
+
+  @apply tracking-[var(--text-2xl-letter-spacing)];
+  @apply leading-[var(--text-2xl-line-height)];
+  @apply text-[length:var(--text-2xl-font-size)];
 }
 
-@utility milo-text-3xl {
+@utility datum-text-3xl {
   @apply font-normal text-balance;
   @apply font-alliance;
-  @apply text-lg/6.5;
-  @apply md:text-xl/7;
-  @apply lg:text-2xl/8.5;
-  @apply xl:text-3xl/10.5;
+
+  @apply tracking-[var(--text-3xl-letter-spacing)];
+  @apply leading-[var(--text-3xl-line-height)];
+  @apply text-[length:var(--text-3xl-font-size)];
 }
 
-@utility milo-text-7xl {
+@utility datum-text-7xl {
   @apply text-balance;
   @apply font-canela;
-  @apply -tracking-[0.8px] xl:-tracking-[1.2px];
-  @apply text-2xl/7.5;
-  @apply md:text-2xl/7;
-  @apply lg:text-3xl/10.5;
-  @apply xl:text-38/11;
+
+  @apply tracking-[var(--text-7xl-canela-letter-spacing)];
+  @apply leading-[var(--text-7xl-canela-line-height)];
+  @apply text-[length:var(--text-7xl-canela-font-size)];
 }
 
-@utility milo-text-8xl {
+@utility datum-text-8xl {
   @apply text-balance;
   @apply font-canela;
-  @apply -tracking-[0.8px] md:-tracking-[1.2px] xl:-tracking-[1.5px];
-  @apply text-3xl/8.5;
-  @apply md:text-4xl/11;
-  @apply lg:text-38/12;
-  @apply xl:text-5xl/14.5;
+
+  @apply tracking-[var(--text-8xl-canela-letter-spacing)];
+  @apply leading-[var(--text-8xl-canela-line-height)];
+  @apply text-[length:var(--text-8xl-canela-font-size)];
 }
 
-@utility milo-text-10xl {
+@utility datum-text-10xl {
   @apply text-balance;
   @apply font-canela;
-  @apply -tracking-[1.2px] md:-tracking-[1.5px];
-  @apply text-4xl/10.5;
-  @apply md:text-5xl/14.5;
-  @apply lg:text-54/16;
-  @apply xl:text-6xl/17.5;
+
+  @apply tracking-[var(--text-10xl-canela-letter-spacing)];
+  @apply leading-[var(--text-10xl-canela-line-height)];
+  @apply text-[length:var(--text-10xl-canela-font-size)];
 }
 
-@utility milo-prose-lg {
-  @apply milo-text-lg;
+@utility datum-prose-lg {
   @apply prose max-w-none;
-  @apply prose-headings:mt-0  prose-headings:mb-3.5 lg:prose-headings:mb-5;
+  @apply datum-text-lg;
+
+  @apply prose-p:mt-0 prose-p:mb-[var(--text-lg-paragraph-spacing)];
+  @apply prose-li:mt-0 prose-li:mb-[var(--text-lg-paragraph-spacing)];
+  @apply prose-h2:datum-text-xl prose-h3:datum-text-lg prose-h4:datum-text-base prose-h5:datum-text-sm prose-h6:datum-text-sm;
+  @apply prose-headings:mt-0 prose-headings:mb-4 prose-headings:font-bold;
+
+  @apply prose-a:text-canyon-clay---links/70 prose-a:font-normal prose-a:hover:no-underline prose-a:hover:text-canyon-clay---links/100;
 }
 
-@utility milo-prose {
-  @apply milo-text-base;
+@utility datum-prose {
   @apply prose max-w-none;
-  @apply prose-headings:mt-0  prose-headings:mb-4;
+  @apply datum-text-base;
+
+  @apply prose-p:mt-0 prose-p:mb-[var(--text-base-paragraph-spacing)];
+  @apply prose-li:mt-0 prose-li:mb-[var(--text-base-paragraph-spacing)];
+  @apply prose-h2:datum-text-lg prose-h3:datum-text-base prose-h4:datum-text-base prose-h5:datum-text-sm prose-h6:datum-text-sm;
+  @apply prose-headings:mt-0 prose-headings:mb-4 prose-headings:font-bold;
+
+  @apply prose-a:text-canyon-clay---links/70 prose-a:font-normal prose-a:hover:no-underline prose-a:hover:text-canyon-clay---links/100;
+}
+
+@utility datum-prose-docs-article {
+  @apply prose max-w-none;
+  @apply datum-docs-article-body;
+
+  @apply prose-p:mt-0 prose-p:mb-[var(--docs-article-body-paragraph-spacing)];
+  @apply prose-li:mt-0 prose-li:mb-[var(--docs-article-body-paragraph-spacing)];
+  @apply prose-a:text-canyon-clay---links/70 prose-a:font-normal prose-a:hover:no-underline prose-a:hover:text-canyon-clay---links/100;
+  @apply prose-h2:datum-text-xl prose-h3:datum-text-lg prose-h4:datum-text-base prose-h5:datum-text-sm prose-h6:datum-text-sm;
+  @apply prose-headings:mt-0 prose-headings:mb-4 prose-headings:font-bold;
+}
+
+@utility datum-prose-article {
+  @apply prose max-w-none;
+  @apply datum-text-article-body;
+  @apply prose-p:mt-0 prose-p:mb-[var(--text-article-body-paragraph-spacing)];
+  @apply prose-li:mt-0 prose-li:mb-[var(--text-article-body-paragraph-spacing)];
+  @apply prose-a:text-canyon-clay---links/70 prose-a:font-normal prose-a:hover:no-underline prose-a:hover:text-canyon-clay---links/100;
+  @apply prose-h2:datum-text-2xl prose-h3:datum-text-xl prose-h4:datum-text-lg prose-h5:datum-text-base prose-h6:datum-text-sm;
+  @apply prose-headings:mt-0 prose-headings:mb-4 prose-headings:font-bold;
 }
