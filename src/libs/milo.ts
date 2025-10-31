@@ -124,37 +124,40 @@ async function roadmaps(): Promise<RoadmapProps[]> {
   if (cache.has('roadmaps')) {
     return cache.get<RoadmapProps[]>('roadmaps') as RoadmapProps[];
   } else {
-    const query = `
-        query {
-          search(query: "repo:datum-cloud/enhancements is:issue label:\\"Roadmap Vote\\" label:Milo", type: ISSUE, first: 30) {
-            issueCount
-            nodes {
-              ... on Issue {
-                number
-                id
-                title
-                body
-                url
-                labels(first: 5) {
-                  nodes {
-                    name
+    try {
+      const query = `
+          query {
+            search(query: "repo:datum-cloud/enhancements is:issue label:\\"Roadmap Vote\\" label:Milo", type: ISSUE, first: 30) {
+              issueCount
+              nodes {
+                ... on Issue {
+                  number
+                  id
+                  title
+                  body
+                  url
+                  labels(first: 5) {
+                    nodes {
+                      name
+                    }
                   }
+                  updatedAt
                 }
-                updatedAt
               }
             }
-          }
-        }`;
+          }`;
 
-    const response = (await graph(query)) as ResponseProps;
-    console.log(response.search);
-    roadmaps = Object(response.search.nodes).map((issue: RoadmapProps) => ({
-      ...issue,
-    }));
+      const response = (await graph(query)) as ResponseProps;
+      roadmaps = Object(response.search.nodes).map((issue: RoadmapProps) => ({
+        ...issue,
+      }));
 
-    cache.set('roadmaps', roadmaps, 1000 * 60 * 10); // cache for 30 minutes
+      cache.set('roadmaps', roadmaps, 1000 * 60 * 10); // cache for 30 minutes
 
-    return roadmaps;
+      return roadmaps;
+    } catch {
+      return roadmaps;
+    }
   }
 }
 
@@ -184,13 +187,14 @@ async function changelogs(): Promise<ChangelogProps[]> {
   const categoryVariables = {
     owner,
     name,
-    slug: 'changelog',
+    slug: 'product-updates-and-releases',
   };
 
   if (cache.has('changelogs')) {
     return cache.get<ChangelogProps[]>('changelogs') as ChangelogProps[];
   } else {
-    const categoryQuery = `
+    try {
+      const categoryQuery = `
       query ($owner:String!, $name:String!, $slug:String!) {
         repository(owner: $owner, name: $name) {
           discussionCategory(slug: $slug){
@@ -199,13 +203,13 @@ async function changelogs(): Promise<ChangelogProps[]> {
         }
       }`;
 
-    const categoryResponse = (await graph(categoryQuery, categoryVariables)) as {
-      repository: { discussionCategory: { id: string } };
-    };
+      const categoryResponse = (await graph(categoryQuery, categoryVariables)) as {
+        repository: { discussionCategory: { id: string } };
+      };
 
-    const categoryId = categoryResponse.repository.discussionCategory.id as string;
+      const categoryId = categoryResponse.repository.discussionCategory.id as string;
 
-    const query = `
+      const query = `
       query ($owner:String!, $name:String!, $categoryId:ID!) {
         repository(owner: $owner, name: $name) {
           discussions(first: 30, after: null, categoryId: $categoryId) {
@@ -226,17 +230,20 @@ async function changelogs(): Promise<ChangelogProps[]> {
       }
     `;
 
-    const variables = {
-      owner,
-      name,
-      categoryId,
-    };
+      const variables = {
+        owner,
+        name,
+        categoryId,
+      };
 
-    const response = (await graph(query, variables)) as ResponseProps;
-    changelogs = Object(response.repository.discussions.nodes).map((log: ChangelogProps) => ({
-      ...log,
-    }));
-    cache.set('changelogs', changelogs, 1000 * 60 * 10); // cache for 10 minutes
+      const response = (await graph(query, variables)) as ResponseProps;
+      changelogs = Object(response.repository.discussions.nodes).map((log: ChangelogProps) => ({
+        ...log,
+      }));
+      cache.set('changelogs', changelogs, 1000 * 60 * 10); // cache for 10 minutes
+    } catch {
+      return changelogs;
+    }
   }
 
   return changelogs;
