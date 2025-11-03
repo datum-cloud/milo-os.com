@@ -1,15 +1,6 @@
 ---
 import { marked } from 'marked';
 import Bullet from '@v1/assets/icons/bullet.svg';
-// import { extractHeader } from '@/src/libs/markdown';
-// import { getEntry } from 'astro:content';
-
-// const changelogEntry = await getEntry('pages', 'changelog');
-// const changelogs = (await extractHeader(changelogEntry?.body)) as Record<
-//   string,
-//   { title: string; description: string }
-// >;
-
 import { changelogs, type ChangelogProps } from '@/src/libs/milo';
 
 const changelogsEntries = await changelogs();
