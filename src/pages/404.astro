@@ -1,0 +1,37 @@
+---
+import '@v1/styles/global.css';
+import Layout from '@layouts/Layout.astro';
+import Hero from '@components/Hero.astro';
+import Footer from '@components/Footer.astro';
+import Button from '@components/Button.astro';
+
+const title = "Sorry, we can't find that page";
+const description = 'The page you are looking for does not exist.';
+---
+
+<Layout title={title} description={description} bodyClass="page-404">
+  <section class="datum-container">
+    <Hero class="light" title={title} />
+
+    <div class="section--block section--block--regular-pad bg-glacier-mist-800">
+      <main class="mx-auto max-w-391 px-6">
+        <article class="prose prose-xl mx-auto text-center">
+          <p class="mb-12">Please check the URL and try again.</p>
+          <Button
+            text="Return to homepage"
+            href="/"
+            class="btn btn--alpha mr-1"
+            icon={{ name: 'arrow-right', size: 'md' }}
+          />
+        </article>
+      </main>
+    </div>
+    <Footer showCTA={false} />
+  </section>
+
+  {
+    import.meta.env.MODE === 'production' && (
+      <script>import '/src/v1/scripts/error-tracker.js';</script>
+    )
+  }
+</Layout>
