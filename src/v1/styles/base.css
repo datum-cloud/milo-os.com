@@ -11,14 +11,18 @@
 
 @layer base {
   html {
-    /* @apply antialiased; */
-    @apply font-primary;
-    @apply bg-glacier-mist-900;
+    @apply scroll-smooth;
   }
 
   html,
   body {
-    @apply overflow-x-hidden;
+    @apply overflow-x-clip;
+  }
+
+  body {
+    @apply bg-glacier-mist-900;
+    @apply font-primary;
+    @apply antialiased;
   }
 
   .prose h1,
