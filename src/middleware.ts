@@ -14,9 +14,9 @@ const routeGuard: MiddlewareHandler = async ({ url, redirect }, next) => {
 
   if (isProtected(pathName)) {
     // only for development mode, to ease testing
-    // if (mode == 'production') {
-    //   return redirect(`/`);
-    // }
+    if (mode == 'production') {
+      return redirect(`/`);
+    }
   }
 
   return next();
