@@ -1,6 +1,9 @@
 import { graph } from '@/src/libs/github';
 import { Cache } from '@libs/cache';
 
+import roadmapsFallbackData from '@content/roadmap.json';
+import changelogsFallbackData from '@content/changelog.json';
+
 const cache = new Cache('.cache');
 const owner = 'datum-cloud';
 
@@ -12,7 +15,7 @@ type RoadmapProps = {
   url: string;
   labels?: { nodes: Array<{ name: string }> };
   hasVoted?: boolean;
-  updatedAt: string;
+  createdAt: string;
 };
 
 type ChangelogProps = {
@@ -20,8 +23,8 @@ type ChangelogProps = {
   title: string;
   body: string;
   url: string;
-  publishedAt: Date;
-  tags?: Array<string>;
+  labels?: { nodes: Array<{ name: string }> };
+  createdAt: string;
 };
 
 async function stargazerCount(isClientSide: boolean = false): Promise<number> {
@@ -93,7 +96,7 @@ async function roadmaps(): Promise<RoadmapProps[]> {
               name: string;
             }>;
           };
-          updatedAt: string;
+          createdAt: string;
         },
       ];
     };
@@ -121,7 +124,7 @@ async function roadmaps(): Promise<RoadmapProps[]> {
                       name
                     }
                   }
-                  updatedAt
+                  createdAt
                 }
               }
             }
@@ -133,15 +136,21 @@ async function roadmaps(): Promise<RoadmapProps[]> {
       }));
 
       cache.set('roadmaps', roadmaps, 1000 * 60 * 10); // cache for 30 minutes
-
       return roadmaps;
     } catch {
+      if (roadmaps.length < 1) {
+        console.log('Roadmap: Using static roadmap data as fallback.');
+        roadmaps = roadmapsFallbackData as RoadmapProps[];
+      }
+
       return roadmaps;
     }
   }
 }
 
 async function changelogs(): Promise<ChangelogProps[]> {
+  let changelogs: ChangelogProps[] = [];
+
   type ResponseProps = {
     repository: {
       discussions: {
@@ -151,6 +160,7 @@ async function changelogs(): Promise<ChangelogProps[]> {
             title: string;
             body: string;
             url: string;
+            createdAt: string;
             labels: {
               nodes: Array<{
                 name: string;
@@ -163,7 +173,6 @@ async function changelogs(): Promise<ChangelogProps[]> {
   };
 
   const name = 'datum';
-  let changelogs: ChangelogProps[] = [];
   const categoryVariables = {
     owner,
     name,
@@ -197,6 +206,7 @@ async function changelogs(): Promise<ChangelogProps[]> {
               id,
               title,
               body,
+              url,
               createdAt,
               labels (first: 5, last: null) {
                 nodes {
@@ -215,18 +225,21 @@ async function changelogs(): Promise<ChangelogProps[]> {
         name,
         categoryId,
       };
-
       const response = (await graph(query, variables)) as ResponseProps;
       changelogs = Object(response.repository.discussions.nodes).map((log: ChangelogProps) => ({
         ...log,
       }));
       cache.set('changelogs', changelogs, 1000 * 60 * 10); // cache for 10 minutes
+      return changelogs;
     } catch {
+      if (changelogs.length < 1) {
+        console.log('Changelogs: Using static roadmap data as fallback.');
+        changelogs = changelogsFallbackData as ChangelogProps[];
+      }
+
       return changelogs;
     }
   }
-
-  return changelogs;
 }
 
 export { stargazerCount, roadmaps, changelogs, type RoadmapProps, type ChangelogProps };
