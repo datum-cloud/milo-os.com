@@ -1,19 +1,35 @@
 import { stargazerCount } from '@libs/milo';
+import { sequence } from 'astro:middleware';
+import type { MiddlewareHandler } from 'astro';
 
-interface Context {
-  locals: {
-    starCount?: string;
-  };
-}
+const PROTECTED_ROUTES = [/^\/dev($|\/.*)/];
 
-type NextFunction = () => Promise<void>;
+const isProtected = (path: string): boolean => {
+  return PROTECTED_ROUTES.some((pattern) => pattern.test(path));
+};
 
-export async function onRequest(context: Context, next: NextFunction) {
+const routeGuard: MiddlewareHandler = async ({ url, redirect }, next) => {
+  const mode = process.env.MODE || import.meta.env.MODE;
+  const pathName = new URL(url).pathname;
+
+  if (isProtected(pathName)) {
+    // only for development mode, to ease testing
+    // if (mode == 'production') {
+    //   return redirect(`/`);
+    // }
+  }
+
+  return next();
+};
+
+const baseMiddleware: MiddlewareHandler = async (context, next) => {
   const starCount = await stargazerCount();
   const formatter = new Intl.NumberFormat('en-US', { notation: 'compact' });
   const formattedStarCount = formatter.format(starCount);
 
-  context.locals.starCount = formattedStarCount;
+  context.locals.starCount = () => formattedStarCount;
 
   return next();
-}
+};
+
+export const onRequest = sequence(routeGuard, baseMiddleware);
