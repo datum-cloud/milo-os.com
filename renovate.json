@@ -6,10 +6,10 @@
   },
   "packageRules": [
     {
-      "matchManagers": ["npm"],
+      "matchManagers": ["bun"],
       "updateLockFiles": true,
       "rangeStrategy": "bump",
-      "groupName": "npm dependencies"
+      "groupName": "bun dependencies"
     }
   ]
 }
