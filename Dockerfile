@@ -1,4 +1,4 @@
-FROM oven/bun:1.2-slim AS base
+FROM oven/bun:1.3-slim AS base
 
 WORKDIR /app
 
@@ -20,7 +20,7 @@ RUN chmod -R 755 src/pages
 EXPOSE 4321
 CMD ["bun", "run", "dev"]
 
-FROM oven/bun:1.2-slim AS production
+FROM oven/bun:1.3-slim AS production
 
 WORKDIR /app
 
