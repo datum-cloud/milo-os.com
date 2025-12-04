@@ -30,6 +30,8 @@ async function graph(query: string, variables?: RequestParameters) {
     } catch (error) {
       console.error('Error fetching with graphql: ', error);
     }
+  } else {
+    console.log('GitHub-graphQL: App credentials are not set properly.');
   }
 
   return response;
@@ -51,6 +53,8 @@ async function rest(query: string, variables: RequestParameters = {}) {
     } catch (error) {
       console.error('Error fetching with rest: ', error);
     }
+  } else {
+    console.log('GitHub-rest: App credentials are not set properly.');
   }
 
   return response;
