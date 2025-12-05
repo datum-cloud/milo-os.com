@@ -1,0 +1,17 @@
+---
+import dayjs from 'dayjs';
+
+const lastBuild = dayjs().format('MMM DD, YYYY - HH:mm');
+
+return new Response(
+  JSON.stringify({
+    lastBuild: lastBuild,
+  }),
+  {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+);
+---
