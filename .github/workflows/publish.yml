@@ -16,7 +16,7 @@ jobs:
       id-token: write
       contents: read
       packages: write
-    uses: datum-cloud/actions/.github/workflows/publish-docker.yaml@b5fbc4510a280470dc137f3627f765f7ce804bd0
+    uses: datum-cloud/actions/.github/workflows/publish-docker.yaml@979a58b15b8b92a780d949625813dcede8f3be3c
     with:
       image-name: milo-os-com
     secrets: inherit
@@ -27,7 +27,7 @@ jobs:
       id-token: write
       contents: read
       packages: write
-    uses: datum-cloud/actions/.github/workflows/publish-kustomize-bundle.yaml@b5fbc4510a280470dc137f3627f765f7ce804bd0
+    uses: datum-cloud/actions/.github/workflows/publish-kustomize-bundle.yaml@979a58b15b8b92a780d949625813dcede8f3be3c
     with:
       bundle-name: ghcr.io/datum-cloud/milo-os-com-kustomize
       bundle-path: config
