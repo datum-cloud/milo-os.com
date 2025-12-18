@@ -78,33 +78,31 @@ const sortedMeta = Object.keys(metaEnv)
   .reduce((acc, key) => ({ ...acc, [key]: metaEnv[key] }), {});
 
 const processEnv = filterSensitiveVars(process.env);
-
-return new Response(
-  JSON.stringify(
-    {
-      meta: sortedMeta,
-      process: Object.keys(processEnv)
-        .sort()
-        .reduce((acc, key) => ({ ...acc, [key]: processEnv[key] }), {}),
-      nodeVersion: process.version,
-      platform: {
-        arch: process.arch,
-        platform: process.platform,
-        release: process.release,
-        uptime: process.uptime(),
-      },
-      database: {
-        info: psqlInfo,
-      },
-    },
-    null,
-    2
-  ),
+const response = JSON.stringify(
   {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
+    meta: sortedMeta,
+    process: Object.keys(processEnv)
+      .sort()
+      .reduce((acc, key) => ({ ...acc, [key]: processEnv[key] }), {}),
+    nodeVersion: process.version,
+    platform: {
+      arch: process.arch,
+      platform: process.platform,
+      release: process.release,
+      uptime: process.uptime(),
     },
-  }
+    database: {
+      info: psqlInfo,
+    },
+  },
+  null,
+  2
 );
+
+return new Response(response, {
+  status: 200,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 ---
