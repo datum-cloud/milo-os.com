@@ -4,25 +4,25 @@ metadata:
   name: milo-os-com-http-route
 spec:
   parentRefs:
-  - group: gateway.networking.k8s.io
-    kind: Gateway
-    name: milo-os-com-gateway
-    sectionName: https-www-milo-os-com
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: milo-os-com-gateway
+      sectionName: https-www-milo-os-com
   rules:
-  - backendRefs:
-    - group: discovery.k8s.io
-      kind: EndpointSlice
-      name: milo-os-com
-      port: 443
-      weight: 1
-    filters:
-      - type: URLRewrite
-        urlRewrite:
-          hostname: "milo-os-com.staging.env.datum.net"
-    matches:
-    - path:
-        type: PathPrefix
-        value: /
-    timeouts:
-      backendRequest: 25s
-      request: 25s
+    - backendRefs:
+        - group: discovery.k8s.io
+          kind: EndpointSlice
+          name: milo-os-com
+          port: 443
+          weight: 1
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            hostname: "milo-os-com.prod.env.datum.net"
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
+      timeouts:
+        backendRequest: 25s
+        request: 25s
