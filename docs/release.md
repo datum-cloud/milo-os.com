@@ -40,5 +40,5 @@ datumctl auth update-kubeconfig --project <project-name> --kubeconfig datumcfg
 Then you can use kubectl to apply the changes to Datum Cloud.
 
 ```shell
-kubectl apply -k config/gateway --kubeconfig datumcfg
+kubectl apply -k config/gateway --kubeconfig datumcfg -n milo-os-com
 ```
