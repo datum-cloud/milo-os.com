@@ -1,44 +1,7 @@
 ---
-import { remark } from 'remark';
-import remarkHtml from 'remark-html';
 import Bullet from '@v1/assets/icons/bullet.svg';
 import { changelogs, type ChangelogProps } from '@/src/libs/milo';
-
-const calloutStyles: Record<string, { bg: string; text: string; icon: string }> = {
-  note: { bg: 'bg-blue-100', text: 'text-blue-400', icon: 'ℹ' },
-  warning: {
-    bg: 'bg-yellow-100',
-    text: 'text-yellow-700',
-    icon: '⚠️',
-  },
-  tip: { bg: 'bg-green-100', text: 'text-green-700', icon: '💡' },
-  important: {
-    bg: 'bg-purple-100',
-    text: 'text-purple-700',
-    icon: '❗',
-  },
-  caution: { bg: 'bg-red-100', text: 'text-red-700', icon: '🚨' },
-};
-
-const processMarkdown = async (markdown: string) => {
-  let processedHtml = await remark().use(remarkHtml, { sanitize: false }).process(markdown);
-  let html = String(processedHtml);
-  // Transform GitHub-style callouts: > [!NOTE], > [!WARNING], etc.
-  const calloutRegex = /<p>\[!(NOTE|WARNING|TIP|IMPORTANT|CAUTION)\]([\s\S]*?)<\/p>/gi;
-
-  html = html.replace(calloutRegex, (match, type, content) => {
-    const calloutType = type.toLowerCase();
-    const config = calloutStyles[calloutType] || calloutStyles.note;
-    const title = type.charAt(0) + type.slice(1).toLowerCase();
-    // return 'test';
-    return `<div class="${config.text} mb-2" role="alert">
-      ${config.icon} ${title}
-      ${content.trim()}
-    </div>`;
-  });
-
-  return html;
-};
+import { processCalloutMarkdown } from '@/src/utils/calloutUtils';
 
 const changelogsEntries = await changelogs();
 const { limit } = Astro.props;
@@ -60,7 +23,7 @@ const entries = limit ? changelogsEntries.slice(0, limit) : changelogsEntries;
           }
         >
           <h4>{entry.title}</h4>
-          <div set:html={await processMarkdown(entry.body)} />
+          <div set:html={await processCalloutMarkdown(entry.body)} />
         </div>
       </li>
     ))
