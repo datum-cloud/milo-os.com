@@ -1,4 +1,4 @@
-FROM node:24.12.0-alpine3.22 AS base
+FROM node:24.13.0-alpine3.22 AS base
 WORKDIR /app
 COPY package*.json ./
 RUN --mount=type=cache,target=/root/.npm npm install --ignore-scripts
@@ -17,7 +17,7 @@ RUN chmod -R 755 src/pages
 EXPOSE 4321
 CMD ["npm", "run", "dev", "--", "--host", "--allowed-hosts=website.staging.env.datum.net"]
 
-FROM node:24.12.0-alpine3.22 AS production
+FROM node:24.13.0-alpine3.22 AS production
 WORKDIR /app
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/package*.json ./
