@@ -1,8 +1,8 @@
 ---
-import { marked } from 'marked';
 import Button from '@components/Button.astro';
 import Bullet from '@v1/assets/icons/bullet.svg';
 import { changelogs, type ChangelogProps } from '@/src/libs/milo';
+import { processCalloutMarkdown } from '@/src/utils/calloutUtils';
 
 const changelogsEntries = await changelogs();
 const limit = 3;
@@ -19,7 +19,7 @@ const entries = limit ? changelogsEntries.slice(0, limit) : changelogsEntries;
           </div>
           <div class="display-card--content">
             <ul class="display-card--list display-card--timeline timeline-alt">
-              {entries.map((entry: ChangelogProps) => () => (
+              {entries.map((entry: ChangelogProps) => async () => (
                 <li class="display-card--item">
                   <div class="display-card--item-meta item-neta--timeline">
                     <Bullet class={limit ? 'text-aurora-moss' : 'text-canyon-clay'} />
@@ -27,12 +27,12 @@ const entries = limit ? changelogsEntries.slice(0, limit) : changelogsEntries;
                   <div
                     class={
                       limit
-                        ? 'display-card--item-content text-white [&_*]:text-white'
+                        ? 'display-card--item-content text-white **:text-white'
                         : 'display-card--item-content'
                     }
                   >
                     <h4>{entry.title}</h4>
-                    <div set:html={marked(entry.body)} />
+                    <div set:html={await processCalloutMarkdown(entry.body)} />
                   </div>
                 </li>
               ))}

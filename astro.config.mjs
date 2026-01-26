@@ -4,7 +4,6 @@ import mdx from '@astrojs/mdx';
 
 import { loadEnv } from 'vite';
 import node from '@astrojs/node';
-
 import alpinejs from '@astrojs/alpinejs';
 
 const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), '');
@@ -23,14 +22,20 @@ export default defineConfig({
     layout: 'constrained',
   },
   integrations: [alpinejs(), mdx()],
-
   vite: {
     plugins: [tailwindcss()],
     css: {
       devSourcemap: true,
     },
   },
-
+  security: {
+    allowedDomains: [
+      {
+        hostname: 'website.staging.env.datum.net',
+        protocol: 'https',
+      },
+    ],
+  },
   experimental: {},
   prefetch: true,
 });
