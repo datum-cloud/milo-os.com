@@ -3,14 +3,14 @@ import { remark } from 'remark';
 import remarkHtml from 'remark-html';
 
 export const calloutStyles: Record<string, { textClass: string; icon: string }> = {
-  note: { textClass: 'text-blue-700', icon: 'ℹ' },
+  note: { textClass: 'text-canyon-clay', icon: 'ℹ️' },
   warning: {
-    textClass: 'text-yellow-700',
+    textClass: 'text-canyon-clay',
     icon: '⚠️',
   },
-  tip: { textClass: 'text-green-700', icon: '💡' },
+  tip: { textClass: 'text-canyon-clay', icon: '💡' },
   important: {
-    textClass: 'text-purple-700',
+    textClass: 'text-canyon-clay',
     icon: '❗',
   },
   caution: { textClass: 'text-yellow-700', icon: '🚨' },
@@ -31,8 +31,8 @@ export const processCalloutMarkdown = async (markdown: string) => {
       ? `<div class="callout-content">${trimmedContent}</div>`
       : '';
     return `<div class="${config.textClass} mb-2" role="alert">
-      <div class="flex items-center gap-2 font-bold mb-3">
-        <div class="aspect-square w-6 text-center rounded-full border text-sm ">${config.icon}</div>
+      <div class="flex items-center gap-2 font-bold mb-3 not-italic">
+        <div class="text-center text-sm ">${config.icon}</div>
         <span class="text-md">${title}</span>
       </div>
       ${contentHtml}
