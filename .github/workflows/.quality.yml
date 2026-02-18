@@ -1,21 +1,73 @@
 name: Quality Checks
 
 on:
+  pull_request:
   push:
+    branches: [main]
     paths-ignore:
       - 'README.md'
       - 'env.example'
       - '.vscode/**'
-
   release:
     types: ['published']
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_ENV: production
+  BUN_CACHE: ~/.bun/install/cache
+
 jobs:
-  check-files:
+  install:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Cache Dependencies
+        id: cache-deps
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.BUN_CACHE }}
+            **/node_modules
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/bun.lock', '**/package.json') }}
+
+      - name: Install Dependencies
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: bun install
+
+  lint:
+    needs: install
+    name: Lint & Format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Restore Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.BUN_CACHE }}
+            **/node_modules
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/bun.lock', '**/package.json') }}
+
+      - name: Run Lint
+        run: bun run lint
+
   build-and-push:
     permissions:
       contents: read
@@ -23,7 +75,8 @@ jobs:
       id-token: write
 
     runs-on: ubuntu-latest
-    needs: check-files
+    needs: lint
+    if: ${{ !failure() && !cancelled() }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -58,14 +111,3 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           target: production
-
-  publish-kustomize-bundles:
-    permissions:
-      id-token: write
-      contents: read
-      packages: write
-    uses: datum-cloud/actions/.github/workflows/publish-kustomize-bundle.yaml@v1.9.0
-    with:
-      bundle-name: ghcr.io/datum-cloud/milo-os-com-kustomize
-      bundle-path: config/base
-    secrets: inherit

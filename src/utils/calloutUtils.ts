@@ -22,7 +22,7 @@ export const processCalloutMarkdown = async (markdown: string) => {
   // Transform GitHub-style callouts: > [!NOTE], > [!WARNING], etc.
   const calloutRegex = /<p>\[!(NOTE|WARNING|TIP|IMPORTANT|CAUTION)\]([\s\S]*?)<\/p>/gi;
 
-  html = html.replace(calloutRegex, (match, type, content) => {
+  html = html.replace(calloutRegex, (_match, type, content) => {
     const calloutType = type.toLowerCase();
     const config = calloutStyles[calloutType] || calloutStyles.note;
     const title = type.charAt(0) + type.slice(1).toLowerCase();

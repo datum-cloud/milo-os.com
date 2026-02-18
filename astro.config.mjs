@@ -16,7 +16,7 @@ export default defineConfig({
   trailingSlash: 'always',
   output: 'static',
   adapter: node({
-    mode: 'standalone',
+    mode: 'middleware',
   }),
   image: {
     layout: 'constrained',
