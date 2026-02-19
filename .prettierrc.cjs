@@ -1,4 +1,3 @@
-/* eslint-env node */
 module.exports = {
   plugins: ['prettier-plugin-astro'],
   overrides: [
