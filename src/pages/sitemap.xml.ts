@@ -17,7 +17,7 @@ function staticEntries() {
 }
 
 export const GET: APIRoute = async () => {
-  let entries = '';
+  let entries;
 
   try {
     entries = staticEntries();

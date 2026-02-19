@@ -5,7 +5,7 @@ import { dbConnect } from '@libs/postgres';
 /**
  * Database testing
  */
-let psqlInfo = null;
+let psqlInfo;
 
 try {
   const sql = await dbConnect();
