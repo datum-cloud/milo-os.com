@@ -69,7 +69,7 @@
     "typescript": "^5.9.3"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-arm64-gnu": "4.57.1"
+    "@rollup/rollup-linux-arm64-gnu": "4.59.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,astro}": [
