@@ -41,11 +41,14 @@ async function dbConnect() {
     const HOST = import.meta.env.POSTGRES_HOST || process.env.POSTGRES_HOST;
     const PORT = import.meta.env.POSTGRES_PORT || process.env.POSTGRES_PORT || 5432;
     const DB = import.meta.env.POSTGRES_DB || process.env.POSTGRES_DB;
-    const connectionString = `postgres://${USER}:${PASSWORD}@${HOST}:${PORT}/${DB}`;
 
-    if (!connectionString) {
-      throw new Error('Database environment variable is required');
+    if (!USER || !PASSWORD || !HOST || !DB) {
+      throw new Error(
+        'Missing required database environment variables: POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_DB'
+      );
     }
+
+    const connectionString = `postgres://${USER}:${PASSWORD}@${HOST}:${PORT}/${DB}`;
 
     sql = postgres(connectionString, {
       user: USER,

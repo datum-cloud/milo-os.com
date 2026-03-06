@@ -3,7 +3,6 @@ import { createAppAuth } from '@octokit/auth-app';
 import { graphql } from '@octokit/graphql';
 import type { RequestParameters } from '@octokit/types';
 
-let response = {};
 const appId = import.meta.env.APP_ID || process.env.APP_ID;
 const privateKey = import.meta.env.APP_PRIVATE_KEY || process.env.APP_PRIVATE_KEY;
 const installationId = parseInt(
@@ -12,6 +11,8 @@ const installationId = parseInt(
 );
 
 async function graph(query: string, variables?: RequestParameters) {
+  let response = {};
+
   if (appId && installationId && privateKey) {
     const auth = createAppAuth({
       appId,
@@ -38,6 +39,8 @@ async function graph(query: string, variables?: RequestParameters) {
 }
 
 async function rest(query: string, variables: RequestParameters = {}) {
+  let response = {};
+
   if (appId && installationId && privateKey) {
     const octokitWithAuth = new Octokit({
       authStrategy: createAppAuth,

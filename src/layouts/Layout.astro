@@ -168,7 +168,8 @@ const descriptionValue =
             if (formattedStarCount == null) {
               return;
             }
-            button.innerHTML = `${starIcon} ${formattedStarCount}`;
+            button.innerHTML = starIcon;
+            button.appendChild(document.createTextNode(` ${formattedStarCount}`));
           });
         }
       });
