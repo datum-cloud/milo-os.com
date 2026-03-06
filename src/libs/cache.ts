@@ -11,9 +11,17 @@ export class Cache {
     }
   }
 
+  private sanitizeKey(key: string): string {
+    const sanitized = path.basename(key);
+    if (!sanitized || sanitized === '.' || sanitized === '..') {
+      throw new Error(`Invalid cache key: "${key}"`);
+    }
+    return sanitized;
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   set(key: string, data: any, expiresIn?: number): void {
-    const filePath = path.join(this.cacheDir, `${key}.json`);
+    const filePath = path.join(this.cacheDir, `${this.sanitizeKey(key)}.json`);
     fs.writeFileSync(filePath, JSON.stringify(data), 'utf-8');
 
     if (expiresIn) {
@@ -27,8 +35,8 @@ export class Cache {
   }
 
   get<T>(key: string): T | null {
-    const filePath = path.join(this.cacheDir, `${key}.json`);
-    const expiresPath = path.join(this.cacheDir, `${key}.expires`);
+    const filePath = path.join(this.cacheDir, `${this.sanitizeKey(key)}.json`);
+    const expiresPath = path.join(this.cacheDir, `${this.sanitizeKey(key)}.expires`);
 
     if (fs.existsSync(filePath)) {
       const data = fs.readFileSync(filePath, 'utf-8');
@@ -47,8 +55,8 @@ export class Cache {
   }
 
   clear(key: string): void {
-    const filePath = path.join(this.cacheDir, `${key}.json`);
-    const expiresPath = path.join(this.cacheDir, `${key}.expires`);
+    const filePath = path.join(this.cacheDir, `${this.sanitizeKey(key)}.json`);
+    const expiresPath = path.join(this.cacheDir, `${this.sanitizeKey(key)}.expires`);
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
     }
@@ -65,8 +73,8 @@ export class Cache {
   }
 
   has(key: string): boolean {
-    const filePath = path.join(this.cacheDir, `${key}.json`);
-    const expiresPath = path.join(this.cacheDir, `${key}.expires`);
+    const filePath = path.join(this.cacheDir, `${this.sanitizeKey(key)}.json`);
+    const expiresPath = path.join(this.cacheDir, `${this.sanitizeKey(key)}.expires`);
 
     if (fs.existsSync(filePath)) {
       if (fs.existsSync(expiresPath)) {
@@ -83,6 +91,8 @@ export class Cache {
 
   getAllKeys(): string[] {
     const files = fs.readdirSync(this.cacheDir);
-    return files.map((file) => path.basename(file, '.json'));
+    return files
+      .filter((file) => file.endsWith('.json'))
+      .map((file) => path.basename(file, '.json'));
   }
 }

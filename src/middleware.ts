@@ -2,6 +2,19 @@ import { stargazerCount } from '@libs/milo';
 import { sequence } from 'astro:middleware';
 import type { MiddlewareHandler } from 'astro';
 
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://beacon-v2.helpscout.net https://cdn.usefathom.com https://edge.marker.io",
+  "connect-src 'self' https://api.github.com https://beacon-v2.helpscout.net https://cdn.usefathom.com https://edge.marker.io",
+  "img-src 'self' data: https:",
+  "style-src 'self' 'unsafe-inline'",
+  "font-src 'self'",
+  "frame-src 'none'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+].join('; ');
+
 const PROTECTED_ROUTES = [/^\/dev($|\/.*)/];
 
 const isProtected = (path: string): boolean => {
@@ -32,4 +45,13 @@ const baseMiddleware: MiddlewareHandler = async (context, next) => {
   return next();
 };
 
-export const onRequest = sequence(routeGuard, baseMiddleware);
+const securityHeaders: MiddlewareHandler = async (_context, next) => {
+  const response = await next();
+  response.headers.set('Content-Security-Policy', CSP);
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  return response;
+};
+
+export const onRequest = sequence(routeGuard, baseMiddleware, securityHeaders);

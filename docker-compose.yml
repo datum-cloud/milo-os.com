@@ -14,7 +14,8 @@ services:
       - HOST=0.0.0.0
       - PORT=4321
     env_file:
-      - .env
+      - path: .env
+        required: false
     develop:
       watch:
         - path: ./public
@@ -35,5 +36,6 @@ services:
       - HOST=0.0.0.0
       - PORT=4321
     env_file:
-      - .env
+      - path: .env
+        required: false
     restart: unless-stopped
