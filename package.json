@@ -22,7 +22,7 @@
     "precommit": "bun run typecheck && bun run lint && bun run lint:md && bun run lint:md:fix && bun run format && bun run format:check"
   },
   "dependencies": {
-    "@astrojs/alpinejs": "^0.4.9",
+    "@astrojs/alpinejs": "^0.5.0",
     "@astrojs/mdx": "^4.3.13",
     "@astrojs/node": "^9.5.4",
     "@lucide/astro": "^0.577.0",
