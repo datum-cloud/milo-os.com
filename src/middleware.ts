@@ -40,8 +40,8 @@ const baseMiddleware: MiddlewareHandler = async (_context, next) => {
 
 const securityHeaders: MiddlewareHandler = async (_context, next) => {
   const response = await next();
-  const mode = process.env.MODE || import.meta.env.MODE;
-  if (mode === 'production') {
+  const enableCsp = import.meta.env.PROD || process.env.ENABLE_CSP === 'true';
+  if (enableCsp) {
     response.headers.set('Content-Security-Policy', CSP);
   }
   response.headers.set('X-Content-Type-Options', 'nosniff');
