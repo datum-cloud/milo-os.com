@@ -1,6 +1,12 @@
 ---
-export const prerender = false;
-const starCount = Astro.locals.starCount || 0;
+import { Cache } from '@libs/cache';
+
+const cache = new Cache('.cache');
+
+let starCount = 0;
+if (cache.has('stargazerCount')) {
+  starCount = cache.get<number>('stargazerCount') ?? 0;
+}
 ---
 
 {Number(starCount) > 0 && <span>{starCount}</span>}

@@ -1,4 +1,3 @@
-import { stargazerCount } from '@libs/milo';
 import { sequence } from 'astro:middleware';
 import type { MiddlewareHandler } from 'astro';
 
@@ -35,19 +34,16 @@ const routeGuard: MiddlewareHandler = async ({ url, redirect }, next) => {
   return next();
 };
 
-const baseMiddleware: MiddlewareHandler = async (context, next) => {
-  const starCount = await stargazerCount();
-  const formatter = new Intl.NumberFormat('en-US', { notation: 'compact' });
-  const formattedStarCount = formatter.format(starCount);
-
-  context.locals.starCount = () => formattedStarCount;
-
+const baseMiddleware: MiddlewareHandler = async (_context, next) => {
   return next();
 };
 
 const securityHeaders: MiddlewareHandler = async (_context, next) => {
   const response = await next();
-  response.headers.set('Content-Security-Policy', CSP);
+  const mode = process.env.MODE || import.meta.env.MODE;
+  if (mode === 'production') {
+    response.headers.set('Content-Security-Policy', CSP);
+  }
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('X-Frame-Options', 'DENY');
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
