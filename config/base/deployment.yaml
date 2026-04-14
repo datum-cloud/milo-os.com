@@ -43,27 +43,27 @@ spec:
                 name: milo-os-com
           resources:
             requests:
-              cpu: 100m
-              memory: 100Mi
+              cpu: 250m
+              memory: 256Mi
             limits:
-              cpu: 200m
-              memory: 200Mi
+              cpu: 500m
+              memory: 512Mi
           livenessProbe:
             failureThreshold: 3
             initialDelaySeconds: 5
-            periodSeconds: 5
-            timeoutSeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
             httpGet:
-              path: /
+              path: /healthz
               port: 4321
               scheme: HTTP
           readinessProbe:
             failureThreshold: 3
             initialDelaySeconds: 5
-            periodSeconds: 5
-            timeoutSeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
             httpGet:
-              path: /
+              path: /healthz
               port: 4321
               scheme: HTTP
       dnsPolicy: ClusterFirst
