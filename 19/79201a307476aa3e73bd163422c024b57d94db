@@ -1,0 +1,25 @@
+package.json
+  a1f01df77cbad653 26-27,34
+src/content.config.ts
+  a1f01df77cbad653 1-2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "1979201a307476aa3e73bd163422c024b57d94db",
+  "prompts": {
+    "a1f01df77cbad653": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "40aa2f83-8469-4249-ac5e-8fe2989bc37f",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "AriaEdo",
+      "messages": [],
+      "total_additions": 5,
+      "total_deletions": 4,
+      "accepted_lines": 5,
+      "overriden_lines": 0
+    }
+  }
+}
