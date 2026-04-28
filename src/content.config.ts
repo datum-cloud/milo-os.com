@@ -1,4 +1,5 @@
-import { z, reference, defineCollection } from 'astro:content';
+import { reference, defineCollection } from 'astro:content';
+import { z } from 'zod';
 import { glob } from 'astro/loaders';
 
 const metaSchema = z
