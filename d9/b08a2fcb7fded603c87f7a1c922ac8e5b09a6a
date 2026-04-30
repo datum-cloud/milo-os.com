@@ -1,0 +1,23 @@
+src/components/GithubStargazerValue.astro
+  4746d5564e427906 7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "d9b08a2fcb7fded603c87f7a1c922ac8e5b09a6a",
+  "prompts": {
+    "4746d5564e427906": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "0ab359d5-a9cc-437e-b9ec-156fe287903c",
+        "model": "copilot/auto"
+      },
+      "human_author": "AriaEdo",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 0,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
