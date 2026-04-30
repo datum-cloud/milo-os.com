@@ -4,6 +4,7 @@ import { Cache } from '@libs/cache';
 const cache = new Cache('.cache');
 
 let starCount = 0;
+// Prefer the cached star count so the component can render without an API call.
 if (cache.has('stargazerCount')) {
   starCount = cache.get<number>('stargazerCount') ?? 0;
 }
