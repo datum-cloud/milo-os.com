@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: milo-os-com
-          image: ghcr.io/datum-cloud/milo-os-com:latest
+          image: ghcr.io/milo-os/milo-os-com:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 4321
