@@ -92,7 +92,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v6
         with:
-          images: ghcr.io/datum-cloud/milo-os-com
+          images: ghcr.io/milo-os/milo-os-com
           tags: |
             type=ref,event=pr
             type=ref,event=branch
