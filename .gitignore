@@ -69,4 +69,5 @@ dist/
 .DS_Store
 old_blog
 ignore.*
-config.bat
+.env
+.env.local
