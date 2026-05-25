@@ -82,4 +82,5 @@ bunfig.toml
 /playwright-report/
 /playwright/.cache/
 /tests-examples/
-config.bat
+.env
+.env.local
