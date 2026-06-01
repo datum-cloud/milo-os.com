@@ -3,8 +3,8 @@ import type { MiddlewareHandler } from 'astro';
 
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://beacon-v2.helpscout.net https://cdn.usefathom.com https://edge.marker.io",
-  "connect-src 'self' https://api.github.com https://beacon-v2.helpscout.net https://cdn.usefathom.com https://edge.marker.io",
+  "script-src 'self' 'unsafe-inline' https://beacon-v2.helpscout.net https://cdn.usefathom.com",
+  "connect-src 'self' https://api.github.com https://beacon-v2.helpscout.net https://cdn.usefathom.com",
   "img-src 'self' data: https:",
   "style-src 'self' 'unsafe-inline'",
   "font-src 'self'",

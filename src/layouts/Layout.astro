@@ -41,9 +41,6 @@ const descriptionValue =
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="apple-mobile-web-app-title" content="Datum" />
 
-    <!-- Preconnect to external domains for performance -->
-    <link rel="preconnect" href="https://edge.marker.io" />
-
     <SEO
       title={titleValue}
       description={descriptionValue}
@@ -119,8 +116,6 @@ const descriptionValue =
         </script>
       )
     }
-
-    {import.meta.env.MODE === 'production' && <script src="/scripts/markerio.js" defer is:inline />}
 
     {
       import.meta.env.MODE === 'production' && (
