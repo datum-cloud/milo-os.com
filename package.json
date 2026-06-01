@@ -71,6 +71,9 @@
   "optionalDependencies": {
     "@rollup/rollup-linux-arm64-gnu": "4.60.3"
   },
+  "overrides": {
+    "vite": "^7"
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,astro}": [
       "eslint --fix",
