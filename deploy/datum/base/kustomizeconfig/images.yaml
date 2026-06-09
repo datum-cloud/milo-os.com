@@ -1,0 +1,3 @@
+images:
+  - path: spec/template/spec/runtime/sandbox/containers[]/image
+    kind: Workload
