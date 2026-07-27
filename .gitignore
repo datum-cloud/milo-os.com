@@ -66,6 +66,10 @@ dist/
 .vercel/
 .cache/
 
+# Unikraft unikernel build cache / artifacts
+.unikraft/
+*.oci
+
 # Playwright
 /test-results/
 /playwright-report/

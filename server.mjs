@@ -10,7 +10,14 @@ const __dirname = dirname(__filename);
 
 const PORT = process.env.PORT || 4321;
 const HOST = process.env.HOST || '0.0.0.0';
-const CLIENT_DIR = join(__dirname, 'dist', 'client');
+
+// Client dir: ./dist/client in dev; ../client in the bundled unikernel layout
+// (esbuild bundle lives in dist/server/). CLIENT_DIR env overrides.
+const CLIENT_DIR =
+  process.env.CLIENT_DIR ||
+  (existsSync(join(__dirname, 'dist', 'client'))
+    ? join(__dirname, 'dist', 'client')
+    : join(__dirname, '..', 'client'));
 
 const CONTENT_TYPES = {
   '.html': 'text/html; charset=utf-8',
