@@ -1,0 +1,44 @@
+README.md
+  s_d10c879e0f020b::t_c44f037cd9d14d 9,18,49-58,64-74,99,101,103-106
+  s_8260e3263af120::t_4c85dd874aa5ea 1,4,6,8,13-17,19-24,26,30,32,37,39,41-46,48,60,75-76,80,84-85,88,90-91,93-96,107,109,113-119
+  s_d10c879e0f020b::t_35999dfed024b8 3,5,7,10-12,25,27,31,35,40,47,62-63,81-82,86-87,89,92,111,121
+  s_8260e3263af120::t_7e43da63da9c0a 108
+  s_d10c879e0f020b::t_bfda36b4817fc2 2,59,61
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "e63cf7e1a5532bab40f4c423f8b95ca3bf613b0d",
+  "prompts": {
+    "5bfd23a324e071b6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "210b9e7d-1c97-4508-b336-a5f2e0a01396",
+        "model": "<synthetic>"
+      },
+      "human_author": "AriaEdo <aria.edo@gmail.com>",
+      "total_additions": 113,
+      "total_deletions": 42,
+      "accepted_lines": 113,
+      "overriden_lines": 0
+    }
+  },
+  "sessions": {
+    "s_8260e3263af120": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "8307d091-5c56-4f8f-8b74-b0739a9770df",
+        "model": "composer-2.5"
+      },
+      "human_author": "AriaEdo <aria.edo@gmail.com>"
+    },
+    "s_d10c879e0f020b": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "469717ec-87ef-4692-a5e4-8d42c939f14d",
+        "model": "mai-code-1-flash-picker"
+      },
+      "human_author": "AriaEdo <aria.edo@gmail.com>"
+    }
+  }
+}
