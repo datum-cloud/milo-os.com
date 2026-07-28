@@ -1,39 +1,121 @@
-# Astro Starter Kit: Minimal
+# milo-os.com
+
+Marketing site for [Milo](https://github.com/datum-cloud/milo) — an open source business operating system for product-led B2B companies, built by [Datum](https://www.datum.net).
+
+Live site: [https://www.milo-os.com](https://www.milo-os.com)
+
+## Overview
+
+This repository contains the public marketing website for Milo. It is built as a static-first Astro site with MDX content, reusable UI components, and a lightweight server layer for runtime features such as health checks and dynamic data endpoints.
+
+## Tech stack
+
+- [Astro](https://astro.build/) 6 with MDX content
+- [Tailwind CSS](https://tailwindcss.com/) 4
+- [Alpine.js](https://alpinejs.dev/) for client-side interactivity
+- [Bun](https://bun.sh/) for development and production runtime
+
+The site is pre-rendered to static HTML and served by a custom Bun server in [server.mjs](server.mjs), which handles static assets, compressed responses, and middleware for dynamic routes.
+
+## Getting started
+
+### Prerequisites
+
+- [Bun](https://bun.sh/) 1.3+
+- A local environment file copied from [.env.example](.env.example)
+
+### Install and run locally
 
 ```sh
-npm create astro@latest -- --template minimal
+bun install
+cp .env.example .env
+bun run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The development server will be available at [http://localhost:4321](http://localhost:4321).
 
-## 🚀 Project Structure
+### Docker
 
-Inside of your Astro project, you'll see the following folders and files:
+```sh
+# Development environment with hot reload
+docker compose up dev
+
+# Production build
+docker compose up prod
+```
+
+## Available scripts
+
+| Command | Purpose |
+| :------ | :----- |
+| `bun run dev` | Start the Astro dev server with type checking |
+| `bun run build` | Type-check and build the site to `./dist/` |
+| `bun run start` | Start the production server from [server.mjs](server.mjs) |
+| `bun run preview` | Preview the built site locally |
+| `bun run typecheck` | Run Astro type checks |
+| `bun run lint` | Lint JavaScript, TypeScript, Astro, and MD/MDX files |
+| `bun run lint:md` | Lint MDX content |
+| `bun run format` | Format supported source files |
+
+## Environment variables
+
+The app reads configuration from [.env.example](.env.example). The most important values are:
+
+| Variable | Required | Description |
+| :------- | :------- | :---------- |
+| `SITE_URL` | No | Public site URL (default: `http://www.milo-os.com`) |
+| `PORT` | No | Server port (default: `4321`) |
+| `APP_ID` | Yes* | GitHub App ID for roadmap and changelog data |
+| `APP_INSTALLATION_ID` | Yes* | GitHub App installation ID |
+| `APP_PRIVATE_KEY` | Yes* | GitHub App private key (PEM) |
+| `POSTGRES_*` | Yes* | PostgreSQL connection details for roadmap voting |
+| `CACHE_CLEAR_SECRET` | Yes* | Secret for authenticating the cache-clear endpoint |
+
+* Required for full functionality. The site can still render without these values, but dynamic features such as roadmap data, changelog data, and voting will not work.
+
+## Project structure
 
 ```text
 /
-├── public/
+├── config/              # Kubernetes and Gateway API deployment manifests
+├── docs/                # Internal documentation, including release notes
+├── public/              # Static assets such as fonts and images
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/      # Astro components
+│   ├── content/         # MDX pages and legal content
+│   ├── data/            # Shared site config and navigation data
+│   ├── layouts/         # Shared page layouts
+│   ├── libs/            # GitHub, Postgres, cache, and utility modules
+│   ├── pages/           # Routes for the site
+│   ├── types/           # TypeScript types
+│   ├── utils/           # Shared helpers
+│   └── v1/              # Legacy styles, scripts, and assets
+├── astro.config.mjs
+├── docker-compose.yml
+├── Dockerfile
+└── server.mjs           # Production HTTP server
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Contributing
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Before opening a pull request, run the relevant checks locally:
 
-Any static assets, like images, can be placed in the `public/` directory.
+```sh
+bun run typecheck
+bun run lint
+bun run format
+```
 
-## 🧞 Commands
+## Deployment
 
-All commands are run from the root of the project, from a terminal:
+The site runs on Kubernetes behind the Gateway API, with Datum Cloud edge proxying public traffic. See [docs/release.md](docs/release.md) for deployment details.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```sh
+# Deploy to cluster
+kubectl apply -k config/base
+
+# Update Datum Cloud gateway config
+kubectl apply -k config/gateway --kubeconfig datumcfg -n milo-os-com
+```
+
+Health check endpoints are available at `/healthz`, `/livez`, and `/readyz`.
