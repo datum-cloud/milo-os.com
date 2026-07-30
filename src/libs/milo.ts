@@ -14,7 +14,6 @@ type RoadmapProps = {
   body: string;
   url: string;
   labels?: { nodes: Array<{ name: string }> };
-  hasVoted?: boolean;
   createdAt: string;
 };
 

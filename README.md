@@ -68,10 +68,9 @@ The app reads configuration from [.env.example](.env.example). The most importan
 | `APP_ID` | Yes* | GitHub App ID for roadmap and changelog data |
 | `APP_INSTALLATION_ID` | Yes* | GitHub App installation ID |
 | `APP_PRIVATE_KEY` | Yes* | GitHub App private key (PEM) |
-| `POSTGRES_*` | Yes* | PostgreSQL connection details for roadmap voting |
 | `CACHE_CLEAR_SECRET` | Yes* | Secret for authenticating the cache-clear endpoint |
 
-* Required for full functionality. The site can still render without these values, but dynamic features such as roadmap data, changelog data, and voting will not work.
+* Required for full functionality. The site can still render without these values, but dynamic features such as roadmap data and changelog data will not work.
 
 ## Project structure
 
@@ -85,7 +84,7 @@ The app reads configuration from [.env.example](.env.example). The most importan
 │   ├── content/         # MDX pages and legal content
 │   ├── data/            # Shared site config and navigation data
 │   ├── layouts/         # Shared page layouts
-│   ├── libs/            # GitHub, Postgres, cache, and utility modules
+│   ├── libs/            # GitHub, cache, and utility modules
 │   ├── pages/           # Routes for the site
 │   ├── types/           # TypeScript types
 │   ├── utils/           # Shared helpers
