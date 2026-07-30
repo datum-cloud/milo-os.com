@@ -1,0 +1,20 @@
+README.md
+  s_fffa31bd89013c::t_bfe4bf72c19070 87
+  s_fffa31bd89013c::t_a0da47f2f37e4e 73
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "3a975bbdec1bb93f67f50b35afea1598a04755ae",
+  "prompts": {},
+  "sessions": {
+    "s_fffa31bd89013c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "84327ac2-8cad-4675-9eff-58e9ce7c27ea",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": null
+    }
+  }
+}
