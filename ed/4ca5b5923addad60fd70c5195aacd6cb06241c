@@ -1,0 +1,19 @@
+bun.lock
+  s_fffa31bd89013c::t_128f80603f8c6c 391-392,399-430,1727-1728,1969,2071-2072
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "ed4ca5b5923addad60fd70c5195aacd6cb06241c",
+  "prompts": {},
+  "sessions": {
+    "s_fffa31bd89013c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "84327ac2-8cad-4675-9eff-58e9ce7c27ea",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "AriaEdo <aria.edo@gmail.com>"
+    }
+  }
+}
