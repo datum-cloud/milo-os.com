@@ -1,6 +1,5 @@
 export const prerender = false;
 
-import { dbConnect } from '@libs/postgres';
 import type { APIRoute } from 'astro';
 
 type EnvValue = string | number | boolean | undefined;
@@ -52,10 +51,6 @@ const filterSensitiveVars = (envVars: EnvRecord): EnvRecord => {
 };
 
 export const GET: APIRoute = async () => {
-  const psqlInfo = await dbConnect()
-    .then((sql) => sql`SELECT version()`)
-    .catch(() => null);
-
   const metaEnv = filterSensitiveVars(import.meta.env);
   const processEnv = filterSensitiveVars(process.env);
 
@@ -72,9 +67,6 @@ export const GET: APIRoute = async () => {
       platform: process.platform,
       release: process.release,
       uptime: process.uptime(),
-    },
-    database: {
-      info: psqlInfo,
     },
   };
 
