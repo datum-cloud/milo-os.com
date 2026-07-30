@@ -14,7 +14,7 @@ const port = parseInt(process.env.PORT || env.PORT || '4321');
 export default defineConfig({
   site: siteUrl || `http://localhost:${port}`,
   trailingSlash: 'always',
-  output: 'static',
+  output: 'server',
   adapter: node({
     mode: 'middleware',
   }),

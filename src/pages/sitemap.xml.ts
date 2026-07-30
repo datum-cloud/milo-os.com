@@ -2,6 +2,8 @@
  * Sitemap generation script
  */
 
+export const prerender = true;
+
 import { type APIRoute } from 'astro';
 
 function staticEntries() {
