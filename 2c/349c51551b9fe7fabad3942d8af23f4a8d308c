@@ -1,0 +1,26 @@
+src/components/Footer.astro
+  s_14cde0ff6fd56d::t_d9eef0936346a3 43
+server.mjs
+  s_14cde0ff6fd56d::t_bdbc623fe180de 172-177
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "2c349c51551b9fe7fabad3942d8af23f4a8d308c",
+  "prompts": {},
+  "humans": {
+    "h_c7951bc64db670": {
+      "author": "AriaEdo <aria.edo@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_14cde0ff6fd56d": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "559bed05-29ae-414b-b795-44e92dbf7d50",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "AriaEdo <aria.edo@gmail.com>"
+    }
+  }
+}
