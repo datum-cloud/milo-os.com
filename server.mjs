@@ -169,6 +169,12 @@ const server = createServer((req, res) => {
 
   const url = req.url.split('?')[0];
 
+  if (/^\/legal(?:\/|$)/.test(url)) {
+    res.writeHead(302, { Location: 'https://www.datum.net/legal/terms' });
+    res.end();
+    return;
+  }
+
   // Health check endpoints for Kubernetes probes
   if (url === '/healthz' || url === '/livez' || url === '/readyz') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
