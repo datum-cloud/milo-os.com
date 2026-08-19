@@ -1,0 +1,14 @@
+src/pages/sitemap.xml.ts
+  h_c7951bc64db670 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "1f40c907beed077b41c411c1b340dc6e87ff7510",
+  "prompts": {},
+  "humans": {
+    "h_c7951bc64db670": {
+      "author": "AriaEdo <aria.edo@gmail.com>"
+    }
+  }
+}
