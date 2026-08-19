@@ -1,0 +1,19 @@
+src/components/Footer.astro
+  h_c7951bc64db670 47
+  h_c7951bc64db670 43-46
+bun.lock
+  h_c7951bc64db670 8-10,17,62,90,94,96,98,100,670,1024-1025,1312-1313,1860-1861,1868,2070-2071
+package.json
+  h_c7951bc64db670 25-27,34,45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "0395a821064e41e666bac7248faeebdaea5cbd92",
+  "prompts": {},
+  "humans": {
+    "h_c7951bc64db670": {
+      "author": "AriaEdo <aria.edo@gmail.com>"
+    }
+  }
+}
