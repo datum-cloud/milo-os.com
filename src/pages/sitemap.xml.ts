@@ -11,9 +11,7 @@ function staticEntries() {
     `<url><loc>https://www.milo-os.com/about/</loc></url>` +
     `<url><loc>https://www.milo-os.com/roadmap/</loc></url>` +
     `<url><loc>https://www.milo-os.com/changelog/</loc></url>` +
-    `<url><loc>https://www.milo-os.com/docs/</loc></url>` +
-    `<url><loc>https://www.milo-os.com/legal/privacy/</loc></url>` +
-    `<url><loc>https://www.milo-os.com/legal/term/</loc></url>`;
+    `<url><loc>https://www.milo-os.com/docs/</loc></url>`;
 
   return entries;
 }
